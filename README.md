@@ -5,7 +5,7 @@ Figma: https://www.figma.com/design/QjMoQdEjtWX0kNlYWGLcrZ/GranadaFire?node-id=0
 
 Member:
 
-- Marc Faithful
+- Marc Faithfull
 - Martin Faithful
 - Nicholas Rumack
   
