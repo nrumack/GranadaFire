@@ -1,6 +1,6 @@
-package DAO;
+package com.example.granadafire.DAO;
 
-import entities.Game;
+import com.example.granadafire.entities.Game;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;

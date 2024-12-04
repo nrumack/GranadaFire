@@ -1,7 +1,7 @@
 package com.example.granadafire;
 
-import DAO.GameDAO;
-import entities.Game;
+import com.example.granadafire.DAO.GameDAO;
+import com.example.granadafire.entities.Game;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
