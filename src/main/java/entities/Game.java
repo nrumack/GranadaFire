@@ -1,4 +1,4 @@
-package com.example.granadafire.entities;
+package entities;
 
 import jakarta.persistence.*;
 
@@ -13,18 +13,18 @@ public class Game {
     @Column(name = "spel_namn", length = 50, nullable = false)
     private String spel_namn;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "spelare_id")
     private Player spelare;
 
     public Game(){
     }
 
-    public Game(int spel_id, String spel_namn, Player spelare) {
-        this.spel_id = spel_id;
+    public Game(String spel_namn, Player spelare) {
         this.spel_namn = spel_namn;
         this.spelare = spelare;
     }
+
     public int getSpel_id() {
         return spel_id;
     }

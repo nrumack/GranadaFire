@@ -1,4 +1,4 @@
-package com.example.granadafire.entities;
+package entities;
 
 import jakarta.persistence.Entity;
 
