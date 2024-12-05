@@ -13,13 +13,15 @@ public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
 
-        GameDAO gameDAO = new GameDAO();
+      /*  GameDAO gameDAO = new GameDAO();
         Game testGame = new Game();
+
+        gameDAO.saveGame(testGame);
         if(gameDAO.saveGame(testGame)) {
             System.out.println("Saved game");
         } else {
             System.out.println("Failed to save game");
-        }
+        }*/
 
 
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));

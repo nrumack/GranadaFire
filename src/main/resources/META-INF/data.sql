@@ -1,1 +1,1 @@
-INSERT INTO game(spel_id, spel_name) VALUES (1, 'DotA');
+INSERT INTO game(spel_id, spel_namn) VALUES (1, 'DotA');
