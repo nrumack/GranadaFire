@@ -6,7 +6,7 @@
     <persistence-unit name="myconfig">
 
         <!-- <class>org.hibernate.example.Book</class> -->
-        <class>entities.Game</class>
+        <class>com.example.granadafire.entities.Game</class>
 
         <properties>
             <!-- MySQL -->
