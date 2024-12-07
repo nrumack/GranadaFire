@@ -13,9 +13,8 @@ public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
 
-      /*  GameDAO gameDAO = new GameDAO();
-        Game testGame = new Game();
-
+        GameDAO gameDAO = new GameDAO();
+        /*Game testGame = new Game();
         gameDAO.saveGame(testGame);
         if(gameDAO.saveGame(testGame)) {
             System.out.println("Saved game");

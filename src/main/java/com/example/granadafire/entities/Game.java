@@ -10,7 +10,7 @@ public class Game {
     @Column(name = "spel_id")
     private int spel_id;
 
-    @Column(name = "spel_namn", length = 20, nullable = false)
+    @Column(name = "spel_namn", length = 50, nullable = false)
     private String spel_namn;
 
     @ManyToOne(fetch = FetchType.LAZY)

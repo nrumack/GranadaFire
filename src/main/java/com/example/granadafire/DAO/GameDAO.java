@@ -34,5 +34,8 @@ public class GameDAO {
             entityManager.close();
         }
     }
+
+    // CRUD (create, read, update, delete
+
 }
 
