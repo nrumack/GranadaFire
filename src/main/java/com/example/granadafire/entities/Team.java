@@ -20,8 +20,8 @@ public class Team {
     @JoinColumn(name = "game_id", nullable = false)
     private Game game;
 
-    @OneToMany(mappedBy = "team", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Player> players = new ArrayList<>();
+//    @OneToMany(mappedBy = "team", cascade = CascadeType.ALL, orphanRemoval = true)
+//    private List<Player> players = new ArrayList<>();
 
     public Team() {}
 
@@ -61,12 +61,12 @@ public class Team {
         this.game = game;
     }
 
-    public List<Player> getPlayers() {
-        return players;
-    }
-
-    public void setPlayers(List<Player> players) {
-        this.players = players;
-    }
+//    public List<Player> getPlayers() {
+//        return players;
+//    }
+//
+//    public void setPlayers(List<Player> players) {
+//        this.players = players;
+//    }
 
 }

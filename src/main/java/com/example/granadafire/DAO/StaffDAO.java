@@ -10,7 +10,7 @@ import java.util.List;
 
 public class StaffDAO {
     //CRUD-operations
-    private static final EntityManagerFactory ENTITY_MANAGER_FACTORY = Persistence.createEntityManagerFactory("myconfiq");
+    private static final EntityManagerFactory ENTITY_MANAGER_FACTORY = Persistence.createEntityManagerFactory("myconfig");
     private EntityManager entityManager;
 
     //Create

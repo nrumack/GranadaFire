@@ -9,7 +9,6 @@ import jakarta.persistence.*;
 public class Player {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "player_id")
     private int id;
 
     @Column(name = "first_name", length = 40, nullable = false)
