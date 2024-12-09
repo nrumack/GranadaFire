@@ -2,12 +2,13 @@ package com.example.granadafire.entities;
 
 import jakarta.persistence.*;
 
+//Created by Nicholas Rumack
+
 @Entity
 @Table(name = "players")
 public class Player {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "player_id")
     private int id;
 
     @Column(name = "first_name", length = 40, nullable = false)
