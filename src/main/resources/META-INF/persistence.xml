@@ -4,6 +4,8 @@
              version="2.0">
 
     <persistence-unit name="myconfig">
+        <class>com.example.granadafire.entities.Team</class>
+        <class>com.example.granadafire.entities.Match</class>
 
         <!-- <class>org.hibernate.example.Book</class> -->
         <class>com.example.granadafire.entities.Game</class>
