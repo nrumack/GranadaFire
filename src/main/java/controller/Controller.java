@@ -12,17 +12,17 @@ import javafx.stage.Stage;
 public class Controller {
     @FXML
     private Label welcomeText;
-   /* @FXML
-    private Label gamesTest;*/
+   @FXML
+    private Label gamesTest;
 
     @FXML
     protected void onHelloButtonClick() {
         welcomeText.setText("Welcome to JavaFX Application!");
     }
-  /*  @FXML
+    @FXML
     protected void onGamesButtonClick() {
         gamesTest.setText("Game Test");
-    }*/
+    }
 
     @FXML
     protected void testClick(ActionEvent event) {
