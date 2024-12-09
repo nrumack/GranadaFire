@@ -8,4 +8,6 @@ module com.example.granadafire {
 
     opens com.example.granadafire to javafx.fxml;
     exports com.example.granadafire;
+    exports controller;
+    opens controller to javafx.fxml;
 }

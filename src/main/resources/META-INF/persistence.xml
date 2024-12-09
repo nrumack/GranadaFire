@@ -17,9 +17,9 @@
 
             <!-- Credentials -->
             <property name="jakarta.persistence.jdbc.user"
-                      value="name"/>
+                      value="root"/>
             <property name="jakarta.persistence.jdbc.password"
-                      value="password"/>
+                      value="granadafire"/>
 
             <!-- Automatic schema export -->
             <!-- <property name="jakarta.persistence.schema-generation.database.action"

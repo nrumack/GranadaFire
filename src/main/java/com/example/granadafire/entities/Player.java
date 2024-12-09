@@ -2,6 +2,8 @@ package com.example.granadafire.entities;
 
 import jakarta.persistence.*;
 
+//Created by Nicholas Rumack
+
 @Entity
 @Table(name = "players")
 public class Player {
