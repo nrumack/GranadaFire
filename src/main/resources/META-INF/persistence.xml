@@ -6,6 +6,9 @@
     <persistence-unit name="myconfig">
         <class>com.example.granadafire.entities.Team</class>
         <class>com.example.granadafire.entities.Match</class>
+        <class>com.example.granadafire.entities.Player</class>
+        <class>com.example.granadafire.entities.Staff</class>
+        <class>com.example.granadafire.entities.Game</class>
 
         <!-- <class>org.hibernate.example.Book</class> -->
         <class>com.example.granadafire.entities.Game</class>
@@ -13,7 +16,7 @@
         <properties>
             <!-- MySQL -->
             <property name="jakarta.persistence.jdbc.url"
-                      value="jdbc:mysql://localhost/granadafire/"/>
+                      value="jdbc:mysql://localhost/granadafire"/>
 
             <!-- Credentials -->
             <property name="jakarta.persistence.jdbc.user"
