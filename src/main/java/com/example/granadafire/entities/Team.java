@@ -1,8 +1,6 @@
 package com.example.granadafire.entities;
 
 import jakarta.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 // Created by Martin
 @Entity
@@ -17,11 +15,8 @@ public class Team {
     private String name;
 
     @ManyToOne
-    @JoinColumn(name = "game_id", nullable = false)
+    @JoinColumn(name = "game_id", referencedColumnName = "game_id", nullable = false)
     private Game game;
-
-    @OneToMany(mappedBy = "team", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Player> players = new ArrayList<>();
 
     public Team() {}
 
@@ -30,12 +25,6 @@ public class Team {
         this.game = game;
     }
 
-
-    public void addPlayer(Player player) {
-    }
-
-    public void removePlayer(Player player) {
-    }
 
     public int getId() {
         return id;
@@ -61,12 +50,5 @@ public class Team {
         this.game = game;
     }
 
-    public List<Player> getPlayers() {
-        return players;
-    }
-
-    public void setPlayers(List<Player> players) {
-        this.players = players;
-    }
 
 }
