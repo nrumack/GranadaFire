@@ -1,4 +1,4 @@
-package com.example.granadafire;
+package controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -9,7 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
-public class HelloController {
+public class Controller {
     @FXML
     private Label welcomeText;
    /* @FXML

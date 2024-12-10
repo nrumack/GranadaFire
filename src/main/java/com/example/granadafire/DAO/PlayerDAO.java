@@ -1,18 +1,21 @@
 package com.example.granadafire.DAO;
 
 import com.example.granadafire.entities.Player;
+import com.example.granadafire.entities.Team;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
+//Created by Nicholas Rumack
+
 public class PlayerDAO {
     //CRUD-operations
-    private static final EntityManagerFactory ENTITY_MANAGER_FACTORY = Persistence.createEntityManagerFactory("myconfiq");
+    private static final EntityManagerFactory ENTITY_MANAGER_FACTORY = Persistence.createEntityManagerFactory("myconfig");
     private EntityManager entityManager;
 
     //Create
-    public boolean savePerson(Player player) {
+    public boolean savePlayer(Player player) {
         EntityManager entityManager = ENTITY_MANAGER_FACTORY.createEntityManager();
         EntityTransaction transaction = null;
         try {
@@ -39,6 +42,7 @@ public class PlayerDAO {
         entityManager.close();
         return playerToReturn;
     }
+    //get player by game where game = game
 
     public List<Player> getAllPlayers() {
         EntityManager entityManager = ENTITY_MANAGER_FACTORY.createEntityManager();
@@ -74,23 +78,28 @@ public class PlayerDAO {
     }
 
     //Delete
-    public void deletePLayer(Player player) {
+    public boolean deletePlayer(int id) {
         EntityManager entityManager = ENTITY_MANAGER_FACTORY.createEntityManager();
         EntityTransaction transaction = null;
+
         try {
             transaction = entityManager.getTransaction();
             transaction.begin();
-            if (!entityManager.contains(player)) {
-                player = entityManager.merge(player);
-                System.out.println(player.getId());
+            Player player = entityManager.find(Player.class, id);
+            if (player != null) {
+                entityManager.remove(player);
+                transaction.commit();
+                return true;
+            } else {
+                transaction.rollback();
+                return false;
             }
-            entityManager.remove(player);
-            transaction.commit();
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            if (entityManager != null && transaction != null && transaction.isActive()){
+            if (transaction != null && transaction.isActive()) {
                 transaction.rollback();
             }
+            return false;
         } finally {
             entityManager.close();
         }

@@ -2,12 +2,13 @@ package com.example.granadafire.entities;
 
 import jakarta.persistence.*;
 
+//Created by Nicholas Rumack
+
 @Entity
 @Table(name = "players")
 public class Player {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "player_id")
     private int id;
 
     @Column(name = "first_name", length = 40, nullable = false)
@@ -19,30 +20,35 @@ public class Player {
     @Column(name = "nickname", length = 40, nullable = false)
     private String nickname;
 
-    @Column(name = "street", length = (75), nullable = false)
+    @Column(name = "street", length = (75), nullable = true)
     private String street;
 
-    @Column(name = "post_number", length = 6, nullable = false)
+    @Column(name = "post_number", length = 6, nullable = true)
     private int postNumber;
 
-    @Column(name = "city", length = 60, nullable = false)
+    @Column(name = "city", length = 60, nullable = true)
     private String city;
 
-    @Column(name = "country", length = 50, nullable = false)
+    @Column(name = "country", length = 50, nullable = true)
     private String country;
 
-    @Column(name = "email", length = 50, nullable = false)
+    @Column(name = "email", length = 50, nullable = true)
     private String email;
 
     @ManyToOne
-    @JoinColumn(name = "team_id", nullable = false)
+    @JoinColumn(name = "team_id", nullable = true)
     private Team team;
+
+    @ManyToOne
+    @JoinColumn(name = "game_id", nullable = false)
+    private Game game;
+
 
     public Player() {
 
     }
 
-    public Player(String firstName, String lastName, String nickname, String street, int postNumber, String city, String country, String email, Team team){
+    public Player(String firstName, String lastName, String nickname, String street, int postNumber, String city, String country, String email, Team team, Game game) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.nickname = nickname;
@@ -52,6 +58,7 @@ public class Player {
         this.country = country;
         this.email = email;
         this.team = team;
+        this.game = game;
     }
 
     public int getId() {
@@ -64,14 +71,6 @@ public class Player {
 
     public String getFirstName() {
         return firstName;
-    }
-
-    public Team getTeam() {
-        return team;
-    }
-
-    public void setTeam(Team team) {
-        this.team = team;
     }
 
     public void setFirstName(String firstName) {
@@ -133,4 +132,12 @@ public class Player {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    public Team getTeam() {return team;}
+
+    public void setTeam(Team team) {this.team = team;}
+
+    public Game getGame() {return game;}
+
+    public void setGame(Game game) {this.game = game;}
 }
