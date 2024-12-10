@@ -21,19 +21,19 @@ public class Staff {
     @Column(name = "nickname", length = 40, nullable = false)
     private String nickname;
 
-    @Column(name = "street", length = (75), nullable = false)
+    @Column(name = "street", length = (75), nullable = true)
     private String street;
 
-    @Column(name = "post_number", length = 6, nullable = false)
+    @Column(name = "post_number", length = 6, nullable = true)
     private int postNumber;
 
-    @Column(name = "city", length = 60, nullable = false)
+    @Column(name = "city", length = 60, nullable = true)
     private String city;
 
-    @Column(name = "country", length = 50, nullable = false)
+    @Column(name = "country", length = 50, nullable = true)
     private String country;
 
-    @Column(name = "email", length = 50, nullable = false)
+    @Column(name = "email", length = 50, nullable = true)
     private String email;
 
     public Staff() {
