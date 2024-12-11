@@ -42,6 +42,7 @@ public class PlayerDAO {
         entityManager.close();
         return playerToReturn;
     }
+    //get player by game where game = game
 
     public List<Player> getAllPlayers() {
         EntityManager entityManager = ENTITY_MANAGER_FACTORY.createEntityManager();

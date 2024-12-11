@@ -1,7 +1,8 @@
 package com.example.granadafire.entities;
 
 import jakarta.persistence.*;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 // Created by Martin
 
 @Entity
@@ -12,26 +13,26 @@ public class Match {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(nullable = false)
-    private LocalDate date;
+    @Column(name = "match_date", nullable = false)
+    private LocalDateTime matchDate;
 
-    @Column(nullable = true)
-    private String result;
+    @Column(name = "winner", length = 20)
+    private String winner;
 
     @ManyToOne
-    @JoinColumn(name = "player1_id", referencedColumnName = "id", nullable = true)
+    @JoinColumn(name = "player1_id", referencedColumnName = "id")
     private Player player1;
 
     @ManyToOne
-    @JoinColumn(name = "player2_id", referencedColumnName = "id", nullable = true)
+    @JoinColumn(name = "player2_id", referencedColumnName = "id")
     private Player player2;
 
     @ManyToOne
-    @JoinColumn(name = "team1_id", referencedColumnName = "id", nullable = true)
+    @JoinColumn(name = "team1_id", referencedColumnName = "id")
     private Team team1;
 
     @ManyToOne
-    @JoinColumn(name = "team2_id", referencedColumnName = "id", nullable = true)
+    @JoinColumn(name = "team2_id", referencedColumnName = "id")
     private Team team2;
 
     @Column(nullable = false)
@@ -40,8 +41,8 @@ public class Match {
     public Match() {
     }
 
-    public Match(LocalDate date, Player player1, Player player2, Team team1, Team team2, boolean isCompleted) {
-        this.date = date;
+    public Match(LocalDateTime matchDate, Player player1, Player player2, Team team1, Team team2, boolean isCompleted) {
+        this.matchDate = matchDate;
         this.player1 = player1;
         this.player2 = player2;
         this.team1 = team1;
@@ -57,20 +58,20 @@ public class Match {
         this.id = id;
     }
 
-    public LocalDate getDate() {
-        return date;
+    public LocalDateTime getDate() {
+        return matchDate;
     }
 
-    public void setDate(LocalDate date) {
-        this.date = date;
+    public void setDate(LocalDateTime date) {
+        this.matchDate = date;
     }
 
-    public String getResult() {
-        return result;
+    public String getWinner() {
+        return winner;
     }
 
-    public void setResult(String result) {
-        this.result = result;
+    public void setWinner(String winner) {
+        this.winner = winner;
     }
 
     public Player getPlayer1() {
