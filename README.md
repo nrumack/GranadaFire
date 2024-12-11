@@ -9,4 +9,4 @@ Member:
 - Martin Johansson
 - Nicholas Rumack
   
-![Database schema](https://github.com/user-attachments/assets/4c94cf53-82de-408e-b438-21b4fdf08dc9)
+![db_scheme](https://github.com/user-attachments/assets/00e17b9f-72b5-4a91-885b-0be5b242d70d)
