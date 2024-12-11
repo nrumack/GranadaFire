@@ -11,6 +11,14 @@ import javafx.stage.Stage;
 
 public class Controller {
     @FXML
+    private Label gamesButtonTest;
+
+    @FXML
+    protected void onTestButtonClick() {
+        gamesButtonTest.setText("Test");
+    }
+
+    @FXML
     private Label welcomeText;
    @FXML
     private Label gamesTest;

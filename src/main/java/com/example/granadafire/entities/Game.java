@@ -13,16 +13,11 @@ public class Game {
     @Column(name = "game_name", length = 50, nullable = true)
     private String game_name;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "player_id")
-    private Player player;
-
     public Game(){
     }
 
     public Game(String game_name, Player player) {
         this.game_name = game_name;
-        this.player = player;
     }
 
     public int getGame_id() {
@@ -41,11 +36,4 @@ public class Game {
         this.game_name = game_name;
     }
 
-    public Player getPlayer() {
-        return player;
-    }
-
-    public void setPlayer(Player player) {
-        this.player = player;
-    }
 }
