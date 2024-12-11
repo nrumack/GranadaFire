@@ -10,13 +10,7 @@ import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 public class GameController {
-   /* @FXML
-    private Label gamesButtonTest;
 
-    @FXML
-    protected void onTestButtonClick() {
-        gamesButtonTest.setText("Test");
-    }*/
 
 
 }

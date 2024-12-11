@@ -10,36 +10,31 @@ import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 public class Controller {
+
     @FXML
-    private Label gamesButtonTest;
+    private Label gamesTest;
 
     @FXML
     protected void onTestButtonClick() {
-        gamesButtonTest.setText("Test");
+        gamesTest.setText("Test");
     }
 
     @FXML
     private Label welcomeText;
-   @FXML
-    private Label gamesTest;
 
     @FXML
     protected void onHelloButtonClick() {
         welcomeText.setText("Welcome to JavaFX Application!");
     }
-    @FXML
-    protected void onGamesButtonClick() {
-        gamesTest.setText("Game Test");
-    }
 
     @FXML
     protected void testClick(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("games.fxml"));
-            Stage stage = new Stage();
-            stage.setScene(new Scene(loader.load()));
-            stage.setTitle("Hello World");
-            stage.show();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/games.fxml"));
+            Stage stage2 = new Stage();
+            stage2.setScene(new Scene(loader.load()));
+            stage2.setTitle("Hello World");
+            stage2.show();
             ((Node)(event.getSource())).getScene().getWindow().hide();
         } catch (Exception e) {
             e.printStackTrace();
