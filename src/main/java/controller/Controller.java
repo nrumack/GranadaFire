@@ -27,6 +27,7 @@ public class Controller {
         welcomeText.setText("Welcome to JavaFX Application!");
     }
 
+
     @FXML
     protected void testClick(ActionEvent event) {
         try {

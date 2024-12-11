@@ -42,9 +42,32 @@ public class PlayerDAO {
         entityManager.close();
         return playerToReturn;
     }
-    //get player by game where game = game
 
     public List<Player> getAllPlayers() {
+        EntityManager entityManager = ENTITY_MANAGER_FACTORY.createEntityManager();
+        List<Player> listToReturn = new ArrayList<>();
+        TypedQuery<Player> result = entityManager.createQuery("FROM Player", Player.class);
+        listToReturn.addAll(result.getResultList());
+        return listToReturn;
+    }
+
+    public List<Player> getAllPlayersFromGame() {
+        EntityManager entityManager = ENTITY_MANAGER_FACTORY.createEntityManager();
+        List<Player> listToReturn = new ArrayList<>();
+        TypedQuery<Player> result = entityManager.createQuery("FROM Player", Player.class);
+        listToReturn.addAll(result.getResultList());
+        return listToReturn;
+    }
+
+    public List<Player> getAllPlayersTopFive() {
+        EntityManager entityManager = ENTITY_MANAGER_FACTORY.createEntityManager();
+        List<Player> listToReturn = new ArrayList<>();
+        TypedQuery<Player> result = entityManager.createQuery("FROM Player", Player.class);
+        listToReturn.addAll(result.getResultList());
+        return listToReturn;
+    }
+
+    public List<Player> getAllPlayersFromAllGames() {
         EntityManager entityManager = ENTITY_MANAGER_FACTORY.createEntityManager();
         List<Player> listToReturn = new ArrayList<>();
         TypedQuery<Player> result = entityManager.createQuery("FROM Player", Player.class);
