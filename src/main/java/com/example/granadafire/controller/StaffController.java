@@ -1,4 +1,4 @@
-package controller;
+package com.example.granadafire.controller;
 
 import com.example.granadafire.DAO.StaffDAO;
 import com.example.granadafire.entities.Staff;
@@ -8,8 +8,6 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.collections.FXCollections;
 import javafx.stage.Stage;
 
 

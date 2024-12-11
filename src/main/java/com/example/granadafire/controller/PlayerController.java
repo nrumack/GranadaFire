@@ -1,11 +1,8 @@
-package controller;
+package com.example.granadafire.controller;
 
 import com.example.granadafire.DAO.PlayerDAO;
 import com.example.granadafire.entities.Player;
-import com.example.granadafire.entities.Team;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 

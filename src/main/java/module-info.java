@@ -7,6 +7,6 @@ module com.example.granadafire {
     opens com.example.granadafire.entities to org.hibernate.orm.core;
     opens com.example.granadafire to javafx.fxml;
     exports com.example.granadafire;
-    exports controller;
-    opens controller to javafx.fxml;
+    exports com.example.granadafire.controller;
+    opens com.example.granadafire.controller to javafx.fxml;
 }
