@@ -14,10 +14,11 @@ public class Main extends Application {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/staffView.fxml"));
         Parent root = loader.load();
 
-        Scene scene = new Scene(root, 400, 500);
-        primaryStage.setTitle("Piper Games");
-        primaryStage.setScene(scene);
-        primaryStage.show();
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("hello-view.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
+        stage.setTitle("Hello!");
+        stage.setScene(scene);
+        stage.show();
     }
 
     public static void main(String[] args) {
