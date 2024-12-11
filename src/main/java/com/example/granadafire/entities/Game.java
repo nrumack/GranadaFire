@@ -7,46 +7,33 @@ import jakarta.persistence.*;
 public class Game {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "spel_id")
-    private int spel_id;
+    @Column(name = "game_id")
+    private int game_id;
 
-    @Column(name = "spel_namn", length = 50, nullable = false)
-    private String spel_namn;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "spelare_id")
-    private Player spelare;
+    @Column(name = "game_name", length = 50, nullable = true)
+    private String game_name;
 
     public Game(){
     }
 
-    public Game(String spel_namn, Player spelare) {
-        this.spel_namn = spel_namn;
-        this.spelare = spelare;
+    public Game(String game_name, Player player) {
+        this.game_name = game_name;
     }
 
-    public int getSpel_id() {
-        return spel_id;
+    public int getGame_id() {
+        return game_id;
     }
 
-    public void setSpel_id(int spel_id) {
-        this.spel_id = spel_id;
+    public void setGame_id(int game_id) {
+        this.game_id = game_id;
     }
 
-    public String getSpel_namn() {
-        return spel_namn;
+    public String getGame_name() {
+        return game_name;
     }
 
-    public void setSpel_namn(String spel_namn) {
-        this.spel_namn = spel_namn;
-    }
-
-    public Player getSpelare() {
-        return spelare;
-    }
-
-    public void setSpelare(Player spelare) {
-        this.spelare = spelare;
+    public void setGame_name(String game_name) {
+        this.game_name = game_name;
     }
 
 }
