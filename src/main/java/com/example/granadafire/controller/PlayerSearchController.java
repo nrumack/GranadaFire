@@ -38,21 +38,13 @@ public class PlayerSearchController {
     public void initialize() {
         List<Player> players = playerDAO.getAllPlayers();
         System.out.println(players);
-//        ObservableList<Player> observablePlayers = FXCollections.observableArrayList(players);
-//
-//        resultList.setItems(observablePlayers);
-//
-//        resultList.setOnMouseClicked(this::handleClick);
+        ObservableList<Player> observablePlayers = FXCollections.observableArrayList(players);
+
+        resultList.setItems(observablePlayers);
+
+        resultList.setOnMouseClicked(this::handleClick);
     }
-//    @FXML
-//    private ListView<String> resultList;
-//
-//    @FXML
-//    public void initialize() {
-//        resultList.getItems().addAll("Item 1", "Item 2", "Item 3", "Item 4");
-//
-//        resultList.setOnMouseClicked(this::handleClick);
-//    }
+
     // Event handler for ListView item click
     private void handleClick(MouseEvent event) {
         if (event.getClickCount() == 1) {

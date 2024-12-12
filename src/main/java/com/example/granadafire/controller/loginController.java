@@ -19,7 +19,7 @@ import java.util.List;
 
 
 // Made by Martin
-public class StaffController {
+public class loginController {
 
     @FXML
     private Label nameLabel1;
