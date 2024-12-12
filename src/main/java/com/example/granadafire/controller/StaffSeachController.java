@@ -76,6 +76,7 @@ public class StaffSeachController {
             stage.setScene(new Scene(loader.load()));
             stage.setTitle("Pied Pipers");
             stage.show();
+
             ((Node) (event.getSource())).getScene().getWindow().hide();
         } catch (Exception e) {
             e.printStackTrace();
