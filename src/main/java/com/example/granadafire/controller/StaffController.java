@@ -1,6 +1,8 @@
 package com.example.granadafire.controller;
 
+import com.example.granadafire.DAO.PlayerDAO;
 import com.example.granadafire.DAO.StaffDAO;
+import com.example.granadafire.entities.Player;
 import com.example.granadafire.entities.Staff;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -35,12 +37,16 @@ public class StaffController {
     private Label nameLabel7;
 
     private StaffDAO staffDAO = new StaffDAO();
+    private PlayerDAO playerDAO = new PlayerDAO();
+
 
     @FXML
     public void initialize() {
         List<Staff> staffList = staffDAO.getAllStaff();
+        List<Player> playerList = playerDAO.getAllPlayers();
 
         List<Label> labels = Arrays.asList(nameLabel1, nameLabel2, nameLabel3, nameLabel4, nameLabel5, nameLabel6, nameLabel7);
+        System.out.println(playerList.get(1).getFirstName());
 
         setLabelNames(staffList, labels);
         setUnusedLabelsInvisible(labels);

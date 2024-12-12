@@ -3,75 +3,70 @@ package com.example.granadafire.entities;
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
-// Created by Martin
-
 @Entity
 @Table(name = "matches")
 public class Match {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    @Column(name = "match_id")
+    private int matchId;
 
     @Column(name = "match_date", nullable = false)
     private LocalDateTime matchDate;
 
-    @Column(name = "winner", length = 20)
-    private String winner;
+    @Column(name = "match_result", length = 10)
+    private String matchResult;
 
     @ManyToOne
-    @JoinColumn(name = "player1_id", referencedColumnName = "id")
+    @JoinColumn(name = "player_id1", referencedColumnName = "player_id")
     private Player player1;
 
     @ManyToOne
-    @JoinColumn(name = "player2_id", referencedColumnName = "id")
+    @JoinColumn(name = "player_id2", referencedColumnName = "player_id")
     private Player player2;
 
     @ManyToOne
-    @JoinColumn(name = "team1_id", referencedColumnName = "id")
+    @JoinColumn(name = "team_id1", referencedColumnName = "team_id")
     private Team team1;
 
     @ManyToOne
-    @JoinColumn(name = "team2_id", referencedColumnName = "id")
+    @JoinColumn(name = "team_id2", referencedColumnName = "team_id")
     private Team team2;
 
-    @Column(nullable = false)
-    private boolean isCompleted;
+    public Match() {}
 
-    public Match() {
-    }
-
-    public Match(LocalDateTime matchDate, Player player1, Player player2, Team team1, Team team2, boolean isCompleted) {
+    public Match(LocalDateTime matchDate, String matchResult, Player player1, Player player2, Team team1, Team team2) {
         this.matchDate = matchDate;
+        this.matchResult = matchResult;
         this.player1 = player1;
         this.player2 = player2;
         this.team1 = team1;
         this.team2 = team2;
-        this.isCompleted = isCompleted;
     }
 
-    public int getId() {
-        return id;
+    public int getMatchId() {
+        return matchId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setMatchId(int matchId) {
+        this.matchId = matchId;
     }
 
-    public LocalDateTime getDate() {
+    public LocalDateTime getMatchDate() {
         return matchDate;
     }
 
-    public void setDate(LocalDateTime date) {
-        this.matchDate = date;
+    public void setMatchDate(LocalDateTime matchDate) {
+        this.matchDate = matchDate;
     }
 
-    public String getWinner() {
-        return winner;
+    public String getMatchResult() {
+        return matchResult;
     }
 
-    public void setWinner(String winner) {
-        this.winner = winner;
+    public void setMatchResult(String matchResult) {
+        this.matchResult = matchResult;
     }
 
     public Player getPlayer1() {
@@ -105,13 +100,5 @@ public class Match {
     public void setTeam2(Team team2) {
         this.team2 = team2;
     }
-
-    public boolean isCompleted() {
-        return isCompleted;
-    }
-
-    public void setCompleted(boolean completed) {
-        isCompleted = completed;
-    }
-
 }
+

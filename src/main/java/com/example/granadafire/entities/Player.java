@@ -1,15 +1,14 @@
 package com.example.granadafire.entities;
-
 import jakarta.persistence.*;
 
-//Created by Nicholas Rumack
+// Created by Nicholas Rumack
 
 @Entity
 @Table(name = "players")
 public class Player {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name ="player_id")
+    @Column(name = "player_id")
     private int id;
 
     @Column(name = "first_name", length = 40, nullable = false)
@@ -21,35 +20,34 @@ public class Player {
     @Column(name = "nickname", length = 40, nullable = false)
     private String nickname;
 
-    @Column(name = "street", length = (75), nullable = true)
+    @Column(name = "street", length = 75)
     private String street;
 
-    @Column(name = "post_number", length = 6, nullable = true)
-    private int postNumber;
+    @Column(name = "post_number")
+    private Integer postNumber;
 
-    @Column(name = "city", length = 60, nullable = true)
+    @Column(name = "city", length = 60)
     private String city;
 
-    @Column(name = "country", length = 50, nullable = true)
+    @Column(name = "country", length = 50)
     private String country;
 
-    @Column(name = "email", length = 50, nullable = true)
+    @Column(name = "email", length = 50)
     private String email;
 
     @ManyToOne
-    @JoinColumn(name = "team_id", referencedColumnName = "team_id", nullable = true)
+    @JoinColumn(name = "team_id", referencedColumnName = "team_id")
     private Team team;
 
     @ManyToOne
-    @JoinColumn(name = "game_id", referencedColumnName = "game_id", nullable = true)
+    @JoinColumn(name = "game_id", referencedColumnName = "game_id")
     private Game game;
 
 
-    public Player() {
+    public Player() {}
 
-    }
 
-    public Player(String firstName, String lastName, String nickname, String street, int postNumber, String city, String country, String email, Team team, Game game) {
+    public Player(String firstName, String lastName, String nickname, String street, Integer postNumber, String city, String country, String email, Team team, Game game) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.nickname = nickname;
@@ -62,6 +60,7 @@ public class Player {
         this.game = game;
     }
 
+    // Getters and setters
     public int getId() {
         return id;
     }
@@ -102,11 +101,11 @@ public class Player {
         this.street = street;
     }
 
-    public int getPostNumber() {
+    public Integer getPostNumber() {
         return postNumber;
     }
 
-    public void setPostNumber(int postNumber) {
+    public void setPostNumber(Integer postNumber) {
         this.postNumber = postNumber;
     }
 
@@ -134,11 +133,20 @@ public class Player {
         this.email = email;
     }
 
-    public Team getTeam() {return team;}
+    public Team getTeam() {
+        return team;
+    }
 
-    public void setTeam(Team team) {this.team = team;}
+    public void setTeam(Team team) {
+        this.team = team;
+    }
 
-    public Game getGame() {return game;}
+    public Game getGame() {
+        return game;
+    }
 
-    public void setGame(Game game) {this.game = game;}
+    public void setGame(Game game) {
+        this.game = game;
+    }
 }
+

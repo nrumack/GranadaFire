@@ -6,38 +6,49 @@ import java.util.List;
 @Entity
 @Table(name = "games")
 public class Game {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "game_id")
-    private int id;
+    private int gameId;
 
-    @Column(name = "game_name", length = 50, nullable = true)
-    private String game_name;
+    @Column(name = "game_name", length = 50, nullable = false)
+    private String gameName;
 
-    @OneToMany(mappedBy = "game")
+    @OneToMany(mappedBy = "game", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Team> teams;
+
+    @OneToMany(mappedBy = "game", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Player> players;
 
-    public Game(){
+    public Game() {}
+
+    public Game(String gameName) {
+        this.gameName = gameName;
     }
 
-    public Game(List<Player> players) {
-        this.players = players;
+    public int getGameId() {
+        return gameId;
     }
 
-    public int getId() {
-        return id;
+    public void setGameId(int gameId) {
+        this.gameId = gameId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public String getGameName() {
+        return gameName;
     }
 
-    public String getGame_name() {
-        return game_name;
+    public void setGameName(String gameName) {
+        this.gameName = gameName;
     }
 
-    public void setGame_name(String game_name) {
-        this.game_name = game_name;
+    public List<Team> getTeams() {
+        return teams;
+    }
+
+    public void setTeams(List<Team> teams) {
+        this.teams = teams;
     }
 
     public List<Player> getPlayers() {
