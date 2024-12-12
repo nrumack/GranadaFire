@@ -3,6 +3,7 @@ module com.example.granadafire {
     requires javafx.fxml;
     requires jakarta.persistence;
     requires org.hibernate.orm.core;
+    requires java.desktop;
 
     opens com.example.granadafire.entities to org.hibernate.orm.core;
     opens com.example.granadafire to javafx.fxml;

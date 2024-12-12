@@ -40,12 +40,12 @@ public class PlayerSearchController {
         System.out.println(players);
         ObservableList<Player> observablePlayers = FXCollections.observableArrayList(players);
 
-        resultList.setItems(observablePlayers);
 
+        resultList.setItems(observablePlayers);
         resultList.setOnMouseClicked(this::handleClick);
     }
 
-    // Event handler for ListView item click
+
     private void handleClick(MouseEvent event) {
         if (event.getClickCount() == 1) {
             Player selectedItem = resultList.getSelectionModel().getSelectedItem();
@@ -54,9 +54,14 @@ public class PlayerSearchController {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/playerView.fxml"));
                     Stage stage = new Stage();
                     stage.setScene(new Scene(loader.load()));
-                    stage.setTitle("Pied Pipers");
+
+                    PlayerMenuController controller = loader.getController();
+                    controller.setPlayer(selectedItem);
+
+                    stage.setTitle("Pied Piper");
                     stage.show();
-                    ((Node)(event.getSource())).getScene().getWindow().hide();
+
+                    ((Node) (event.getSource())).getScene().getWindow().hide();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

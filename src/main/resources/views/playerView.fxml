@@ -4,19 +4,19 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="500.0" prefWidth="400.0" style="-fx-background-color: D9D9D9;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.granadafire.controller.PlayerController">
+<AnchorPane prefHeight="500.0" prefWidth="400.0" style="-fx-background-color: D9D9D9;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.granadafire.controller.PlayerMenuController">
    <children>
       <AnchorPane layoutY="-2.0" prefHeight="506.0" prefWidth="574.0">
          <children>
-            <Button id="deleteButton" layoutX="294.0" layoutY="446.0" mnemonicParsing="false" onAction="#deleteButton" prefHeight="25.0" prefWidth="177.0" style="-fx-background-color: C0BCBC;" text="Delete" textFill="WHITE">
+            <Button id="deleteButton" layoutX="294.0" layoutY="446.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="177.0" style="-fx-background-color: C0BCBC;" text="Delete" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font></Button>
-            <Button id="Update" layoutX="104.0" layoutY="446.0" mnemonicParsing="false" onAction="#updateButton" prefHeight="25.0" prefWidth="177.0" style="-fx-background-color: C0BCBC;" text="Save" textFill="WHITE">
+            <Button id="Update" layoutX="104.0" layoutY="446.0" mnemonicParsing="false"  prefHeight="25.0" prefWidth="177.0" style="-fx-background-color: C0BCBC;" text="Save" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font></Button>
-            <TextField id="name" fx:id="firstNameField" layoutX="154.0" layoutY="74.0" prefHeight="17.0" prefWidth="243.0" promptText="Firstname" style="-fx-border-color: Black; -fx-padding: 5; -fx-background-color: white;" />
+            <TextField fx:id="firstNameField" layoutX="154.0" layoutY="74.0" prefHeight="17.0" prefWidth="243.0" promptText="Firstname" style="-fx-border-color: Black; -fx-padding: 5; -fx-background-color: white;" />
             <TextField fx:id="lastNameField" layoutX="154.0" layoutY="115.0" prefHeight="25.0" prefWidth="243.0" promptText="Lastname" style="-fx-background-color: white; -fx-border-color: black;" />
             <TextField fx:id="nickname" layoutX="154.0" layoutY="154.0" prefHeight="17.0" prefWidth="243.0" promptText="Nickname" style="-fx-border-color: Black; -fx-padding: 5; -fx-background-color: white;" />
             <TextField fx:id="street" layoutX="154.0" layoutY="194.0" prefHeight="17.0" prefWidth="243.0" promptText="Street" style="-fx-border-color: Black; -fx-padding: 5; -fx-background-color: white;" />
@@ -31,7 +31,7 @@
                   <Font size="35.0" />
                </font>
             </Label>
-            <Button id="New Search" layoutX="405.0" layoutY="14.0" mnemonicParsing="false" onAction="#newSearch" prefHeight="39.0" prefWidth="132.0" style="-fx-background-color: C0BCBC;" text="New Search" textFill="WHITE">
+            <Button id="New Search" layoutX="405.0" layoutY="14.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="132.0" style="-fx-background-color: C0BCBC;" text="New Search" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font></Button>
