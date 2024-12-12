@@ -26,7 +26,7 @@ public class StaffController {
     @FXML
     public void backButton(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/mainMenuView.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/staffSearchView.fxml"));
             Stage stage = new Stage();
             stage.setScene(new Scene(loader.load()));
             stage.setTitle("Pied Pipers");
@@ -38,24 +38,12 @@ public class StaffController {
     }
 
     @FXML
-    public void newSearch(ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/staffSearchView.fxml"));
-            Stage stage = new Stage();
-            stage.setScene(new Scene(loader.load()));
-            stage.setTitle("Hello World");
-            stage.show();
-            ((Node) (event.getSource())).getScene().getWindow().hide();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-    @FXML
     public void deleteButton() {
         System.out.println("tested");
     }
+
     @FXML
-    public void updateButton() {
+    public void saveStaff() {
         try {
             String firstNameInput = firstNameField.getText();
             String lastNameInput = lastNameField.getText();

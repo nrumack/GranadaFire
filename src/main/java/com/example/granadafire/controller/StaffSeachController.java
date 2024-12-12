@@ -19,19 +19,6 @@ import java.util.List;
 public class StaffSeachController {
     private StaffDAO staffDAO = new StaffDAO();
 
-    public void backButton(ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/mainMenuView.fxml"));
-            Stage stage = new Stage();
-            stage.setScene(new Scene(loader.load()));
-            stage.setTitle("Pied Pipers");
-            stage.show();
-            ((Node) (event.getSource())).getScene().getWindow().hide();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
     @FXML
     private ListView<Staff> staffResultList;
 
@@ -39,21 +26,10 @@ public class StaffSeachController {
     public void initialize() {
         List<Staff> staff = staffDAO.getAllStaff();
 
-        ObservableList<Staff> observablePlayers = FXCollections.observableArrayList(staff);
+        ObservableList<Staff> observableStaff = FXCollections.observableArrayList(staff);
 
-        staffResultList.setCellFactory(listView -> new ListCell<Staff>() {
-            @Override
-            protected void updateItem(Staff item, boolean empty) {
-                super.updateItem(item, empty);
-                if (empty || item == null) {
-                    setText(null);
-                } else {
-                    setText(item.getNickname());
-                }
-            }
-        });
 
-        staffResultList.setItems(observablePlayers);
+        staffResultList.setItems(observableStaff);
 
         staffResultList.setOnMouseClicked(this::handleClick);
     }
@@ -73,6 +49,32 @@ public class StaffSeachController {
                     e.printStackTrace();
                 }
             }
+        }
+    }
+
+    public void backButton(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/mainMenuView.fxml"));
+            Stage stage = new Stage();
+            stage.setScene(new Scene(loader.load()));
+            stage.setTitle("Pied Pipers");
+            stage.show();
+            ((Node) (event.getSource())).getScene().getWindow().hide();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void createNewButton(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/staffView.fxml"));
+            Stage stage = new Stage();
+            stage.setScene(new Scene(loader.load()));
+            stage.setTitle("Pied Pipers");
+            stage.show();
+            ((Node) (event.getSource())).getScene().getWindow().hide();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }

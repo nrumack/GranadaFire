@@ -52,13 +52,12 @@ public class Staff {
         this.email = email;
     }
 
-    public int getId() {
-        return id;
-    }
+    @Override
+    public String toString() { return nickname; }
 
-    public void setId(int id) {
-        this.id = id;
-    }
+    public int getId() { return id; }
+
+    public void setId(int id) { this.id = id; }
 
     public String getFirstName() {
         return firstName;
