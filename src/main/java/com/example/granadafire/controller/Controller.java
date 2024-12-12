@@ -54,7 +54,7 @@ public class Controller {
     @FXML
     protected void clickStaff(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/staffView.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/loginView.fxml"));
             Stage stage = new Stage();
             stage.setScene(new Scene(loader.load()));
             stage.setTitle("Piper Games");
