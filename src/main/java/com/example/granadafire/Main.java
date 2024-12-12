@@ -11,10 +11,10 @@ import java.io.IOException;
 public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/staffView.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/playerMenuView.fxml"));
         Parent root = loader.load();
 
-        Scene scene = new Scene(root, 400, 500);
+        Scene scene = new Scene(root, 500, 400);
         primaryStage.setTitle("Piper Games");
         primaryStage.setScene(scene);
         primaryStage.show();
