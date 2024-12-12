@@ -19,7 +19,7 @@ import java.util.List;
 
 
 // Made by Martin
-public class StaffController {
+public class loginController {
 
     @FXML
     private Label nameLabel1;
@@ -71,7 +71,7 @@ public class StaffController {
     @FXML
     public void handleLabelClick(javafx.scene.input.MouseEvent mouseEvent) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/main.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/mainMenuView.fxml"));
             Parent newRoot = loader.load();
             Stage stage = (Stage)((Node)mouseEvent.getSource()).getScene().getWindow();
             stage.setScene(new Scene(newRoot));

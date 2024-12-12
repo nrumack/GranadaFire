@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="500.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.granadafire.controller.StaffSeachController">
+   <children>
+      <AnchorPane prefHeight="500.0" prefWidth="400.0">
+         <children>
+            <Button fx:id="backButton" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#backButton" style="-fx-background-color: C0BCBC;" text="Back" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <Button layoutX="308.0" layoutY="14.0" mnemonicParsing="false" style="-fx-background-color: C0BCBC;" text="Button" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <TextField layoutX="66.0" layoutY="68.0" prefHeight="25.0" prefWidth="212.0" />
+            <Button layoutX="282.0" layoutY="68.0" mnemonicParsing="false" style="-fx-background-color: C0BCBC;" text="Search" textFill="WHITE" />
+            <ListView fx:id="staffResultList" layoutX="14.0" layoutY="102.0" prefHeight="389.0" prefWidth="372.0" />
+            <ScrollBar layoutX="372.0" layoutY="102.0" orientation="VERTICAL" prefHeight="389.0" prefWidth="14.0" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
