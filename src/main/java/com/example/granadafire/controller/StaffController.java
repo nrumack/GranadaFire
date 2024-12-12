@@ -1,6 +1,7 @@
 package com.example.granadafire.controller;
 
 import com.example.granadafire.DAO.StaffDAO;
+import com.example.granadafire.entities.Player;
 import com.example.granadafire.entities.Staff;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -21,6 +22,25 @@ public class StaffController {
     public TextField city;
     public TextField country;
     public TextField email;
+    private Staff staff;
+
+    public void setStaff(Staff staff) {
+        this.staff = staff;
+        updateView();
+    }
+
+    private void updateView() {
+        if (staff != null) {
+            firstNameField.setText(staff.getFirstName());
+            lastNameField.setText(staff.getLastName());
+            nickname.setText(staff.getNickname());
+            street.setText(staff.getStreet());
+            areaCode.setText(String.valueOf(staff.getPostNumber()));
+            city.setText(staff.getCity());
+            country.setText(staff.getCountry());
+            email.setText(staff.getEmail());
+        }
+    }
 
 
     @FXML

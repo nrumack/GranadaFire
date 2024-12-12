@@ -42,6 +42,10 @@ public class StaffSeachController {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/staffView.fxml"));
                     Stage stage = new Stage();
                     stage.setScene(new Scene(loader.load()));
+
+                    StaffController controller = loader.getController();
+                    controller.setStaff(selectedItem);
+
                     stage.setTitle("Pied Pipers");
                     stage.show();
                     ((Node)(event.getSource())).getScene().getWindow().hide();
