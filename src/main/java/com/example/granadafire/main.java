@@ -8,10 +8,10 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class Main extends Application {
+public class main extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/playerSearchView.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/staffView.fxml"));
         Parent root = loader.load();
 
         Scene scene = new Scene(root, 400, 500);
