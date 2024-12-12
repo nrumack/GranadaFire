@@ -9,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
@@ -37,8 +38,20 @@ public class StaffSeachController {
     @FXML
     public void initialize() {
         List<Staff> staff = staffDAO.getAllStaff();
-        System.out.println(staff);
+
         ObservableList<Staff> observablePlayers = FXCollections.observableArrayList(staff);
+
+        staffResultList.setCellFactory(listView -> new ListCell<Staff>() {
+            @Override
+            protected void updateItem(Staff item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty || item == null) {
+                    setText(null);
+                } else {
+                    setText(item.getNickname());
+                }
+            }
+        });
 
         staffResultList.setItems(observablePlayers);
 
@@ -50,7 +63,7 @@ public class StaffSeachController {
             Staff selectedItem = staffResultList.getSelectionModel().getSelectedItem();
             if (selectedItem != null) {
                 try {
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/staffEditableView.fxml"));
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/staffView.fxml"));
                     Stage stage = new Stage();
                     stage.setScene(new Scene(loader.load()));
                     stage.setTitle("Pied Pipers");

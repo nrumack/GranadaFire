@@ -1,4 +1,4 @@
-package controller;
+package com.example.granadafire.controller;
 
 import com.example.granadafire.DAO.PlayerDAO;
 import com.example.granadafire.entities.Player;
