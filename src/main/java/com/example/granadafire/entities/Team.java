@@ -1,56 +1,55 @@
 package com.example.granadafire.entities;
-
 import jakarta.persistence.*;
-
 import java.util.List;
-import java.util.Set;
 
-// Created by Martin
 @Entity
 @Table(name = "teams")
 public class Team {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    @Column(name = "team_id")
+    private int teamId;
 
-    @Column(nullable = false, unique = true)
-    private String name;
-
-    @OneToMany(mappedBy = "team")
-    private List<Player> players;
+    @Column(name = "team_name", length = 50, nullable = false)
+    private String teamName;
 
     @ManyToOne
-    @JoinTable(name = "game_id")
+    @JoinColumn(name = "game_id", referencedColumnName = "game_id", nullable = false)
     private Game game;
+
+    @OneToMany(mappedBy = "team", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Player> players;
 
     public Team() {}
 
-    public Team(String name, Game game, List<Player> players) {
-        this.name = name;
+    public Team(String teamName, Game game) {
+        this.teamName = teamName;
         this.game = game;
-        this.players = players;
     }
 
-
-    public int getId() {
-        return id;
+    public int getTeamId() {
+        return teamId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setTeamId(int teamId) {
+        this.teamId = teamId;
     }
 
-    public String getName() {
-        return name;
+    public String getTeamName() {
+        return teamName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTeamName(String teamName) {
+        this.teamName = teamName;
     }
 
     public Game getGame() {
         return game;
+    }
+
+    public void setGame(Game game) {
+        this.game = game;
     }
 
     public List<Player> getPlayers() {
@@ -60,9 +59,4 @@ public class Team {
     public void setPlayers(List<Player> players) {
         this.players = players;
     }
-
-    public void setGame(Game game) {
-        this.game = game;
-    }
-
 }
