@@ -16,9 +16,23 @@ import javafx.stage.Stage;
 import java.util.List;
 
 public class PlayerSearchController {
+
+
     public void backButton(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/playerMenuView.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/mainMenuView.fxml"));
+            Stage stage = new Stage();
+            stage.setScene(new Scene(loader.load()));
+            stage.setTitle("Pied Pipers");
+            stage.show();
+            ((Node) (event.getSource())).getScene().getWindow().hide();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    public void createNewButton(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/playerView.fxml"));
             Stage stage = new Stage();
             stage.setScene(new Scene(loader.load()));
             stage.setTitle("Pied Pipers");
@@ -55,7 +69,7 @@ public class PlayerSearchController {
                     Stage stage = new Stage();
                     stage.setScene(new Scene(loader.load()));
 
-                    PlayerMenuController controller = loader.getController();
+                    PlayerController controller = loader.getController();
                     controller.setPlayer(selectedItem);
 
                     stage.setTitle("Pied Piper");

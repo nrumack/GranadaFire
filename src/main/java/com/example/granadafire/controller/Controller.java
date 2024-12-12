@@ -12,7 +12,7 @@ public class Controller {
     @FXML
     protected void clickPlayers(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/playerMenuView.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/playerSearchView.fxml"));
             Stage stage = new Stage();
             stage.setScene(new Scene(loader.load()));
             stage.setTitle("Piper Games");
@@ -54,7 +54,7 @@ public class Controller {
     @FXML
     protected void clickStaff(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/loginView.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/staffSearchView.fxml"));
             Stage stage = new Stage();
             stage.setScene(new Scene(loader.load()));
             stage.setTitle("Piper Games");

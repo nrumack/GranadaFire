@@ -6,19 +6,20 @@
 
 <AnchorPane prefHeight="500.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.granadafire.controller.PlayerSearchController">
    <children>
-      <AnchorPane prefHeight="400.0" prefWidth="400.0">
+      <AnchorPane prefHeight="500.0" prefWidth="400.0">
          <children>
-            <Label layoutX="165.0" layoutY="21.0" text="Search">
+            <Label layoutX="165.0" layoutY="29.0" text="Search">
                <font>
                   <Font size="24.0" />
                </font>
             </Label>
-            <ListView fx:id="resultList" layoutX="22.0" layoutY="98.0" prefHeight="284.0" prefWidth="364.0" />
-            <ScrollBar layoutX="372.0" layoutY="98.0" orientation="VERTICAL" prefHeight="284.0" prefWidth="14.0" />
-            <TextField layoutX="22.0" layoutY="64.0" prefHeight="25.0" prefWidth="191.0" />
-            <ComboBox layoutX="222.0" layoutY="64.0" prefHeight="25.0" prefWidth="85.0" />
-            <Button fx:id="searchButton" layoutX="314.0" layoutY="64.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="71.0" style="-fx-background-color: C0BCBC;" text="Search" textFill="WHITE" />
-            <Button layoutX="22.0" layoutY="9.0" mnemonicParsing="false" onAction="#backButton" style="-fx-background-color: C0BCBC;" text="Back" textFill="WHITE" />
+            <ListView fx:id="resultList" layoutX="107.0" layoutY="111.0" prefHeight="375.0" prefWidth="279.0" />
+            <ScrollBar layoutX="372.0" layoutY="111.0" orientation="VERTICAL" prefHeight="375.0" prefWidth="14.0" />
+            <TextField layoutX="22.0" layoutY="77.0" prefHeight="25.0" prefWidth="268.0" />
+            <ComboBox layoutX="22.0" layoutY="110.0" prefHeight="25.0" prefWidth="80.0" />
+            <Button fx:id="searchButton" layoutX="301.0" layoutY="77.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="85.0" style="-fx-background-color: C0BCBC;" text="Search" textFill="WHITE" />
+            <Button layoutX="14.0" layoutY="461.0" mnemonicParsing="false" onAction="#backButton" prefHeight="25.0" prefWidth="85.0" style="-fx-background-color: C0BCBC;" text="Back" textFill="WHITE" />
+            <Button fx:id="createNewButton" layoutX="14.0" layoutY="430.0" mnemonicParsing="false" onAction="#createNewButton" prefHeight="25.0" prefWidth="85.0" style="-fx-background-color: C0BCBC;" text="Create New" textFill="WHITE" />
          </children>
       </AnchorPane>
    </children>
