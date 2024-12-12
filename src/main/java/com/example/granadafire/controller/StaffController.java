@@ -1,4 +1,4 @@
-package controller;
+package com.example.granadafire.controller;
 
 import com.example.granadafire.DAO.StaffDAO;
 import com.example.granadafire.entities.Staff;

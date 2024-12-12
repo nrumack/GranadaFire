@@ -11,7 +11,6 @@ import java.io.IOException;
 public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
-
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/staffView.fxml"));
         Parent root = loader.load();
 

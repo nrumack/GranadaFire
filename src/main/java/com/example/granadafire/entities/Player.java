@@ -9,6 +9,7 @@ import jakarta.persistence.*;
 public class Player {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name ="player_id")
     private int id;
 
     @Column(name = "first_name", length = 40, nullable = false)
@@ -36,11 +37,11 @@ public class Player {
     private String email;
 
     @ManyToOne
-    @JoinColumn(name = "team_id", nullable = true)
+    @JoinColumn(name = "team_id", referencedColumnName = "team_id", nullable = true)
     private Team team;
 
     @ManyToOne
-    @JoinColumn(name = "game_id", nullable = false)
+    @JoinColumn(name = "game_id", referencedColumnName = "game_id", nullable = true)
     private Game game;
 
 

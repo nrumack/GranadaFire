@@ -1,6 +1,7 @@
 package com.example.granadafire.entities;
 
 import jakarta.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "games")
@@ -8,24 +9,27 @@ public class Game {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "game_id")
-    private int game_id;
+    private int id;
 
     @Column(name = "game_name", length = 50, nullable = true)
     private String game_name;
 
+    @OneToMany(mappedBy = "game")
+    private List<Player> players;
+
     public Game(){
     }
 
-    public Game(String game_name, Player player) {
-        this.game_name = game_name;
+    public Game(List<Player> players) {
+        this.players = players;
     }
 
-    public int getGame_id() {
-        return game_id;
+    public int getId() {
+        return id;
     }
 
-    public void setGame_id(int game_id) {
-        this.game_id = game_id;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getGame_name() {
@@ -36,4 +40,11 @@ public class Game {
         this.game_name = game_name;
     }
 
+    public List<Player> getPlayers() {
+        return players;
+    }
+
+    public void setPlayers(List<Player> players) {
+        this.players = players;
+    }
 }

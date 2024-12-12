@@ -4,16 +4,16 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.PlayerMenuController">
+<AnchorPane prefHeight="500.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.PlayerMenuController">
    <children>
-      <AnchorPane layoutY="4.0" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: D9D9D9;">
+      <AnchorPane prefHeight="500.0" prefWidth="600.0" style="-fx-background-color: D9D9D9;">
          <children>
             <Label layoutX="231.0" layoutY="14.0" prefHeight="70.0" prefWidth="139.0" text="Player" textAlignment="CENTER">
                <font>
                   <Font size="48.0" />
                </font>
             </Label>
-            <Button layoutX="204.0" layoutY="115.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="192.0" style="-fx-background-color: C0BCBC;" text="Search" textFill="WHITE">
+            <Button layoutX="204.0" layoutY="115.0" mnemonicParsing="false" onAction="#goToSearch" prefHeight="51.0" prefWidth="192.0" style="-fx-background-color: C0BCBC;" text="Search" textFill="WHITE">
                <font>
                   <Font size="24.0" />
                </font>
@@ -23,7 +23,7 @@
                   <Font size="24.0" />
                </font>
             </Button>
-            <Button layoutX="205.0" layoutY="248.0" mnemonicParsing="false"  prefHeight="51.0" prefWidth="192.0" style="-fx-background-color: C0BCBC;" text="Back" textFill="WHITE">
+            <Button layoutX="205.0" layoutY="248.0" mnemonicParsing="false" onAction="#backButton" prefHeight="51.0" prefWidth="192.0" style="-fx-background-color: C0BCBC;" text="Back" textFill="WHITE">
                <font>
                   <Font size="24.0" />
                </font>

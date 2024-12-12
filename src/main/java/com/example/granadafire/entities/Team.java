@@ -2,6 +2,9 @@ package com.example.granadafire.entities;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+import java.util.Set;
+
 // Created by Martin
 @Entity
 @Table(name = "teams")
@@ -14,15 +17,19 @@ public class Team {
     @Column(nullable = false, unique = true)
     private String name;
 
+    @OneToMany(mappedBy = "team")
+    private List<Player> players;
+
     @ManyToOne
-    @JoinColumn(name = "game_id", referencedColumnName = "game_id", nullable = false)
+    @JoinTable(name = "game_id")
     private Game game;
 
     public Team() {}
 
-    public Team(String name, Game game) {
+    public Team(String name, Game game, List<Player> players) {
         this.name = name;
         this.game = game;
+        this.players = players;
     }
 
 
@@ -44,6 +51,14 @@ public class Team {
 
     public Game getGame() {
         return game;
+    }
+
+    public List<Player> getPlayers() {
+        return players;
+    }
+
+    public void setPlayers(List<Player> players) {
+        this.players = players;
     }
 
     public void setGame(Game game) {
