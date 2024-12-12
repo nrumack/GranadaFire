@@ -8,8 +8,6 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.collections.FXCollections;
 import javafx.stage.Stage;
 
 
@@ -67,7 +65,7 @@ public class StaffController {
     @FXML
     public void handleLabelClick(javafx.scene.input.MouseEvent mouseEvent) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/main.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/mainMenuView.fxml"));
             Parent newRoot = loader.load();
             Stage stage = (Stage)((Node)mouseEvent.getSource()).getScene().getWindow();
             stage.setScene(new Scene(newRoot));
