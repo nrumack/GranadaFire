@@ -8,13 +8,13 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class Main extends Application {
+public class main extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/playerMenuView.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/loginView.fxml"));
         Parent root = loader.load();
 
-        Scene scene = new Scene(root, 500, 400);
+        Scene scene = new Scene(root, 400, 500);
         primaryStage.setTitle("Piper Games");
         primaryStage.setScene(scene);
         primaryStage.show();

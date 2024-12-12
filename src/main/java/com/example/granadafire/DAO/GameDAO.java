@@ -18,8 +18,6 @@ public class GameDAO {
             transaction = entityManager.getTransaction();
             transaction.begin();
             entityManager.persist(game);
-            /*game.setSpel_namn("DotA");
-            entityManager.persist(game);*/
             transaction.commit();
             return true;
         } catch (Exception e) {
@@ -50,8 +48,6 @@ public class GameDAO {
             transaction = entityManager.getTransaction();
             transaction.begin();
             entityManager.merge(game);
-            /*game.setSpel_namn("DotA");
-            entityManager.persist(game);*/
             transaction.commit();
             return true;
         } catch (Exception e) {
