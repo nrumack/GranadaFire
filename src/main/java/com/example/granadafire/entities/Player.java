@@ -60,6 +60,11 @@ public class Player {
         this.game = game;
     }
 
+    @Override
+    public String toString() {
+        return firstName + " " + lastName;
+    }
+
     // Getters and setters
     public int getId() {
         return id;

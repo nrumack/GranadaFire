@@ -7,15 +7,15 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<SplitPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="500.0" prefWidth="400.0" style="-fx-background-color: D9D9D9;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.granadafire.controller.loginController">
+<SplitPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="500.0" prefWidth="400.0" style="-fx-background-color: D9D9D9;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.granadafire.controller.generalControllers.loginController">
   <items>
-    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="398.0" prefWidth="601.0">
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="500.0" prefWidth="400.0">
          <children>
           <AnchorPane layoutY="-10.0" minHeight="0.0" minWidth="0.0" prefHeight="131.0" prefWidth="600.0">
                <children>
                   <Label alignment="CENTER" layoutX="170.0" layoutY="66.0" text="Staff" textAlignment="CENTER">
                      <font>
-                        <Font size="30.0" />
+                        <Font size="14.0" />
                      </font>
                   </Label>
                </children>

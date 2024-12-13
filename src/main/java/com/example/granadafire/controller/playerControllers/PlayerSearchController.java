@@ -1,4 +1,4 @@
-package com.example.granadafire.controller;
+package com.example.granadafire.controller.playerControllers;
 
 import com.example.granadafire.DAO.PlayerDAO;
 import com.example.granadafire.entities.Player;
@@ -16,9 +16,23 @@ import javafx.stage.Stage;
 import java.util.List;
 
 public class PlayerSearchController {
+
+
     public void backButton(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/playerMenuView.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/generalViews/mainMenuView.fxml"));
+            Stage stage = new Stage();
+            stage.setScene(new Scene(loader.load()));
+            stage.setTitle("Pied Pipers");
+            stage.show();
+            ((Node) (event.getSource())).getScene().getWindow().hide();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    public void createNewButton(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/playerViews/playerView.fxml"));
             Stage stage = new Stage();
             stage.setScene(new Scene(loader.load()));
             stage.setTitle("Pied Pipers");
@@ -40,23 +54,28 @@ public class PlayerSearchController {
         System.out.println(players);
         ObservableList<Player> observablePlayers = FXCollections.observableArrayList(players);
 
-        resultList.setItems(observablePlayers);
 
+        resultList.setItems(observablePlayers);
         resultList.setOnMouseClicked(this::handleClick);
     }
 
-    // Event handler for ListView item click
+
     private void handleClick(MouseEvent event) {
         if (event.getClickCount() == 1) {
             Player selectedItem = resultList.getSelectionModel().getSelectedItem();
             if (selectedItem != null) {
                 try {
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/playerView.fxml"));
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/playerViews/playerView.fxml"));
                     Stage stage = new Stage();
                     stage.setScene(new Scene(loader.load()));
-                    stage.setTitle("Pied Pipers");
+
+                    PlayerController controller = loader.getController();
+                    controller.setPlayer(selectedItem);
+
+                    stage.setTitle("Pied Piper");
                     stage.show();
-                    ((Node)(event.getSource())).getScene().getWindow().hide();
+
+                    ((Node) (event.getSource())).getScene().getWindow().hide();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
