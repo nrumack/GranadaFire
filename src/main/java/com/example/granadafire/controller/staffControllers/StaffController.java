@@ -8,6 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -25,25 +26,52 @@ public class StaffController {
 
     @FXML
     private Button deleteButton;
+    @FXML
+    private Button clearButton;
 
     private Staff staff;
 
     @FXML
     public void initialize() {
-        hideDeleteButton();
+        toggleButtonsVisibilty();
     }
 
     public void setStaff(Staff staff) {
         this.staff = staff;
         updateView();
-        hideDeleteButton();
+        toggleButtonsVisibilty();
     }
-    private void hideDeleteButton() {
-        if (deleteButton != null) {
-            boolean isVisible = (staff != null);
-            deleteButton.setVisible(isVisible);
-            System.out.println("delete button ");
+
+    private void toggleButtonsVisibilty() {
+        if (staff != null && staff.getId() > 0) {
+            System.out.println("Showing and enabling delete button");
+            deleteButton.setVisible(true);
+            deleteButton.setManaged(true);
+            deleteButton.setDisable(false);
+        } else {
+            System.out.println("Hiding and disabling delete button");
+            deleteButton.setVisible(false);
+            deleteButton.setManaged(false);
+            deleteButton.setDisable(true);
         }
+
+        if (staff != null) {
+            System.out.println("Showing and enabling clear button");
+            clearButton.setVisible(false);
+            clearButton.setManaged(false);
+            clearButton.setDisable(true);
+        } else {
+            System.out.println("Hiding and disabling clear button");
+            clearButton.setVisible(true);
+            clearButton.setManaged(true);
+            clearButton.setDisable(false);
+            clearButton.setStyle("-fx-backgound-color: C0BCBC");
+        }
+    }
+
+    @FXML
+    private void clearButton(ActionEvent event) {
+        clearFields();
     }
     private void clearFields() {
         firstNameField.clear();
@@ -159,13 +187,13 @@ public class StaffController {
             resetErrorsStyles();
 
             if (firstNameInput.isEmpty()){
-                showError(firstNameField, "First Name is required");
+                showError(firstNameField, "First Name is required*");
             }
             if (lastNameInput.isEmpty()) {
-                showError(lastNameField, "Last Name is required");
+                showError(lastNameField, "Last Name is required*");
             }
             if (nicknameInput.isEmpty()) {
-                showError(nickname, "Nickname is required");
+                showError(nickname, "Nickname is required*");
             }
             if (isValidAreaCode(areaCodeInput)) {
                 showError(areaCode, "Only digits and max 6");
@@ -209,9 +237,9 @@ public class StaffController {
     }
 
     private void showError(TextField field, String message) {
-        field.setStyle("-fx-border-color: color");
-
+        field.setStyle("-fx-border-color: red");
         field.setPromptText(message);
+        field.setStyle("-fx-prompt-atext-fill: red;");
     }
 
     private void resetErrorsStyles() {

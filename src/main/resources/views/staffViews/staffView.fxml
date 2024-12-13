@@ -6,7 +6,7 @@
 
 <AnchorPane prefHeight="500.0" prefWidth="400.0" style="-fx-background-color: D9D9D9;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.granadafire.controller.staffControllers.StaffController">
     <children>
-        <Button id="deleteButton" layoutX="163.0" layoutY="450.0" mnemonicParsing="false" onAction="#deleteButton" prefHeight="30.0" prefWidth="75.0" style="-fx-background-color: C0BCBC;" text="Delete" textFill="WHITE">
+        <Button id="deleteButton" fx:id="deleteButton" layoutX="163.0" layoutY="450.0" mnemonicParsing="false" onAction="#deleteButton" prefHeight="30.0" prefWidth="75.0" style="-fx-background-color: C0BCBC;" text="Delete" textFill="WHITE">
             <font>
                 <Font size="14.0" />
             </font></Button>
@@ -22,7 +22,7 @@
         <TextField fx:id="city" layoutX="25.0" layoutY="250.0" prefHeight="17.0" prefWidth="170.0" promptText="City" style="-fx-border-color: black; -fx-padding: 5; -fx-background-color: white;" />
         <TextField fx:id="country" layoutX="205.0" layoutY="250.0" prefHeight="17.0" prefWidth="170.0" promptText="Country" style="-fx-border-color: black; -fx-padding: 5; -fx-background-color: white;" />
         <TextField fx:id="email" layoutX="25.0" layoutY="285.0" prefHeight="17.0" prefWidth="350.0" promptText="Email" style="-fx-border-color: black; -fx-padding: 5; -fx-background-color: white;" />
-        <Label layoutX="154.0" layoutY="14.0" prefHeight="51.0" prefWidth="103.0" text="Staff" textAlignment="CENTER">
+        <Label fx:id="staffLabel" layoutX="154.0" layoutY="14.0" prefHeight="51.0" prefWidth="103.0" text="Staff" textAlignment="CENTER">
             <font>
                 <Font size="35.0" />
             </font>
@@ -32,5 +32,6 @@
                 <Font size="14.0" />
             </font>
         </Button>
+      <Button fx:id="clearButton" layoutX="163.0" layoutY="450.0" mnemonicParsing="false" onAction="#clearButton" prefHeight="30.0" prefWidth="75.0" style="-fx-background-color: C0CBC;" text="Clear" textFill="WHITE" />
     </children>
 </AnchorPane>
