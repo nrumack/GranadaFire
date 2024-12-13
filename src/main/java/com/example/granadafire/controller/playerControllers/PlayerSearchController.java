@@ -1,4 +1,4 @@
-package com.example.granadafire.controller;
+package com.example.granadafire.controller.playerControllers;
 
 import com.example.granadafire.DAO.PlayerDAO;
 import com.example.granadafire.entities.Player;
@@ -20,7 +20,7 @@ public class PlayerSearchController {
 
     public void backButton(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/mainMenuView.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/generalViews/mainMenuView.fxml"));
             Stage stage = new Stage();
             stage.setScene(new Scene(loader.load()));
             stage.setTitle("Pied Pipers");
@@ -32,7 +32,7 @@ public class PlayerSearchController {
     }
     public void createNewButton(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/playerView.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/playerViews/playerView.fxml"));
             Stage stage = new Stage();
             stage.setScene(new Scene(loader.load()));
             stage.setTitle("Pied Pipers");
@@ -65,7 +65,7 @@ public class PlayerSearchController {
             Player selectedItem = resultList.getSelectionModel().getSelectedItem();
             if (selectedItem != null) {
                 try {
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/playerView.fxml"));
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/playerViews/playerView.fxml"));
                     Stage stage = new Stage();
                     stage.setScene(new Scene(loader.load()));
 

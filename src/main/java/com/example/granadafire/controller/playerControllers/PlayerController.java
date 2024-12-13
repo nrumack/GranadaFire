@@ -1,4 +1,4 @@
-package com.example.granadafire.controller;
+package com.example.granadafire.controller.playerControllers;
 
 import com.example.granadafire.DAO.PlayerDAO;
 import com.example.granadafire.entities.Player;
@@ -93,7 +93,7 @@ public class PlayerController {
     @FXML
     public void backButton(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/playerSearchView.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/playerViews/playerSearchView.fxml"));
             Stage stage = new Stage();
             stage.setScene(new Scene(loader.load()));
             stage.setTitle("Pied Pipers");

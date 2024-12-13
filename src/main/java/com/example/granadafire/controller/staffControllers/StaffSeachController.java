@@ -1,4 +1,4 @@
-package com.example.granadafire.controller;
+package com.example.granadafire.controller.staffControllers;
 
 import com.example.granadafire.DAO.StaffDAO;
 import com.example.granadafire.entities.Staff;
@@ -9,7 +9,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
@@ -39,7 +38,7 @@ public class StaffSeachController {
             Staff selectedItem = staffResultList.getSelectionModel().getSelectedItem();
             if (selectedItem != null) {
                 try {
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/staffView.fxml"));
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/staffViews/staffView.fxml"));
                     Stage stage = new Stage();
                     stage.setScene(new Scene(loader.load()));
 
@@ -58,7 +57,7 @@ public class StaffSeachController {
 
     public void backButton(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/mainMenuView.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/generalViews/mainMenuView.fxml"));
             Stage stage = new Stage();
             stage.setScene(new Scene(loader.load()));
             stage.setTitle("Pied Pipers");
@@ -71,7 +70,7 @@ public class StaffSeachController {
 
     public void createNewButton(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/staffView.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/staffViews/staffView.fxml"));
             Stage stage = new Stage();
             stage.setScene(new Scene(loader.load()));
             stage.setTitle("Pied Pipers");

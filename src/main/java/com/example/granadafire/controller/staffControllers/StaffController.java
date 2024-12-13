@@ -1,7 +1,6 @@
-package com.example.granadafire.controller;
+package com.example.granadafire.controller.staffControllers;
 
 import com.example.granadafire.DAO.StaffDAO;
-import com.example.granadafire.entities.Player;
 import com.example.granadafire.entities.Staff;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -75,7 +74,7 @@ public class StaffController {
     @FXML
     public void backButton(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/staffSearchView.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/staffViews/staffSearchView.fxml"));
             Stage stage = new Stage();
             stage.setScene(new Scene(loader.load()));
             stage.setTitle("Pied Pipers");

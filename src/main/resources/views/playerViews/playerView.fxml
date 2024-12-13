@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="500.0" prefWidth="400.0" style="-fx-background-color: D9D9D9;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.granadafire.controller.PlayerController">
+<AnchorPane prefHeight="500.0" prefWidth="400.0" style="-fx-background-color: D9D9D9;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.granadafire.controller.playerControllers.PlayerController">
          <children>
             <Button id="deleteButton" layoutX="163.0" layoutY="450.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="75.0" style="-fx-background-color: C0BCBC;" text="Delete" textFill="WHITE">
                <font>

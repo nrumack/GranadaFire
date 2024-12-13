@@ -1,4 +1,4 @@
-package com.example.granadafire.controller;
+package com.example.granadafire.controller.generalControllers;
 
 import com.example.granadafire.DAO.PlayerDAO;
 import com.example.granadafire.DAO.StaffDAO;
@@ -71,7 +71,7 @@ public class loginController {
     @FXML
     public void handleLabelClick(javafx.scene.input.MouseEvent mouseEvent) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/mainMenuView.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/generalViews/mainMenuView.fxml"));
             Parent newRoot = loader.load();
             Stage stage = (Stage)((Node)mouseEvent.getSource()).getScene().getWindow();
             stage.setScene(new Scene(newRoot));
