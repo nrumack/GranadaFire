@@ -62,7 +62,11 @@ public class Player {
 
     @Override
     public String toString() {
-        return firstName + " " + lastName;
+
+        String teamName = (team != null) ? team.getTeamName() : "No Team";
+        String fullName = firstName + " " + lastName;
+
+        return String.format("%-20s %s", fullName, "Team: " + teamName);
     }
 
     // Getters and setters

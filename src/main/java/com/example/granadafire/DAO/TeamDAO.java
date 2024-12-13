@@ -31,33 +31,19 @@ public class TeamDAO {
         }
     }
 
-    public Team getTeamById(int id) {
+    public Team getTeamByName(String name) {
         EntityManager entityManager = ENTITY_MANAGER_FACTORY.createEntityManager();
-
         try {
-            return entityManager.find(Team.class, id);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            return null;
+            TypedQuery<Team> query = entityManager.createQuery(
+                    "SELECT t FROM Team t WHERE t.teamName = :name", Team.class
+            );
+            query.setParameter("name", name);
+            List<Team> result = query.getResultList();
+            return result.isEmpty() ? null : result.get(0);
         } finally {
             entityManager.close();
         }
     }
-
-    public List<Team> getAllTeams() {
-        EntityManager entityManager = ENTITY_MANAGER_FACTORY.createEntityManager();
-
-        try {
-            TypedQuery<Team> result = entityManager.createQuery("FROM Team", Team.class);
-            return result.getResultList();
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            return null;
-        } finally {
-            entityManager.close();
-        }
-    }
-
     public boolean updateTeam(Team team) {
         EntityManager entityManager = ENTITY_MANAGER_FACTORY.createEntityManager();
         EntityTransaction transaction = null;
