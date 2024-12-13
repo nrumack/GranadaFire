@@ -1,10 +1,9 @@
 package com.example.granadafire.DAO;
 
 import com.example.granadafire.entities.Game;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.EntityTransaction;
-import jakarta.persistence.Persistence;
+import jakarta.persistence.*;
+
+import java.util.List;
 
 public class GameDAO {
 
@@ -32,12 +31,32 @@ public class GameDAO {
     }
 
     // Read
-    public Game readGameById(int spel_id) {
+    public Game getGameByName(String name) {
         EntityManager entityManager = ENTITY_MANAGER_FACTORY.createEntityManager();
-        EntityTransaction transaction = null;
-        Game gameToFind = entityManager.find(Game.class, spel_id);
-        entityManager.close();
-        return gameToFind;
+
+        try {
+            TypedQuery<Game> query = entityManager.createQuery(
+                    "SELECT g FROM Game g WHERE g.gameName = :name", Game.class
+            );
+            query.setParameter("name", name);
+            List<Game> result = query.getResultList();
+            if (!result.isEmpty()) {
+                return result.get(0);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public List<Game> getAllGames() {
+        EntityManager entityManager = ENTITY_MANAGER_FACTORY.createEntityManager();
+        try {
+            TypedQuery<Game> query = entityManager.createQuery("SELECT g FROM Game g", Game.class);
+            return query.getResultList();
+        } finally {
+            entityManager.close();
+        }
     }
 
     // Update
