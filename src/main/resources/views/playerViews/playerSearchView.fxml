@@ -6,20 +6,20 @@
 
 <AnchorPane prefHeight="500.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.granadafire.controller.playerControllers.PlayerSearchController">
    <children>
-      <AnchorPane prefHeight="500.0" prefWidth="400.0">
+      <AnchorPane prefHeight="500.0" prefWidth="400.0" style="-fx-background-color: #F5F5F5;">
          <children>
-            <Label layoutX="165.0" layoutY="29.0" text="Search">
+            <Label layoutX="150.0" layoutY="20.0" text="Players" textAlignment="CENTER">
                <font>
                   <Font size="24.0" />
                </font>
             </Label>
-            <ListView fx:id="resultList" layoutX="107.0" layoutY="111.0" prefHeight="375.0" prefWidth="279.0" />
-            <ScrollBar layoutX="372.0" layoutY="111.0" orientation="VERTICAL" prefHeight="375.0" prefWidth="14.0" />
-            <TextField layoutX="22.0" layoutY="77.0" prefHeight="25.0" prefWidth="268.0" />
-            <ComboBox layoutX="22.0" layoutY="110.0" prefHeight="25.0" prefWidth="80.0" />
-            <Button fx:id="searchButton" layoutX="301.0" layoutY="77.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="85.0" style="-fx-background-color: C0BCBC;" text="Search" textFill="WHITE" />
-            <Button layoutX="14.0" layoutY="461.0" mnemonicParsing="false" onAction="#backButton" prefHeight="25.0" prefWidth="85.0" style="-fx-background-color: C0BCBC;" text="Back" textFill="WHITE" />
-            <Button fx:id="createNewButton" layoutX="14.0" layoutY="430.0" mnemonicParsing="false" onAction="#createNewButton" prefHeight="25.0" prefWidth="85.0" style="-fx-background-color: C0BCBC;" text="Create New" textFill="WHITE" />
+            <ListView fx:id="gameFilterListView" layoutX="20.0" layoutY="60.0" prefHeight="100.0" prefWidth="160.0" />
+            <Button text="Filter Players" layoutX="200.0" layoutY="60.0" mnemonicParsing="false" onAction="#filterPlayersByGames" prefHeight="30.0" prefWidth="160.0" style="-fx-background-color: #A9A9A9;" textFill="WHITE" />
+            <TextField fx:id="searchField" layoutX="20.0" layoutY="180.0" prefHeight="30.0" prefWidth="280.0" promptText="Search Players..." />
+            <Button fx:id="searchButton" layoutX="310.0" layoutY="180.0" mnemonicParsing="false" onAction="#searchPlayers" prefHeight="30.0" prefWidth="70.0" style="-fx-background-color: #A9A9A9;" text="Search" textFill="WHITE" />
+            <ListView fx:id="playerListView" layoutX="20.0" layoutY="230.0" prefHeight="200.0" prefWidth="360.0" />
+            <Button fx:id="backButton" layoutX="20.0" layoutY="450.0" mnemonicParsing="false" onAction="#backButton" prefHeight="30.0" prefWidth="85.0" style="-fx-background-color: #A9A9A9;" text="Back" textFill="WHITE" />
+            <Button fx:id="createNewButton" layoutX="120.0" layoutY="450.0" mnemonicParsing="false" onAction="#createNewButton" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: #A9A9A9;" text="Create New" textFill="WHITE" />
          </children>
       </AnchorPane>
    </children>

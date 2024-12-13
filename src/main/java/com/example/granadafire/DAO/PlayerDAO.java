@@ -1,5 +1,6 @@
 package com.example.granadafire.DAO;
 
+import com.example.granadafire.entities.Game;
 import com.example.granadafire.entities.Player;
 import com.example.granadafire.entities.Team;
 import jakarta.persistence.*;
@@ -45,10 +46,38 @@ public class PlayerDAO {
 
     public List<Player> getAllPlayers() {
         EntityManager entityManager = ENTITY_MANAGER_FACTORY.createEntityManager();
-        List<Player> listToReturn = new ArrayList<>();
-        TypedQuery<Player> result = entityManager.createQuery("FROM Player", Player.class);
-        listToReturn.addAll(result.getResultList());
-        return listToReturn;
+        try {
+            TypedQuery<Player> query = entityManager.createQuery("SELECT p FROM Player p", Player.class);
+            return query.getResultList();
+        } finally {
+            entityManager.close();
+        }
+    }
+
+    public List<Player> getPlayersByGames(List<Game> games) {
+        EntityManager entityManager = ENTITY_MANAGER_FACTORY.createEntityManager();
+        try {
+            TypedQuery<Player> query = entityManager.createQuery(
+                    "SELECT p FROM Player p WHERE p.game IN :games", Player.class
+            );
+            query.setParameter("games", games);
+            return query.getResultList();
+        } finally {
+            entityManager.close();
+        }
+    }
+
+    public List<Player> getPlayersByName(String name) {
+        EntityManager entityManager = ENTITY_MANAGER_FACTORY.createEntityManager();
+        try {
+            TypedQuery<Player> query = entityManager.createQuery(
+                    "SELECT p FROM Player p WHERE LOWER(p.firstName) LIKE :name OR LOWER(p.lastName) LIKE :name", Player.class
+            );
+            query.setParameter("name", "%" + name.toLowerCase() + "%");
+            return query.getResultList();
+        } finally {
+            entityManager.close();
+        }
     }
 
     public List<Player> getAllPlayersFromGame() {
@@ -79,22 +108,35 @@ public class PlayerDAO {
     public void updatePlayer(Player playerToUpdate) {
         EntityManager entityManager = ENTITY_MANAGER_FACTORY.createEntityManager();
         EntityTransaction transaction = null;
+
         try {
-            if (entityManager.contains(playerToUpdate)) {
-                System.out.println("Player exists ");
-                entityManager.persist(playerToUpdate);
+            transaction = entityManager.getTransaction();
+            transaction.begin();
+
+            Player existingPlayer = entityManager.find(Player.class, playerToUpdate.getId());
+            if (existingPlayer != null) {
+                existingPlayer.setFirstName(playerToUpdate.getFirstName());
+                existingPlayer.setLastName(playerToUpdate.getLastName());
+                existingPlayer.setNickname(playerToUpdate.getNickname());
+                existingPlayer.setStreet(playerToUpdate.getStreet());
+                existingPlayer.setPostNumber(playerToUpdate.getPostNumber());
+                existingPlayer.setCity(playerToUpdate.getCity());
+                existingPlayer.setCountry(playerToUpdate.getCountry());
+                existingPlayer.setEmail(playerToUpdate.getEmail());
+                existingPlayer.setTeam(playerToUpdate.getTeam());
+                existingPlayer.setGame(playerToUpdate.getGame());
+
+                entityManager.merge(existingPlayer);
             } else {
-                System.out.println("Player does not exist");
-                Player recievedPlayer = entityManager.merge(playerToUpdate);
-                System.out.println(recievedPlayer.getId() + " is active");
+                System.out.println("Player not found in the database.");
             }
-            entityManager.merge(playerToUpdate);
+
             transaction.commit();
         } catch (Exception e) {
-            System.out.println(e.getMessage());
-            if (entityManager != null && transaction != null && transaction.isActive()) {
+            if (transaction != null && transaction.isActive()) {
                 transaction.rollback();
             }
+            e.printStackTrace();
         } finally {
             entityManager.close();
         }
