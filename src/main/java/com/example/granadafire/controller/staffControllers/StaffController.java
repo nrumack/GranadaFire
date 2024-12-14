@@ -28,44 +28,62 @@ public class StaffController {
     private Button deleteButton;
     @FXML
     private Button clearButton;
+    @FXML
+    private Button updateStaff;
+    @FXML
+    private Button saveStaff;
 
     private Staff staff;
 
     @FXML
     public void initialize() {
-        toggleButtonsVisibilty();
+        toggleButtonsVisibility();
+
     }
 
     public void setStaff(Staff staff) {
         this.staff = staff;
         updateView();
-        toggleButtonsVisibilty();
+        toggleButtonsVisibility();
     }
 
-    private void toggleButtonsVisibilty() {
+    private void toggleButtonsVisibility() {
         if (staff != null && staff.getId() > 0) {
             System.out.println("Showing and enabling delete button");
             deleteButton.setVisible(true);
             deleteButton.setManaged(true);
             deleteButton.setDisable(false);
+            updateStaff.setVisible(true);
+            updateStaff.setManaged(true);
+            updateStaff.setDisable(false);
         } else {
             System.out.println("Hiding and disabling delete button");
             deleteButton.setVisible(false);
             deleteButton.setManaged(false);
             deleteButton.setDisable(true);
+            updateStaff.setVisible(false);
+            updateStaff.setManaged(false);
+            updateStaff.setDisable(true);
+            updateStaff.setStyle("-fx-backgound-color: C0BCBC");
         }
-
         if (staff != null) {
             System.out.println("Showing and enabling clear button");
             clearButton.setVisible(false);
             clearButton.setManaged(false);
             clearButton.setDisable(true);
+            saveStaff.setVisible(false);
+            saveStaff.setManaged(false);
+            saveStaff.setDisable(true);
         } else {
             System.out.println("Hiding and disabling clear button");
             clearButton.setVisible(true);
             clearButton.setManaged(true);
             clearButton.setDisable(false);
             clearButton.setStyle("-fx-backgound-color: C0BCBC");
+            saveStaff.setVisible(true);
+            saveStaff.setManaged(true);
+            saveStaff.setDisable(false);
+            saveStaff.setStyle("-fx-backgound-color: C0BCBC");
         }
     }
 
@@ -96,8 +114,6 @@ public class StaffController {
             email.setText(staff.getEmail());
         }
     }
-
-
 
     @FXML
     public void backButton(ActionEvent event) {

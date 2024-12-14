@@ -39,12 +39,10 @@ public class StaffSeachController {
             if (selectedItem != null) {
                 try {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/staffViews/staffView.fxml"));
-
                     Stage stage = new Stage();
                     stage.setScene(new Scene(loader.load()));
                     StaffController controller = loader.getController();
                     controller.setStaff(selectedItem);
-
                     stage.setTitle("Pied Pipers");
                     stage.show();
                     ((Node)(event.getSource())).getScene().getWindow().hide();
@@ -58,7 +56,6 @@ public class StaffSeachController {
     public void backButton(ActionEvent event) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/generalViews/mainMenuView.fxml"));
-            loader.setController(this);
             Stage stage = new Stage();
             stage.setScene(new Scene(loader.load()));
             stage.setTitle("Pied Pipers");
