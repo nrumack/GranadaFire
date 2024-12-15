@@ -1,16 +1,13 @@
 package com.example.granadafire.controller.staffControllers;
 
 import com.example.granadafire.DAO.StaffDAO;
-import com.example.granadafire.entities.Player;
 import com.example.granadafire.entities.Staff;
-import com.example.granadafire.entities.Team;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -40,7 +37,6 @@ public class StaffController {
     @FXML
     public void initialize() {
         toggleButtonsVisibility();
-
     }
 
     public void setStaff(Staff staff) {
@@ -86,9 +82,7 @@ public class StaffController {
     }
 
     @FXML
-    private void clearButton(ActionEvent event) {
-        clearFields();
-    }
+    private void clearButton(ActionEvent event) { clearFields(); }
     private void clearFields() {
         firstNameField.clear();
         lastNameField.clear();
@@ -128,15 +122,17 @@ public class StaffController {
     }
 
     @FXML
-    public void deleteButton() {
+    public void deleteButton(ActionEvent event) {
         try {
             if (staff != null) {
                 staffDAO.deleteStaff(staff);
-                System.out.println("success");
                 clearFields();
-                backButton(null);
-            } else {
-                System.out.println("sadge");
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/staffViews/staffSearchView.fxml"));
+                Stage stage = new Stage();
+                stage.setScene(new Scene(loader.load()));
+                stage.setTitle("Pied Pipers");
+                stage.show();
+                ((Node) (event.getSource())).getScene().getWindow().hide();
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
