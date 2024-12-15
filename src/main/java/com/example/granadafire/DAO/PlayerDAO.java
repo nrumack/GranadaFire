@@ -127,8 +127,6 @@ public class PlayerDAO {
                 existingPlayer.setGame(playerToUpdate.getGame());
 
                 entityManager.merge(existingPlayer);
-            } else {
-                System.out.println("Player not found in the database.");
             }
 
             transaction.commit();

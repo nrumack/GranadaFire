@@ -33,9 +33,24 @@ public class loginController {
     @FXML
     public void initialize() {
         List<Staff> staffList = staffDAO.getAllStaff();
-        linkContainer.setPageCount((int) Math.ceil((double) staffList.size() / ButtonsPerPage));  // Set number of pages
-        linkContainer.setPageFactory(pageIndex -> createPageContent(staffList, pageIndex));
 
+        if (staffList.size() < 6) {
+            linkContainer.setVisible(false);
+            createPageContent(staffList, 0);
+
+            for (Staff staff : staffList) {
+                Button button = new Button(staff.getNickname());
+                button.setStyle("-fx-font-size: 14px; -fx-text-fill: #ffffff; -fx-background-color: #C0BCBC;");
+                button.setPrefHeight(30.0);
+                button.setPrefWidth(150.0);
+                button.setOnMouseClicked(event -> handleLabelClick(event));
+                loginButtonContainer.getChildren().add(button);
+            }
+        } else {
+            linkContainer.setVisible(true);
+            linkContainer.setPageCount((int) Math.ceil((double) staffList.size() / ButtonsPerPage));  // Set number of pages
+            linkContainer.setPageFactory(pageIndex -> createPageContent(staffList, pageIndex));
+        }
     }
 
     private VBox createPageContent(List<Staff> staffList, int pageIndex) {
@@ -53,6 +68,7 @@ public class loginController {
             button.setOnMouseClicked(event -> handleLabelClick(event));
             pageContent.getChildren().add(button);
         }
+
         return pageContent;
     }
 
@@ -61,7 +77,7 @@ public class loginController {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/generalViews/mainMenuView.fxml"));
             Parent newRoot = loader.load();
-            Stage stage = (Stage)((Node)mouseEvent.getSource()).getScene().getWindow();
+            Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
             stage.setScene(new Scene(newRoot));
             stage.show();
 

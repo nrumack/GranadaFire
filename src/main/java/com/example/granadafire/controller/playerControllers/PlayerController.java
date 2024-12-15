@@ -69,7 +69,6 @@ public class PlayerController {
 
     private void toggleButtonsVisibility() {
         if (player != null && player.getId() > 0) {
-            System.out.println("Showing and enabling delete button");
             deletePlayer.setVisible(true);
             deletePlayer.setManaged(true);
             deletePlayer.setDisable(false);
@@ -77,17 +76,15 @@ public class PlayerController {
             updatePlayer.setManaged(true);
             updatePlayer.setDisable(false);
         } else {
-            System.out.println("Hiding and disabling delete button");
             deletePlayer.setVisible(false);
             deletePlayer.setManaged(false);
             deletePlayer.setDisable(true);
             updatePlayer.setVisible(false);
             updatePlayer.setManaged(false);
             updatePlayer.setDisable(true);
-            updatePlayer.setStyle("-fx-backgound-color: C0BCBC");
+            updatePlayer.setStyle("-fx-background-color: C0BCBC");
         }
         if (player != null) {
-            System.out.println("Showing and enabling clear button");
             clearButton.setVisible(false);
             clearButton.setManaged(false);
             clearButton.setDisable(true);
@@ -95,15 +92,14 @@ public class PlayerController {
             savePlayer.setManaged(false);
             savePlayer.setDisable(true);
         } else {
-            System.out.println("Hiding and disabling clear button");
             clearButton.setVisible(true);
             clearButton.setManaged(true);
             clearButton.setDisable(false);
-            clearButton.setStyle("-fx-backgound-color: C0BCBC");
+            clearButton.setStyle("-fx-background-color: C0BCBC");
             savePlayer.setVisible(true);
             savePlayer.setManaged(true);
             savePlayer.setDisable(false);
-            savePlayer.setStyle("-fx-backgound-color: C0BCBC");
+            savePlayer.setStyle("-fx-background-color: C0BCBC");
         }
     }
     @FXML
@@ -346,7 +342,7 @@ public class PlayerController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/playerViews/playerSearchView.fxml"));
             Stage stage = new Stage();
             stage.setScene(new Scene(loader.load()));
-            stage.setTitle("Player Search");
+            stage.setTitle("Pied Pipers");
             stage.show();
             ((Node) (event.getSource())).getScene().getWindow().hide();
         } catch (Exception e) {

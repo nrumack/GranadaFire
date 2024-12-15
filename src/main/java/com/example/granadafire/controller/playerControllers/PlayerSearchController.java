@@ -126,7 +126,7 @@ public class PlayerSearchController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/generalViews/mainMenuView.fxml"));
             Stage stage = new Stage();
             stage.setScene(new Scene(loader.load()));
-            stage.setTitle("Main Menu");
+            stage.setTitle("Pied Pipers");
             stage.show();
             ((Node) event.getSource()).getScene().getWindow().hide();
         } catch (Exception e) {
@@ -140,7 +140,7 @@ public class PlayerSearchController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/playerViews/playerView.fxml"));
             Stage stage = new Stage();
             stage.setScene(new Scene(loader.load()));
-            stage.setTitle("Create Player");
+            stage.setTitle("Pied Pipers");
             stage.show();
             ((Node) event.getSource()).getScene().getWindow().hide();
         } catch (Exception e) {
