@@ -16,10 +16,8 @@
                </font>
             </Label>
           <AnchorPane layoutX="59.0" layoutY="65.0" minHeight="0.0" minWidth="0.0" prefHeight="131.0" prefWidth="600.0" />
-            <VBox fx:id="loginButtonContainer" alignment="TOP_CENTER" layoutX="83.0" layoutY="140.0" prefHeight="296.0" prefWidth="232.0" spacing="10.0">
-               <children>
-                  <Pagination id="linkContainer" fx:id="linkContainer" prefHeight="298.0" prefWidth="232.0" />
-               </children></VBox>
+            <Pagination id="linkContainer" fx:id="linkContainer" layoutX="86.0" layoutY="127.0" maxPageIndicatorCount="0" prefHeight="298.0" prefWidth="232.0" />
+            <VBox fx:id="loginButtonContainer" alignment="TOP_CENTER" layoutX="83.0" layoutY="140.0" prefHeight="296.0" prefWidth="232.0" spacing="10.0" />
            </children></AnchorPane>
     </items>
   </SplitPane>

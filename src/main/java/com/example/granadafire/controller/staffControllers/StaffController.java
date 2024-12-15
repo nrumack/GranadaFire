@@ -1,7 +1,9 @@
 package com.example.granadafire.controller.staffControllers;
 
 import com.example.granadafire.DAO.StaffDAO;
+import com.example.granadafire.entities.Player;
 import com.example.granadafire.entities.Staff;
+import com.example.granadafire.entities.Team;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -49,7 +51,6 @@ public class StaffController {
 
     private void toggleButtonsVisibility() {
         if (staff != null && staff.getId() > 0) {
-            System.out.println("Showing and enabling delete button");
             deleteButton.setVisible(true);
             deleteButton.setManaged(true);
             deleteButton.setDisable(false);
@@ -57,17 +58,15 @@ public class StaffController {
             updateStaff.setManaged(true);
             updateStaff.setDisable(false);
         } else {
-            System.out.println("Hiding and disabling delete button");
             deleteButton.setVisible(false);
             deleteButton.setManaged(false);
             deleteButton.setDisable(true);
             updateStaff.setVisible(false);
             updateStaff.setManaged(false);
             updateStaff.setDisable(true);
-            updateStaff.setStyle("-fx-backgound-color: C0BCBC");
+            updateStaff.setStyle("-fx-background-color: C0BCBC");
         }
         if (staff != null) {
-            System.out.println("Showing and enabling clear button");
             clearButton.setVisible(false);
             clearButton.setManaged(false);
             clearButton.setDisable(true);
@@ -75,15 +74,14 @@ public class StaffController {
             saveStaff.setManaged(false);
             saveStaff.setDisable(true);
         } else {
-            System.out.println("Hiding and disabling clear button");
             clearButton.setVisible(true);
             clearButton.setManaged(true);
             clearButton.setDisable(false);
-            clearButton.setStyle("-fx-backgound-color: C0BCBC");
+            clearButton.setStyle("-fx-background-color: C0BCBC");
             saveStaff.setVisible(true);
             saveStaff.setManaged(true);
             saveStaff.setDisable(false);
-            saveStaff.setStyle("-fx-backgound-color: C0BCBC");
+            saveStaff.setStyle("-fx-background-color: C0BCBC");
         }
     }
 
@@ -189,7 +187,7 @@ public class StaffController {
     }
 
     @FXML
-    public void updateStaff() {
+    public void updateStaff(ActionEvent event) {
         try {
             String firstNameInput = firstNameField.getText();
             String lastNameInput = lastNameField.getText();
@@ -222,19 +220,26 @@ public class StaffController {
                 return;
             }
 
-            if (staff != null && staff.getId() > 0) {
-                staff.setFirstName(firstNameInput);
-                staff.setLastName(lastNameInput);
-                staff.setNickname(nicknameInput);
-                staff.setStreet(streetInput);
-                staff.setPostNumber(Integer.parseInt(areaCodeInput));
-                staff.setCity(cityInput);
-                staff.setCountry(countryInput);
-                staff.setEmail(emailInput);
+            Staff existingStaff = staffDAO.getStaffById(staff.getId());
 
-                staffDAO.updateStaff(staff);
-                System.out.println("success");
-                backButton(null);
+            if (existingStaff != null) {
+                existingStaff.setFirstName(firstNameInput);
+                existingStaff.setLastName(lastNameInput);
+                existingStaff.setNickname(nicknameInput);
+                existingStaff.setStreet(streetInput);
+                existingStaff.setPostNumber(Integer.parseInt(areaCodeInput));
+                existingStaff.setCity(cityInput);
+                existingStaff.setCountry(countryInput);
+                existingStaff.setEmail(emailInput);
+
+                staffDAO.updateStaff(existingStaff);
+
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/staffViews/staffSearchView.fxml"));
+                Stage stage = new Stage();
+                stage.setScene(new Scene(loader.load()));
+                stage.setTitle("Pied Pipers");
+                stage.show();
+                ((Node) (event.getSource())).getScene().getWindow().hide();
             } else {
                 System.out.println("staff not valid");
             }

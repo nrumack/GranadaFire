@@ -15,7 +15,7 @@ public class Main extends Application {
         Parent root = loader.load();
 
         Scene scene = new Scene(root, 400, 500);
-        primaryStage.setTitle("Piper Games");
+        primaryStage.setTitle("Pied Pipers");
         primaryStage.setScene(scene);
         primaryStage.show();
     }

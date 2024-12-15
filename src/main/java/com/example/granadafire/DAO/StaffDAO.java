@@ -1,5 +1,6 @@
 package com.example.granadafire.DAO;
 
+import com.example.granadafire.entities.Player;
 import com.example.granadafire.entities.Staff;
 import jakarta.persistence.*;
 
@@ -55,15 +56,23 @@ public class StaffDAO {
         EntityManager entityManager = ENTITY_MANAGER_FACTORY.createEntityManager();
         EntityTransaction transaction = null;
         try {
-            if (entityManager.contains(staffToUpdate)) {
-                System.out.println("Staff exists ");
-                entityManager.persist(staffToUpdate);
-            } else {
-                System.out.println("Staff does not exist");
-                Staff recievedStaff = entityManager.merge(staffToUpdate);
-                System.out.println(recievedStaff.getId() + " is active");
+            transaction = entityManager.getTransaction();
+            transaction.begin();
+
+            Staff existingStaff = entityManager.find(Staff.class, staffToUpdate.getId());
+            if (existingStaff != null) {
+                existingStaff.setFirstName(staffToUpdate.getFirstName());
+                existingStaff.setLastName(staffToUpdate.getLastName());
+                existingStaff.setNickname(staffToUpdate.getNickname());
+                existingStaff.setStreet(staffToUpdate.getStreet());
+                existingStaff.setPostNumber(staffToUpdate.getPostNumber());
+                existingStaff.setCity(staffToUpdate.getCity());
+                existingStaff.setCountry(staffToUpdate.getCountry());
+                existingStaff.setEmail(staffToUpdate.getEmail());
+
+                entityManager.merge(existingStaff);
             }
-            entityManager.merge(staffToUpdate);
+
             transaction.commit();
         } catch (Exception e) {
             System.out.println(e.getMessage());
