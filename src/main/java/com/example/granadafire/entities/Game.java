@@ -18,7 +18,7 @@ public class Game {
     @OneToMany(mappedBy = "game", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Team> teams;
 
-    @OneToMany(mappedBy = "game", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "game", cascade = CascadeType.MERGE, orphanRemoval = true)
     private List<Player> players;
 
     public Game() {}
@@ -26,6 +26,9 @@ public class Game {
     public Game(String gameName) {
         this.gameName = gameName;
     }
+
+    @Override
+    public String toString() {return  gameName; }
 
     public int getGameId() {
         return gameId;

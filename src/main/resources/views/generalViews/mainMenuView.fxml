@@ -21,12 +21,17 @@
             <Font size="14.0" />
          </font>
       </Button>
-      <Button layoutX="125.0" layoutY="250.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#clickMatches" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: C0BCBC;" text="Matches" textFill="WHITE">
+      <Button layoutX="125.0" layoutY="250.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#clickGames" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: C0BCBC;" text="Games" textFill="WHITE">
          <font>
             <Font size="14.0" />
          </font>
       </Button>
-      <Button layoutX="125.0" layoutY="300.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#clickStaff" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: C0BCBC;" text="Staff" textFill="WHITE">
+      <Button layoutX="125.0" layoutY="300.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#clickMatches" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: C0BCBC;" text="Matches" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+      <Button layoutX="125.0" layoutY="350.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#clickStaff" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: C0BCBC;" text="Staff" textFill="WHITE">
          <font>
             <Font size="14.0" />
          </font>

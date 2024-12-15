@@ -13,11 +13,11 @@
                   <Font size="30.0" />
                </font>
             </Label>
-            <Button fx:id="searchButton" layoutX="310.0" layoutY="60.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="70.0" style="-fx-background-color: C0BCBC;" text="Search" textFill="WHITE" />
+            <Button fx:id="searchButton" layoutX="310.0" layoutY="60.0" mnemonicParsing="false" onAction="#searchStaff" prefHeight="30.0" prefWidth="70.0" style="-fx-background-color: C0BCBC;" text="Search" textFill="WHITE" />
             <Button layoutX="280.0" layoutY="100.0" mnemonicParsing="false" onAction="#createNewButton" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: C0BCBC;" text="Create New" textFill="WHITE" />
             <Button layoutX="280.0" layoutY="135.0" mnemonicParsing="false" onAction="#backButton" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: C0BCBC;" text="Back" textFill="WHITE" />
 
-            <TextField layoutX="20.0" layoutY="61.0" prefHeight="30.0" prefWidth="280.0" />
+            <TextField fx:id="searchField" layoutX="20.0" layoutY="61.0" prefHeight="30.0" prefWidth="280.0" />
             <ListView fx:id="staffResultList" layoutX="20.0" layoutY="180.0" prefHeight="300.0" prefWidth="360.0" />
          </children>
       </AnchorPane>

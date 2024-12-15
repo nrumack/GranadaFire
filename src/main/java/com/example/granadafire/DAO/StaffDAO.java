@@ -51,6 +51,17 @@ public class StaffDAO {
         return listToReturn;
     }
 
+    public List<Staff> getStaffByName (String name) {
+        EntityManager entityManager = ENTITY_MANAGER_FACTORY.createEntityManager();
+        try {
+            TypedQuery<Staff> query = entityManager.createQuery("SELECT s FROM Staff s WHERE LOWER(s.firstName) Like :name OR LOWER(s.firstName) LIKE :name", Staff.class);
+            query.setParameter("name", "%" + name.toLowerCase() + "%");
+        return query.getResultList();
+        } finally {
+            entityManager.close();
+        }
+    }
+
     //Update
     public void updateStaff(Staff staffToUpdate) {
         EntityManager entityManager = ENTITY_MANAGER_FACTORY.createEntityManager();

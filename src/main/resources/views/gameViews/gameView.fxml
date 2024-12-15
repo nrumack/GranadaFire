@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="500.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.granadafire.controller.gameControllers.GameController">
+
+    <children>
+        <Label fx:id="gameLabel" layoutX="156.0" layoutY="14.0" prefHeight="51.0" prefWidth="90.0" text="Game" textAlignment="CENTER">
+            <font>
+                <Font size="30.0" />
+            </font>
+        </Label>
+        <Button id="Update" fx:id="saveGame" layoutX="265.0" layoutY="450.0" mnemonicParsing="false" onAction="#saveGame" prefHeight="30.0" prefWidth="75.0" style="-fx-background-color: C0BCBC;" text="Save" textFill="WHITE">
+            <font>
+                <Font size="14.0" />
+            </font></Button>
+        <Button fx:id="updateGame" layoutX="265.0" layoutY="450.0" mnemonicParsing="false" onAction="#updateGame" prefHeight="30.0" prefWidth="75.0" style="-fx-background-color: C0BCBC;" text="Update" textFill="WHITE" />
+        <Button fx:id="clearButton" layoutX="163.0" layoutY="450.0" mnemonicParsing="false" onAction="#clearButton" prefHeight="30.0" prefWidth="75.0" style="-fx-background-color: C0CBC;" text="Clear" textFill="WHITE" />
+        <Button id="deleteButton" fx:id="deleteButton" layoutX="163.0" layoutY="450.0" mnemonicParsing="false" onAction="#deleteButton" prefHeight="30.0" prefWidth="75.0" style="-fx-background-color: C0BCBC;" text="Delete" textFill="WHITE">
+            <font>
+                <Font size="14.0" />
+            </font></Button>
+        <Button layoutX="62.0" layoutY="450.0" mnemonicParsing="false" onAction="#backButton" prefHeight="30.0" prefWidth="75.0" style="-fx-background-color: C0BCBC;" text="Back" textFill="WHITE">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </Button>
+        <TextField fx:id="gameNameField" layoutX="25.0" layoutY="75.0" prefHeight="17.0" prefWidth="350.0" promptText="Game name" style="-fx-border-color: Black; -fx-padding: 5; -fx-background-color: white;" />
+    </children>
+</AnchorPane>
