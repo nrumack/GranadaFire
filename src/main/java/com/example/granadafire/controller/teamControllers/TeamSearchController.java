@@ -1,13 +1,71 @@
 package com.example.granadafire.controller.teamControllers;
 
+import com.example.granadafire.DAO.TeamDAO;
+import com.example.granadafire.entities.Team;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.ListView;
 import javafx.stage.Stage;
+import org.w3c.dom.ls.LSOutput;
 
-public class TeamSearchController {
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.ResourceBundle;
+
+public class TeamSearchController implements Initializable {
+
+    TeamDAO teamDAO = new TeamDAO();
+
+    @FXML
+    private ListView<String> listView;
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        List<Team> teams = teamDAO.getAllTeams();
+        List<String> teamNames = new ArrayList<>();
+        for (Team team : teams) {
+            teamNames.add(team.getTeamName());
+        }
+                   listView.getItems().addAll(teamNames);
+
+        // listView.setItems(FXCollections.observableArrayList(teamNames));
+    }
+
+
+
+    /*@FXML
+    ObservableList<String> names = FXCollections.observableArrayList(
+            "Julia", "Ian", "Sue", "Matthew", "Hannah", "Stephan", "Denise");
+
+
+    @FXML
+    private ListView<Team> teamsList;
+
+    @FXML
+    public void listTeams(){
+        List<Team> teams = teamDAO.getAllTeams();
+    }*/
+
+    //String[] names = names.get().toArray(new String[0]);
+    //String[] items = {"java", "python"};
+
+
+
+
+    /*When staff manage teams, they must be able to add and remove existing teams
+    player profiles in the team. A team is always tied to a certain game and a player only gets
+    be part of a team.*/
+
+    //När personalen listar lag ska det synas vilket spel laget tävlar inom.
+
 
     @FXML
     protected void clickBackButton(ActionEvent event) {
@@ -24,7 +82,7 @@ public class TeamSearchController {
     }
 
     @FXML
-    protected void clickEditButton(ActionEvent event) {
+    protected void createNewTeam(ActionEvent event) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/teamViews/teamView.fxml"));
             Stage stage = new Stage();
@@ -36,4 +94,6 @@ public class TeamSearchController {
             e.printStackTrace();
         }
     }
+
+
 }

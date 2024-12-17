@@ -44,6 +44,16 @@ public class TeamDAO {
             entityManager.close();
         }
     }
+
+    public List<Team> getAllTeams() {
+        EntityManager entityManager = ENTITY_MANAGER_FACTORY.createEntityManager();
+        try {
+            TypedQuery<Team> retrieveTeams = entityManager.createQuery("SELECT t FROM Team t", Team.class);
+            return retrieveTeams.getResultList();
+        } finally {
+            entityManager.close();
+        }
+    }
     public boolean updateTeam(Team team) {
         EntityManager entityManager = ENTITY_MANAGER_FACTORY.createEntityManager();
         EntityTransaction transaction = null;
