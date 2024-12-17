@@ -53,6 +53,21 @@ public class Controller {
     }
 
     @FXML
+    protected void clickGames(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/gameViews/gameSearchView.fxml"));
+
+            Stage stage = new Stage();
+            stage.setScene(new Scene(loader.load()));
+            stage.setTitle("Pied Pipers");
+            stage.show();
+            ((Node)(event.getSource())).getScene().getWindow().hide();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
     protected void clickStaff(ActionEvent event) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/staffViews/staffSearchView.fxml"));
