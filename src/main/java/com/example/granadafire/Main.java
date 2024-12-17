@@ -14,7 +14,7 @@ public class Main extends Application {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/generalViews/loginView.fxml"));
         Parent root = loader.load();
 
-        Scene scene = new Scene(root, 400, 500);
+        Scene scene = new Scene(root);
         primaryStage.setTitle("Piper Games");
         primaryStage.setScene(scene);
         primaryStage.show();
