@@ -1,60 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <!-- Created By Martin -->
-<?import javafx.scene.text.*?>
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
+
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<SplitPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="500.0" prefWidth="400.0" style="-fx-background-color: D9D9D9;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.granadafire.controller.generalControllers.loginController">
+<SplitPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="500.0" prefWidth="400.0" style="-fx-background-color: D9D9D9;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.granadafire.controller.generalControllers.loginController">
   <items>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="500.0" prefWidth="400.0">
          <children>
-          <AnchorPane layoutY="-10.0" minHeight="0.0" minWidth="0.0" prefHeight="131.0" prefWidth="600.0">
-               <children>
-                  <Label alignment="CENTER" layoutX="170.0" layoutY="66.0" text="Staff" textAlignment="CENTER">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Label>
-               </children>
-            </AnchorPane>
-              <Label fx:id="nameLabel2" onMouseClicked="#handleLabelClick" alignment="CENTER" contentDisplay="CENTER" layoutX="124.0" layoutY="173.0" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: C0BCBC; -fx-font-weight: 600;" text="" textFill="WHITE">
-                 <font>
-                    <Font size="14.0" />
-                 </font>
-              </Label>
-              <Label fx:id="nameLabel3" onMouseClicked="#handleLabelClick" alignment="CENTER" contentDisplay="CENTER" layoutX="124.0" layoutY="216.0" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: C0BCBC; -fx-font-weight: 600;" text="" textFill="WHITE">
-                 <font>
-                    <Font size="14.0" />
-                 </font>
-              </Label>
-              <Label fx:id="nameLabel4" onMouseClicked="#handleLabelClick"  alignment="CENTER" contentDisplay="CENTER" layoutX="124.0" layoutY="260.0" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: C0BCBC; -fx-font-weight: 600;" text="" textFill="WHITE">
-                 <font>
-                    <Font size="14.0" />
-                 </font>
-              </Label>
-              <Label fx:id="nameLabel5" onMouseClicked="#handleLabelClick" alignment="CENTER" contentDisplay="CENTER" layoutX="124.0" layoutY="302.0" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: C0BCBC; -fx-font-weight: 600;" text="" textFill="WHITE">
-                 <font>
-                    <Font size="14.0" />
-                 </font>
-              </Label>
-              <Label fx:id="nameLabel1" onMouseClicked="#handleLabelClick" alignment="CENTER" contentDisplay="CENTER" layoutX="124.0" layoutY="131.0" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: C0BCBC; -fx-font-weight: 600;" text="" textFill="WHITE">
-                 <font>
-                    <Font size="14.0" />
-                 </font>
-              </Label>
-              <Label fx:id="nameLabel6" onMouseClicked="#handleLabelClick" alignment="CENTER" contentDisplay="CENTER" layoutX="124.0" layoutY="345.0" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: C0BCBC; -fx-font-weight: 600;" text="" textFill="WHITE">
-                 <font>
-                    <Font size="14.0" />
-                 </font>
-              </Label>
-              <Label fx:id="nameLabel7" onMouseClicked="#handleLabelClick" alignment="CENTER" contentDisplay="CENTER" layoutX="124.0" layoutY="388.0" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: C0BCBC; -fx-font-weight: 600;" text="" textFill="WHITE">
-                 <font>
-                    <Font size="14.0" />
-                 </font>
-              </Label>
+            <Label alignment="CENTER" layoutX="169.0" layoutY="70.0" text="Staff" textAlignment="CENTER">
+               <font>
+                  <Font size="30.0" />
+               </font>
+            </Label>
+          <AnchorPane layoutX="59.0" layoutY="65.0" minHeight="0.0" minWidth="0.0" prefHeight="131.0" prefWidth="600.0" />
+            <Pagination id="linkContainer" fx:id="linkContainer" layoutX="86.0" layoutY="127.0" maxPageIndicatorCount="0" prefHeight="298.0" prefWidth="232.0" />
+            <VBox fx:id="loginButtonContainer" alignment="TOP_CENTER" layoutX="83.0" layoutY="140.0" prefHeight="296.0" prefWidth="232.0" spacing="10.0" />
            </children></AnchorPane>
     </items>
   </SplitPane>

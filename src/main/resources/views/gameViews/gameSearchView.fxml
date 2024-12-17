@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="500.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.granadafire.controller.gameControllers.GameSearchController">
+    <children>
+        <AnchorPane prefHeight="500.0" prefWidth="400.0">
+            <children>
+                <Label layoutX="154.0" layoutY="14.0" text="Search">
+                    <font>
+                        <Font size="30.0" />
+                    </font>
+                </Label>
+                <Button fx:id="searchButton" layoutX="310.0" layoutY="60.0" mnemonicParsing="false" onAction="#searchGames" prefHeight="30.0" prefWidth="70.0" style="-fx-background-color: C0BCBC;" text="Search" textFill="WHITE" />
+                <Button layoutX="280.0" layoutY="100.0" mnemonicParsing="false" onAction="#createNewButton" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: C0BCBC;" text="Create New" textFill="WHITE" />
+                <Button layoutX="280.0" layoutY="135.0" mnemonicParsing="false" onAction="#backButton" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: C0BCBC;" text="Back" textFill="WHITE" />
+
+                <TextField fx:id="searchField" layoutX="20.0" layoutY="61.0" prefHeight="30.0" prefWidth="280.0" />
+                <ListView fx:id="gameResultList" layoutX="20.0" layoutY="180.0" prefHeight="300.0" prefWidth="360.0" />
+            </children>
+        </AnchorPane>
+    </children>
+</AnchorPane>
