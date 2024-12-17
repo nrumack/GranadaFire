@@ -3,8 +3,6 @@ package com.example.granadafire.controller.teamControllers;
 import com.example.granadafire.DAO.TeamDAO;
 import com.example.granadafire.entities.Game;
 import com.example.granadafire.entities.Team;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,8 +11,8 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
-import org.w3c.dom.ls.LSOutput;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -37,7 +35,6 @@ public class TeamSearchController implements Initializable {
         }
                    listView.getItems().addAll(teamNames);
 
-        // listView.setItems(FXCollections.observableArrayList(teamNames));
     }
 
     public void deleteTeam() {
@@ -51,6 +48,34 @@ public class TeamSearchController implements Initializable {
             }
         } catch (Exception e) {
         e.printStackTrace();
+        }
+    }
+
+    public void editTeam() {
+            String selectedTeamName = listView.getSelectionModel().getSelectedItem();
+            if (selectedTeamName != null) {
+                Team theTeam = teamDAO.getTeamByName(selectedTeamName);
+
+                Game game = theTeam.getGame();
+                String theGameName = game.getGameName();
+                openTeamInfo(selectedTeamName, theGameName);
+            }
+    }
+
+    public void openTeamInfo(String selectedTeamName, String theGameName) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/teamViews/teamInfoView.fxml"));
+            Stage stage = new Stage();
+            stage.setScene(new Scene(loader.load()));
+
+            TeamInfoController controller = loader.getController();
+            controller.setTeamName(selectedTeamName);
+            controller.setGameName(theGameName);
+            stage.setTitle("Team Info");
+            stage.show();
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 
