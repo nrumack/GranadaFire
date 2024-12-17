@@ -15,35 +15,31 @@ public class Match {
     @Column(name = "match_date", nullable = false)
     private LocalDateTime matchDate;
 
-    @Column(name = "match_result", length = 10)
-    private String matchResult;
+    @Column(name = "match_result")
+    private String result;
 
     @ManyToOne
-    @JoinColumn(name = "player_id1", referencedColumnName = "player_id")
+    @JoinColumn(name = "player_id1")
     private Player player1;
 
     @ManyToOne
-    @JoinColumn(name = "player_id2", referencedColumnName = "player_id")
+    @JoinColumn(name = "player_id2")
     private Player player2;
 
     @ManyToOne
-    @JoinColumn(name = "team_id1", referencedColumnName = "team_id")
+    @JoinColumn(name = "team_id1")
     private Team team1;
 
     @ManyToOne
-    @JoinColumn(name = "team_id2", referencedColumnName = "team_id")
+    @JoinColumn(name = "team_id2")
     private Team team2;
 
-    public Match() {}
+    @Column(name = "score1", nullable = true)
+    private Integer score1;
 
-    public Match(LocalDateTime matchDate, String matchResult, Player player1, Player player2, Team team1, Team team2) {
-        this.matchDate = matchDate;
-        this.matchResult = matchResult;
-        this.player1 = player1;
-        this.player2 = player2;
-        this.team1 = team1;
-        this.team2 = team2;
-    }
+    @Column(name = "score2", nullable = true)
+    private Integer score2;
+
 
     public int getMatchId() {
         return matchId;
@@ -53,7 +49,7 @@ public class Match {
         this.matchId = matchId;
     }
 
-    public LocalDateTime getMatchDate() {
+    public LocalDateTime getMatchDateRaw() {
         return matchDate;
     }
 
@@ -61,12 +57,28 @@ public class Match {
         this.matchDate = matchDate;
     }
 
-    public String getMatchResult() {
-        return matchResult;
+    public String getResult() {
+        return result;
     }
 
-    public void setMatchResult(String matchResult) {
-        this.matchResult = matchResult;
+    public void setResult(String result) {
+        this.result = result;
+    }
+
+    public Integer getScore1() {
+        return score1;
+    }
+
+    public void setScore1(Integer score1) {
+        this.score1 = score1;
+    }
+
+    public Integer getScore2() {
+        return score2;
+    }
+
+    public void setScore2(Integer score2) {
+        this.score2 = score2;
     }
 
     public Player getPlayer1() {
@@ -100,5 +112,40 @@ public class Match {
     public void setTeam2(Team team2) {
         this.team2 = team2;
     }
+
+    public String getParticipant1Name() {
+        if (team1 != null) {
+            return team1.getTeamName();
+        } else if (player1 != null) {
+            return player1.getFirstName() + " " + player1.getLastName();
+        }
+        return "N/A";
+    }
+
+    public String getParticipant2Name() {
+        if (team2 != null) {
+            return team2.getTeamName();
+        } else if (player2 != null) {
+            return player2.getFirstName() + " " + player2.getLastName();
+        }
+        return "N/A";
+    }
+
+    public String getWinnerName() {
+        if (score1 == null || score2 == null) {
+            return "N/A";
+        }
+        if (score1 > score2) {
+            return team1 != null ? team1.getTeamName() : player1 != null ? player1.getFirstName() + " " + player1.getLastName() : "N/A";
+        } else if (score2 > score1) {
+            return team2 != null ? team2.getTeamName() : player2 != null ? player2.getFirstName() + " " + player2.getLastName() : "N/A";
+        }
+        return "Draw";
+    }
+
+
 }
+
+
+
 

@@ -54,7 +54,8 @@ public class Controller {
     @FXML
     protected void clickMatches(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/gameViews/gameView.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/matchViews/matchView.fxml"));
+
             Stage stage = new Stage();
             stage.setScene(new Scene(loader.load()));
             stage.setTitle("Pied Pipers");
