@@ -6,14 +6,26 @@
 
 <AnchorPane prefHeight="500.0" prefWidth="400.0" style="-fx-background-color: D9D9D9;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.granadafire.controller.staffControllers.StaffController">
     <children>
-        <Button id="deleteButton" layoutX="163.0" layoutY="450.0" mnemonicParsing="false" onAction="#deleteButton" prefHeight="30.0" prefWidth="75.0" style="-fx-background-color: C0BCBC;" text="Delete" textFill="WHITE">
+        <Label fx:id="staffLabel" layoutX="168.0" layoutY="14.0" prefHeight="51.0" prefWidth="75.0" text="Staff" textAlignment="CENTER">
+            <font>
+                <Font size="30.0" />
+            </font>
+        </Label>
+        <Button id="Update" fx:id="saveStaff" layoutX="265.0" layoutY="450.0" mnemonicParsing="false" onAction="#saveStaff" prefHeight="30.0" prefWidth="75.0" style="-fx-background-color: C0BCBC;" text="Save" textFill="WHITE">
             <font>
                 <Font size="14.0" />
             </font></Button>
-        <Button id="Update" layoutX="265.0" layoutY="450.0" mnemonicParsing="false" onAction="#saveStaff" prefHeight="30.0" prefWidth="75.0" style="-fx-background-color: C0BCBC;" text="Save" textFill="WHITE">
+      <Button fx:id="updateStaff" layoutX="265.0" layoutY="450.0" mnemonicParsing="false" onAction="#updateStaff" prefHeight="30.0" prefWidth="75.0" style="-fx-background-color: C0BCBC;" text="Update" textFill="WHITE" />
+      <Button fx:id="clearButton" layoutX="163.0" layoutY="450.0" mnemonicParsing="false" onAction="#clearButton" prefHeight="30.0" prefWidth="75.0" style="-fx-background-color: C0CBC;" text="Clear" textFill="WHITE" />
+        <Button id="deleteButton" fx:id="deleteButton" layoutX="163.0" layoutY="450.0" mnemonicParsing="false" onAction="#deleteButton" prefHeight="30.0" prefWidth="75.0" style="-fx-background-color: C0BCBC;" text="Delete" textFill="WHITE">
             <font>
                 <Font size="14.0" />
             </font></Button>
+        <Button layoutX="62.0" layoutY="450.0" mnemonicParsing="false" onAction="#backButton" prefHeight="30.0" prefWidth="75.0" style="-fx-background-color: C0BCBC;" text="Back" textFill="WHITE">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </Button>
         <TextField fx:id="firstNameField" layoutX="25.0" layoutY="75.0" prefHeight="17.0" prefWidth="350.0" promptText="Firstname" style="-fx-border-color: Black; -fx-padding: 5; -fx-background-color: white;" />
         <TextField fx:id="lastNameField" layoutX="25.0" layoutY="110.0" prefHeight="17.0" prefWidth="350.0" promptText="Lastname" style="-fx-background-color: white; -fx-border-color: black;" />
         <TextField fx:id="nickname" layoutX="25.0" layoutY="145.0" prefHeight="17.0" prefWidth="350.0" promptText="Nickname" style="-fx-border-color: Black; -fx-padding: 5; -fx-background-color: white;" />
@@ -22,15 +34,5 @@
         <TextField fx:id="city" layoutX="25.0" layoutY="250.0" prefHeight="17.0" prefWidth="170.0" promptText="City" style="-fx-border-color: black; -fx-padding: 5; -fx-background-color: white;" />
         <TextField fx:id="country" layoutX="205.0" layoutY="250.0" prefHeight="17.0" prefWidth="170.0" promptText="Country" style="-fx-border-color: black; -fx-padding: 5; -fx-background-color: white;" />
         <TextField fx:id="email" layoutX="25.0" layoutY="285.0" prefHeight="17.0" prefWidth="350.0" promptText="Email" style="-fx-border-color: black; -fx-padding: 5; -fx-background-color: white;" />
-        <Label layoutX="154.0" layoutY="14.0" prefHeight="51.0" prefWidth="103.0" text="Staff" textAlignment="CENTER">
-            <font>
-                <Font size="35.0" />
-            </font>
-        </Label>
-        <Button layoutX="62.0" layoutY="450.0" mnemonicParsing="false" onAction="#backButton" prefHeight="30.0" prefWidth="75.0" style="-fx-background-color: C0BCBC;" text="Back" textFill="WHITE">
-            <font>
-                <Font size="14.0" />
-            </font>
-        </Button>
     </children>
 </AnchorPane>

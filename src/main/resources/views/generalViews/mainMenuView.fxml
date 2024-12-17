@@ -1,36 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="500.0" prefWidth="400.0" style="-fx-background-color: D9D9D9;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.granadafire.controller.Controller">
+<AnchorPane prefHeight="500.0" prefWidth="400.0" style="-fx-background-color: D9D9D9;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.granadafire.controller.Controller">
    <children>
-      <Button layoutX="125.0" layoutY="148.0" mnemonicParsing="false" onAction="#clickPlayers" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: C0BCBC;" text="Players" textFill="WHITE">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Button>
-      <Button layoutX="125.0" layoutY="271.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#clickStaff" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: C0BCBC;" text="Staff" textFill="WHITE">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Button>
-      <Button layoutX="124.0" layoutY="189.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#clickTeams" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: C0BCBC;" text="Teams" textFill="WHITE">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Button>
-      <Button layoutX="124.0" layoutY="230.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#clickMatches" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: C0BCBC;" text="Matches" textFill="WHITE">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Button>
-      <Label alignment="CENTER" layoutX="117.0" layoutY="66.0" style="-fx-background-color: D9D9D9;" text="Piper games" textAlignment="CENTER">
+      <Label alignment="CENTER" layoutX="115.0" layoutY="70.0" style="-fx-background-color: D9D9D9;" text="Piper games" textAlignment="CENTER">
          <font>
             <Font size="30.0" />
          </font>
       </Label>
+      <Button layoutX="125.0" layoutY="150.0" mnemonicParsing="false" onAction="#clickPlayers" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: C0BCBC;" text="Players" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+      <Button layoutX="125.0" layoutY="200.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#clickTeams" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: C0BCBC;" text="Teams" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+      <Button layoutX="125.0" layoutY="250.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#clickGames" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: C0BCBC;" text="Games" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+      <Button layoutX="125.0" layoutY="300.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#clickMatches" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: C0BCBC;" text="Matches" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+      <Button layoutX="125.0" layoutY="350.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#clickStaff" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: C0BCBC;" text="Staff" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

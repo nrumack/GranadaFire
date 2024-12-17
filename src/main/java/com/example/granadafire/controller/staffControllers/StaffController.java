@@ -25,26 +25,64 @@ public class StaffController {
 
     @FXML
     private Button deleteButton;
+    @FXML
+    private Button clearButton;
+    @FXML
+    private Button updateStaff;
+    @FXML
+    private Button saveStaff;
 
     private Staff staff;
 
     @FXML
     public void initialize() {
-        hideDeleteButton();
+        toggleButtonsVisibility();
     }
 
     public void setStaff(Staff staff) {
         this.staff = staff;
         updateView();
-        hideDeleteButton();
+        toggleButtonsVisibility();
     }
-    private void hideDeleteButton() {
-        if (deleteButton != null) {
-            boolean isVisible = (staff != null);
-            deleteButton.setVisible(isVisible);
-            System.out.println("delete button ");
+
+    private void toggleButtonsVisibility() {
+        if (staff != null && staff.getId() > 0) {
+            deleteButton.setVisible(true);
+            deleteButton.setManaged(true);
+            deleteButton.setDisable(false);
+            updateStaff.setVisible(true);
+            updateStaff.setManaged(true);
+            updateStaff.setDisable(false);
+        } else {
+            deleteButton.setVisible(false);
+            deleteButton.setManaged(false);
+            deleteButton.setDisable(true);
+            updateStaff.setVisible(false);
+            updateStaff.setManaged(false);
+            updateStaff.setDisable(true);
+            updateStaff.setStyle("-fx-background-color: C0BCBC");
+        }
+        if (staff != null) {
+            clearButton.setVisible(false);
+            clearButton.setManaged(false);
+            clearButton.setDisable(true);
+            saveStaff.setVisible(false);
+            saveStaff.setManaged(false);
+            saveStaff.setDisable(true);
+        } else {
+            clearButton.setVisible(true);
+            clearButton.setManaged(true);
+            clearButton.setDisable(false);
+            clearButton.setStyle("-fx-background-color: C0BCBC");
+            saveStaff.setVisible(true);
+            saveStaff.setManaged(true);
+            saveStaff.setDisable(false);
+            saveStaff.setStyle("-fx-background-color: C0BCBC");
         }
     }
+
+    @FXML
+    private void clearButton(ActionEvent event) { clearFields(); }
     private void clearFields() {
         firstNameField.clear();
         lastNameField.clear();
@@ -69,8 +107,6 @@ public class StaffController {
         }
     }
 
-
-
     @FXML
     public void backButton(ActionEvent event) {
         try {
@@ -86,15 +122,17 @@ public class StaffController {
     }
 
     @FXML
-    public void deleteButton() {
+    public void deleteButton(ActionEvent event) {
         try {
             if (staff != null) {
                 staffDAO.deleteStaff(staff);
-                System.out.println("success");
                 clearFields();
-                backButton(null);
-            } else {
-                System.out.println("sadge");
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/staffViews/staffSearchView.fxml"));
+                Stage stage = new Stage();
+                stage.setScene(new Scene(loader.load()));
+                stage.setTitle("Pied Pipers");
+                stage.show();
+                ((Node) (event.getSource())).getScene().getWindow().hide();
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -145,7 +183,7 @@ public class StaffController {
     }
 
     @FXML
-    public void updateStaff() {
+    public void updateStaff(ActionEvent event) {
         try {
             String firstNameInput = firstNameField.getText();
             String lastNameInput = lastNameField.getText();
@@ -159,13 +197,13 @@ public class StaffController {
             resetErrorsStyles();
 
             if (firstNameInput.isEmpty()){
-                showError(firstNameField, "First Name is required");
+                showError(firstNameField, "First Name is required*");
             }
             if (lastNameInput.isEmpty()) {
-                showError(lastNameField, "Last Name is required");
+                showError(lastNameField, "Last Name is required*");
             }
             if (nicknameInput.isEmpty()) {
-                showError(nickname, "Nickname is required");
+                showError(nickname, "Nickname is required*");
             }
             if (isValidAreaCode(areaCodeInput)) {
                 showError(areaCode, "Only digits and max 6");
@@ -178,19 +216,26 @@ public class StaffController {
                 return;
             }
 
-            if (staff != null && staff.getId() > 0) {
-                staff.setFirstName(firstNameInput);
-                staff.setLastName(lastNameInput);
-                staff.setNickname(nicknameInput);
-                staff.setStreet(streetInput);
-                staff.setPostNumber(Integer.parseInt(areaCodeInput));
-                staff.setCity(cityInput);
-                staff.setCountry(countryInput);
-                staff.setEmail(emailInput);
+            Staff existingStaff = staffDAO.getStaffById(staff.getId());
 
-                staffDAO.updateStaff(staff);
-                System.out.println("success");
-                backButton(null);
+            if (existingStaff != null) {
+                existingStaff.setFirstName(firstNameInput);
+                existingStaff.setLastName(lastNameInput);
+                existingStaff.setNickname(nicknameInput);
+                existingStaff.setStreet(streetInput);
+                existingStaff.setPostNumber(Integer.parseInt(areaCodeInput));
+                existingStaff.setCity(cityInput);
+                existingStaff.setCountry(countryInput);
+                existingStaff.setEmail(emailInput);
+
+                staffDAO.updateStaff(existingStaff);
+
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/staffViews/staffSearchView.fxml"));
+                Stage stage = new Stage();
+                stage.setScene(new Scene(loader.load()));
+                stage.setTitle("Pied Pipers");
+                stage.show();
+                ((Node) (event.getSource())).getScene().getWindow().hide();
             } else {
                 System.out.println("staff not valid");
             }
@@ -209,9 +254,9 @@ public class StaffController {
     }
 
     private void showError(TextField field, String message) {
-        field.setStyle("-fx-border-color: color");
-
+        field.setStyle("-fx-border-color: red");
         field.setPromptText(message);
+        field.setStyle("-fx-prompt-atext-fill: red;");
     }
 
     private void resetErrorsStyles() {

@@ -39,7 +39,6 @@ public class Staff {
     public Staff() {
 
     }
-
     public Staff(int id, String firstName, String lastName, String nickname, String street, int postNumber, String city, String country, String email) {
         this.id = id;
         this.firstName = firstName;

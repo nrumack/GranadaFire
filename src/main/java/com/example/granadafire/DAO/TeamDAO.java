@@ -46,14 +46,21 @@ public class TeamDAO {
     }
 
     public List<Team> getAllTeams() {
-        EntityManager entityManager = ENTITY_MANAGER_FACTORY.createEntityManager();
+        EntityManager em = ENTITY_MANAGER_FACTORY.createEntityManager();
+        List<Team> teams = null;
+
         try {
-            TypedQuery<Team> retrieveTeams = entityManager.createQuery("SELECT t FROM Team t", Team.class);
-            return retrieveTeams.getResultList();
+            TypedQuery<Team> query = em.createQuery("SELECT t FROM Team t", Team.class);
+            teams = query.getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
         } finally {
-            entityManager.close();
+            em.close();
         }
+
+        return teams;
     }
+
     public boolean updateTeam(Team team) {
         EntityManager entityManager = ENTITY_MANAGER_FACTORY.createEntityManager();
         EntityTransaction transaction = null;

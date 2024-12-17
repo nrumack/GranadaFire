@@ -13,6 +13,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -23,9 +24,9 @@ public class PlayerController {
     PlayerDAO playerDAO = new PlayerDAO();
     TeamDAO teamDAO =  new TeamDAO();
     GameDAO gameDAO = new GameDAO();
+
     @FXML
     private TextField firstNameField;
-
     @FXML
     private TextField lastNameField;
     @FXML
@@ -47,15 +48,75 @@ public class PlayerController {
     private Player player;
 
     @FXML
+    private Button deletePlayer;
+    @FXML
+    private Button clearButton;
+    @FXML
+    private Button updatePlayer;
+    @FXML
+    private Button savePlayer;
+
+    @FXML
     private void initialize() {
-        System.out.println("PlayerMenuController initialized.");
-        System.out.println("firstNameField: " + firstNameField);
+        toggleButtonsVisibility();
     }
 
     public void setPlayer(Player player) {
         this.player = player;
         updateView();
+        toggleButtonsVisibility();
     }
+
+    private void toggleButtonsVisibility() {
+        if (player != null && player.getId() > 0) {
+            deletePlayer.setVisible(true);
+            deletePlayer.setManaged(true);
+            deletePlayer.setDisable(false);
+            updatePlayer.setVisible(true);
+            updatePlayer.setManaged(true);
+            updatePlayer.setDisable(false);
+        } else {
+            deletePlayer.setVisible(false);
+            deletePlayer.setManaged(false);
+            deletePlayer.setDisable(true);
+            updatePlayer.setVisible(false);
+            updatePlayer.setManaged(false);
+            updatePlayer.setDisable(true);
+            updatePlayer.setStyle("-fx-background-color: C0BCBC");
+        }
+        if (player != null) {
+            clearButton.setVisible(false);
+            clearButton.setManaged(false);
+            clearButton.setDisable(true);
+            savePlayer.setVisible(false);
+            savePlayer.setManaged(false);
+            savePlayer.setDisable(true);
+        } else {
+            clearButton.setVisible(true);
+            clearButton.setManaged(true);
+            clearButton.setDisable(false);
+            clearButton.setStyle("-fx-background-color: C0BCBC");
+            savePlayer.setVisible(true);
+            savePlayer.setManaged(true);
+            savePlayer.setDisable(false);
+            savePlayer.setStyle("-fx-background-color: C0BCBC");
+        }
+    }
+    @FXML
+    private void clearButton(ActionEvent event) {
+        clearFields();
+    }
+    private void clearFields() {
+        firstNameField.clear();
+        lastNameField.clear();
+        nickname.clear();
+        street.clear();
+        areaCode.clear();
+        city.clear();
+        country.clear();
+        email.clear();
+    }
+
 
     private void updateView() {
         if (player != null) {
@@ -124,6 +185,28 @@ public class PlayerController {
                 }
             }
 
+            resetErrorsStyles();
+
+            if (firstNameInput.isEmpty()){
+                showError(firstNameField, "First Name is required");
+            }
+            if (lastNameInput.isEmpty()) {
+                showError(lastNameField, "Last Name is required");
+            }
+            if (nicknameInput.isEmpty()) {
+                showError(nickname, "Nickname is required");
+            }
+            if (isValidAreaCode(areaCodeInput)) {
+                showError(areaCode, "Only digits and max 6");
+            }
+            if (isValidEmail(emailInput)) {
+                showError(email, "invalid email");
+            }
+
+            if (firstNameInput.isEmpty() || lastNameInput.isEmpty() || nicknameInput.isEmpty() || !isValidAreaCode(areaCodeInput) || !isValidEmail(emailInput)) {
+                return;
+            }
+
             Player newPlayer = new Player(
                     firstNameInput,
                     lastNameInput,
@@ -165,6 +248,28 @@ public class PlayerController {
             String emailInput = email.getText();
             String teamInput = team.getText();
 
+            resetErrorsStyles();
+
+            if (firstNameInput.isEmpty()){
+                showError(firstNameField, "First Name is required*");
+            }
+            if (lastNameInput.isEmpty()) {
+                showError(lastNameField, "Last Name is required*");
+            }
+            if (nicknameInput.isEmpty()) {
+                showError(nickname, "Nickname is required*");
+            }
+            if (isValidAreaCode(areaCodeInput)) {
+                showError(areaCode, "Only digits and max 6");
+            }
+            if (isValidEmail(emailInput)) {
+                showError(email, "invalid email");
+            }
+
+            if (firstNameInput.isEmpty() || lastNameInput.isEmpty() || nicknameInput.isEmpty() || !isValidAreaCode(areaCodeInput) || !isValidEmail(emailInput)) {
+                return;
+            }
+
             Player existingPlayer = playerDAO.getPlayerById(player.getId());
 
             if (existingPlayer != null) {
@@ -202,13 +307,42 @@ public class PlayerController {
         }
     }
 
+    private boolean isValidEmail(String email) {
+        String emailRegex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[a-zA-Z]{2,}$";
+        return email.matches(emailRegex);
+    }
+
+    private boolean isValidAreaCode(String areaCode) {
+        return areaCode.matches("\\d{1,6}");
+    }
+
+    private void showError(TextField field, String message) {
+        field.setStyle("-fx-border-color: red");
+        field.setPromptText(message);
+        field.setStyle("-fx-prompt-atext-fill: red;");
+    }
+
+    private void resetErrorsStyles() {
+        firstNameField.setStyle("");
+        lastNameField.setStyle("");
+        nickname.setStyle("");
+        email.setStyle("");
+        areaCode.setStyle("");
+
+        firstNameField.setPromptText("First Name");
+        lastNameField.setPromptText("Last Name");
+        nickname.setPromptText("Nickname");
+        email.setPromptText("Email Address");
+        areaCode.setPromptText("Area Code");
+    }
+
     @FXML
     private void backButton(ActionEvent event) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/playerViews/playerSearchView.fxml"));
             Stage stage = new Stage();
             stage.setScene(new Scene(loader.load()));
-            stage.setTitle("Player Search");
+            stage.setTitle("Pied Pipers");
             stage.show();
             ((Node) (event.getSource())).getScene().getWindow().hide();
         } catch (Exception e) {

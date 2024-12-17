@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.granadafire.controller.matchControllers.MatchController" prefHeight="650.0" prefWidth="800.0">
+    <children>
+        <VBox alignment="TOP_CENTER" spacing="15.0" layoutX="100.0" layoutY="20.0" prefWidth="600.0">
+            <children>
+                <Label text="Matches" style="-fx-font-size: 24px;" />
+                <HBox spacing="10.0" alignment="CENTER">
+                    <children>
+                        <Label text="Filter Matches:" />
+                        <ComboBox fx:id="filterComboBox" prefWidth="200.0" promptText="Select Filter" />
+                        <Button fx:id="applyFilterButton" text="Apply" onAction="#applyFilter" />
+                    </children>
+                </HBox>
+                <ListView fx:id="matchListView" prefHeight="350.0" prefWidth="600.0" />
+                <VBox spacing="10.0" alignment="CENTER" prefWidth="600.0">
+                    <children>
+                        <Label text="Update Match Score" style="-fx-font-size: 18px;" />
+                        <HBox spacing="15.0" alignment="CENTER">
+                            <children>
+                                <Label text="Team 1 Score:" />
+                                <TextField fx:id="score1Field" prefWidth="60.0" />
+                                <Label text="Team 2 Score:" />
+                                <TextField fx:id="score2Field" prefWidth="60.0" />
+                                <Button fx:id="updateScoreButton" text="Update Scores" onAction="#updateScore" />
+                            </children>
+
+                        </HBox>
+                    </children>
+                </VBox>
+                <HBox spacing="20.0" alignment="CENTER">
+                    <children>
+                        <Button fx:id="createMatchButton" text="Create Match" onAction="#createMatch" />
+                        <Button fx:id="deleteMatchButton" text="Delete Match" onAction="#deleteMatch" />
+                        <Button fx:id="goBackButton" text="Back" onAction="#goBack" prefWidth="80.0"/>
+                    </children>
+                </HBox>
+            </children>
+        </VBox>
+    </children>
+</AnchorPane>
