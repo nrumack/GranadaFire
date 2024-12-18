@@ -92,7 +92,7 @@ public class AddMatchController {
         } catch (Exception e) {
             System.out.println(e);
         } finally {
-            goBack();
+            goBack(null);
         }
     }
 
@@ -101,3 +101,4 @@ public class AddMatchController {
         SceneSwitcher.switchScenes(event, "/views/matchViews/matchView.fxml", "Pied Pipers", null, MatchController.class);
     }
 }
+
