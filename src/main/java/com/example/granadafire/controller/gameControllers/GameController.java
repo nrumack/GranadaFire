@@ -108,7 +108,7 @@ public class GameController implements DataReciever {
     public void deleteButton(ActionEvent event) {
         try {
             if (selectedGame != null) {
-                gameDAO.deleteGame(selectedGame);
+                gameDAO.deleteGame(selectedGame.getGameId());
                 clearFields();
                 SceneSwitcher.switchScenes(event, "/views/gameViews/gameSearchView.fxml", "Pied Pipers", null, GameSearchController.class);
             }
