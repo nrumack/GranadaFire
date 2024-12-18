@@ -100,11 +100,13 @@ public class PlayerSearchController {
 
     @FXML
     public void backButton(ActionEvent event) {
+
         SceneSwitcher.switchScenes(event, "/views/generalViews/mainMenuView.fxml", "Pied Pipers", null, PlayerController.class);
     }
 
     @FXML
     public void createNewButton(ActionEvent event) {
+
         SceneSwitcher.switchScenes(event, "/views/playerViews/playerView.fxml", "Pied Pipers", null, PlayerController.class);
     }
 }

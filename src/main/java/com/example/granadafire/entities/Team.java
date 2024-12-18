@@ -59,4 +59,13 @@ public class Team {
     public void setPlayers(List<Player> players) {
         this.players = players;
     }
+
+    @Override
+    public String toString() {
+
+        String teamName = getTeamName();
+        String gameName = getGame().getGameName();
+
+        return teamName + "                 " + "Game: " + gameName;
+    }
 }

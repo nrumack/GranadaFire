@@ -67,6 +67,19 @@ public class PlayerDAO {
         }
     }
 
+    public List<Player> getPlayersByTeam(Team team) {
+        EntityManager entityManager = ENTITY_MANAGER_FACTORY.createEntityManager();
+        try {
+            TypedQuery<Player> query = entityManager.createQuery(
+                    "SELECT p FROM Player p WHERE p.team IN :teams", Player.class
+            );
+            query.setParameter("teams", team);
+            return query.getResultList();
+        } finally {
+            entityManager.close();
+        }
+    }
+
     public List<Player> getPlayersByName(String name) {
         EntityManager entityManager = ENTITY_MANAGER_FACTORY.createEntityManager();
         try {
