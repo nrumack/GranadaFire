@@ -11,6 +11,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import org.hibernate.sql.Update;
+
 import java.util.List;
 
 public class TeamInfoController {
@@ -69,8 +71,16 @@ public class TeamInfoController {
                 availablePlayers.getItems().add(player);
     }
 
-    public void addAPlayer(ActionEvent event) {
-
+    public void addAPlayer() {
+    Player player = availablePlayers.getSelectionModel().getSelectedItem();
+    if (player != null) {
+        playersInTeam.getItems().add(player);
+        player.setTeam(selectedTeam);
+        playerDAO.updatePlayer(player);
+        availablePlayers.getItems().remove(player);
+        availablePlayers.refresh();
+        playersInTeam.refresh();
+    }
     }
 
     public void removePlayer(ActionEvent event) {
