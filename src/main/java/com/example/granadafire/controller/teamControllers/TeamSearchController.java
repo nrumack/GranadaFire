@@ -44,23 +44,13 @@ public class TeamSearchController implements Initializable {
         }
     }
 
-    /*public void editTeam() {
-        try {
-            Team selectedTeam = teamListView.getSelectionModel().getSelectedItem();
-            if (selectedTeam != null) {
-                openTeamInfo(selectedTeam);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }*/
-
     public void editTeam() {
         try {
             ObservableValue<Team> selectedTeamObservable = teamListView.getSelectionModel().selectedItemProperty();
             Team selectedTeam = selectedTeamObservable.getValue();
 
             if (selectedTeam != null) {
+                System.out.println("Helloooooo");
                 openTeamInfo(selectedTeam);
             } else {
                 System.out.println("edit Team method is null");
@@ -69,7 +59,6 @@ public class TeamSearchController implements Initializable {
             e.printStackTrace();
         }
     }
-
 
     public void openTeamInfo(Team team) {
         try {

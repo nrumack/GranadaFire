@@ -1,7 +1,6 @@
 package com.example.granadafire.controller.teamControllers;
 
 import com.example.granadafire.DAO.PlayerDAO;
-import com.example.granadafire.entities.Game;
 import com.example.granadafire.entities.Player;
 import com.example.granadafire.entities.Team;
 import javafx.event.ActionEvent;
@@ -78,33 +77,5 @@ public class TeamInfoController {
 
     public void setPlayers(List<Player> players) {
         this.players = players;
-    }
-
-    public TextField getTeamName() {
-        return teamName;
-    }
-
-    public void setTeamName(TextField teamName) {
-        this.teamName = teamName;
-    }
-
-    public TextField getGameName() {
-        return gameName;
-    }
-
-    public void setGameName(TextField gameName) {
-        this.gameName = gameName;
-    }
-
-    public ListView<Player> getPlayersInTeam() {
-        return playersInTeam;
-    }
-
-    public void setPlayersInTeam(ListView<Player> playersInTeam) {
-        this.playersInTeam = playersInTeam;
-    }
-
-    public Team getSelectedTeam() {
-        return selectedTeam;
     }
 }
