@@ -1,7 +1,9 @@
 package com.example.granadafire.controller.gameControllers;
 
 import com.example.granadafire.DAO.GameDAO;
+import com.example.granadafire.controller.SceneSwitcher;
 import com.example.granadafire.entities.Game;
+import com.example.granadafire.util.DataReciever;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,11 +13,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-public class GameController {
+public class GameController implements DataReciever {
     GameDAO gameDAO = new GameDAO();
 
     public TextField gameNameField;
-
     @FXML
     private Button deleteButton;
     @FXML
@@ -25,21 +26,30 @@ public class GameController {
     @FXML
     private Button saveGame;
 
-    private Game game;
+    private Game selectedGame;
 
     @FXML
     public void initialize() {
         toggleButtonsVisibility();
     }
 
-    public void setGame(Game game) {
-        this.game = game;
+    @Override
+    public void recieveData(Object data) {
+        if (data instanceof Game) {
+            this.selectedGame = (Game) data;
+            setGame(this.selectedGame);
+            updateView();
+        }
+    }
+
+    public void setGame(Game selectedGame) {
+        this.selectedGame = selectedGame;
         updateView();
         toggleButtonsVisibility();
     }
 
     private void toggleButtonsVisibility() {
-        if (game != null && game.getGameId() > 0) {
+        if (selectedGame != null && selectedGame.getGameId() > 0) {
             deleteButton.setVisible(true);
             deleteButton.setManaged(true);
             deleteButton.setDisable(false);
@@ -55,7 +65,7 @@ public class GameController {
             updateGame.setDisable(true);
             updateGame.setStyle("-fx-background-color: C0BCBC");
         }
-        if (game != null) {
+        if (selectedGame != null) {
             clearButton.setVisible(false);
             clearButton.setManaged(false);
             clearButton.setDisable(true);
@@ -78,42 +88,29 @@ public class GameController {
     private void clearButton(ActionEvent event) {
         clearFields();
     }
+
     private void clearFields() {
         gameNameField.clear();
     }
 
     private void updateView() {
-        if (game != null) {
-            gameNameField.setText(game.getGameName());
+        if (selectedGame != null) {
+            gameNameField.setText(selectedGame.getGameName());
         }
     }
 
     @FXML
     public void backButton(ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/gameViews/gameSearchView.fxml"));
-            Stage stage = new Stage();
-            stage.setScene(new Scene(loader.load()));
-            stage.setTitle("Pied Pipers");
-            stage.show();
-            ((Node) (event.getSource())).getScene().getWindow().hide();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        SceneSwitcher.switchScenes(event, "/views/gameViews/gameSearchView.fxml", "Pied Pipers", null, GameSearchController.class);
     }
 
     @FXML
     public void deleteButton(ActionEvent event) {
         try {
-            if (game != null) {
-                gameDAO.deleteGame(game);
+            if (selectedGame != null) {
+                gameDAO.deleteGame(selectedGame);
                 clearFields();
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/gameViews/gameSearchView.fxml"));
-                Stage stage = new Stage();
-                stage.setScene(new Scene(loader.load()));
-                stage.setTitle("Pied Pipers");
-                stage.show();
-                ((Node) (event.getSource())).getScene().getWindow().hide();
+                SceneSwitcher.switchScenes(event, "/views/gameViews/gameSearchView.fxml", "Pied Pipers", null, GameSearchController.class);
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -127,7 +124,7 @@ public class GameController {
             String gameNameInput = gameNameField.getText();
             resetErrorsStyles();
 
-            if (gameNameInput.isEmpty()){
+            if (gameNameInput.isEmpty()) {
                 showError(gameNameField, "Game Name is required");
             }
 
@@ -149,7 +146,7 @@ public class GameController {
             String gameNameInput = gameNameField.getText();
             resetErrorsStyles();
 
-            if (gameNameInput.isEmpty()){
+            if (gameNameInput.isEmpty()) {
                 showError(gameNameField, "Name of game is required*");
             }
 
@@ -157,23 +154,18 @@ public class GameController {
                 return;
             }
 
-            Game existingGame = gameDAO.getGameByName(game.getGameName());
+            Game existingGame = gameDAO.getGameByName(selectedGame.getGameName());
 
             if (existingGame != null) {
                 existingGame.setGameName(gameNameInput);
 
                 gameDAO.updateGame(existingGame);
 
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/gameViews/gameSearchView.fxml"));
-                Stage stage = new Stage();
-                stage.setScene(new Scene(loader.load()));
-                stage.setTitle("Pied Pipers");
-                stage.show();
-                ((Node) (event.getSource())).getScene().getWindow().hide();
+                SceneSwitcher.switchScenes(event, "/views/gameViews/gameSearchView.fxml", "Pied Pipers", null, GameSearchController.class);
             } else {
                 System.out.println("game not valid");
             }
-        } catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e.getMessage());
         }
     }

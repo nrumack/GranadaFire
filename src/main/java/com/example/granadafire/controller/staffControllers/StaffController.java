@@ -1,7 +1,10 @@
 package com.example.granadafire.controller.staffControllers;
 
 import com.example.granadafire.DAO.StaffDAO;
+import com.example.granadafire.controller.SceneSwitcher;
+import com.example.granadafire.entities.Game;
 import com.example.granadafire.entities.Staff;
+import com.example.granadafire.util.DataReciever;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,7 +14,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-public class StaffController {
+public class StaffController implements DataReciever {
     StaffDAO staffDAO = new StaffDAO();
 
     public TextField firstNameField;
@@ -32,21 +35,29 @@ public class StaffController {
     @FXML
     private Button saveStaff;
 
-    private Staff staff;
+    private Staff selectedStaff;
 
     @FXML
-    public void initialize() {
-        toggleButtonsVisibility();
+    public void initialize() { toggleButtonsVisibility(); }
+
+    @Override
+    public void recieveData(Object data) {
+        if (data instanceof Staff) {
+            this.selectedStaff = (Staff) data;
+            setStaff(this.selectedStaff);
+            updateView();
+        }
     }
 
-    public void setStaff(Staff staff) {
-        this.staff = staff;
+    public void setStaff(Staff selectedStaff) {
+        this.selectedStaff = selectedStaff;
+        System.out.println("recieved staff: " + selectedStaff.getNickname());
         updateView();
         toggleButtonsVisibility();
     }
 
     private void toggleButtonsVisibility() {
-        if (staff != null && staff.getId() > 0) {
+        if (selectedStaff != null && selectedStaff.getId() > 0) {
             deleteButton.setVisible(true);
             deleteButton.setManaged(true);
             deleteButton.setDisable(false);
@@ -62,7 +73,7 @@ public class StaffController {
             updateStaff.setDisable(true);
             updateStaff.setStyle("-fx-background-color: C0BCBC");
         }
-        if (staff != null) {
+        if (selectedStaff != null) {
             clearButton.setVisible(false);
             clearButton.setManaged(false);
             clearButton.setDisable(true);
@@ -95,44 +106,30 @@ public class StaffController {
     }
 
     private void updateView() {
-        if (staff != null) {
-            firstNameField.setText(staff.getFirstName());
-            lastNameField.setText(staff.getLastName());
-            nickname.setText(staff.getNickname());
-            street.setText(staff.getStreet());
-            areaCode.setText(String.valueOf(staff.getPostNumber()));
-            city.setText(staff.getCity());
-            country.setText(staff.getCountry());
-            email.setText(staff.getEmail());
+        if (selectedStaff != null) {
+            firstNameField.setText(selectedStaff.getFirstName());
+            lastNameField.setText(selectedStaff.getLastName());
+            nickname.setText(selectedStaff.getNickname());
+            street.setText(selectedStaff.getStreet());
+            areaCode.setText(String.valueOf(selectedStaff.getPostNumber()));
+            city.setText(selectedStaff.getCity());
+            country.setText(selectedStaff.getCountry());
+            email.setText(selectedStaff.getEmail());
         }
     }
 
     @FXML
     public void backButton(ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/staffViews/staffSearchView.fxml"));
-            Stage stage = new Stage();
-            stage.setScene(new Scene(loader.load()));
-            stage.setTitle("Pied Pipers");
-            stage.show();
-            ((Node) (event.getSource())).getScene().getWindow().hide();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        SceneSwitcher.switchScenes(event, "/views/staffViews/staffSearchView.fxml", "Pied Pipers", null, StaffSeachController.class);
     }
 
     @FXML
     public void deleteButton(ActionEvent event) {
         try {
-            if (staff != null) {
-                staffDAO.deleteStaff(staff);
+            if (selectedStaff != null) {
+                staffDAO.deleteStaff(selectedStaff);
                 clearFields();
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/staffViews/staffSearchView.fxml"));
-                Stage stage = new Stage();
-                stage.setScene(new Scene(loader.load()));
-                stage.setTitle("Pied Pipers");
-                stage.show();
-                ((Node) (event.getSource())).getScene().getWindow().hide();
+                SceneSwitcher.switchScenes(event, "/views/staffViews/staffSearchView.fxml", "Pied Pipers", null, StaffSeachController.class);
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -216,7 +213,7 @@ public class StaffController {
                 return;
             }
 
-            Staff existingStaff = staffDAO.getStaffById(staff.getId());
+            Staff existingStaff = staffDAO.getStaffById(selectedStaff.getId());
 
             if (existingStaff != null) {
                 existingStaff.setFirstName(firstNameInput);
@@ -230,12 +227,7 @@ public class StaffController {
 
                 staffDAO.updateStaff(existingStaff);
 
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/staffViews/staffSearchView.fxml"));
-                Stage stage = new Stage();
-                stage.setScene(new Scene(loader.load()));
-                stage.setTitle("Pied Pipers");
-                stage.show();
-                ((Node) (event.getSource())).getScene().getWindow().hide();
+                SceneSwitcher.switchScenes(event, "/views/staffViews/staffSearchView.fxml", "Pied Pipers", null, StaffSeachController.class);
             } else {
                 System.out.println("staff not valid");
             }
