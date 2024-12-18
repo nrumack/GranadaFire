@@ -13,7 +13,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -40,8 +39,6 @@ public class TeamController implements Initializable {
         }
         gameListView.getItems().addAll(gameNames);
     }
-
-
 
     @FXML
     protected void clickBackButton(ActionEvent event) {
@@ -70,8 +67,6 @@ public class TeamController implements Initializable {
                         teamDAO.saveTeam(team);
                         clickBackButton(null);
                     }
-
-
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -86,14 +81,4 @@ public class TeamController implements Initializable {
     protected void clickDeleteTeamButton(ActionEvent event) {
 
     }
-
-
-
-    /*public TextField getTeamTextBox() {
-        return teamTextBox;
-    }
-
-    public void setTeamTextBox(TextField teamTextBox) {
-        this.teamTextBox = teamTextBox;
-    }*/
 }

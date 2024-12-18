@@ -1,9 +1,9 @@
 package com.example.granadafire.controller.teamControllers;
 
 import com.example.granadafire.DAO.TeamDAO;
-import com.example.granadafire.entities.Game;
-import com.example.granadafire.entities.Player;
 import com.example.granadafire.entities.Team;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,10 +12,8 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -24,92 +22,68 @@ public class TeamSearchController implements Initializable {
     TeamDAO teamDAO = new TeamDAO();
 
     @FXML
-    private ListView<String> listView;
+    private ListView<Team> teamListView;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
         List<Team> teams = teamDAO.getAllTeams();
-        List<String> teamNames = new ArrayList<>();
-        for (Team team : teams) {
-            teamNames.add(team.getTeamName());
-        }
-                   listView.getItems().addAll(teamNames);
-
+        teamListView.setItems(FXCollections.observableArrayList(teams));
     }
 
     public void deleteTeam() {
         try {
-            String selectedTeamName = listView.getSelectionModel().getSelectedItem();
+            Team selectedTeamName = teamListView.getSelectionModel().getSelectedItem();
             if (selectedTeamName != null) {
-                Team team = teamDAO.getTeamByName(selectedTeamName);
+                Team team = teamDAO.getTeamByName(selectedTeamName.getTeamName());
                 teamDAO.deleteTeam(team.getTeamId());
-                listView.getSelectionModel().clearSelection();
-                listView.getItems().remove(selectedTeamName);
+                teamListView.getSelectionModel().clearSelection();
+                teamListView.getItems().remove(selectedTeamName);
             }
         } catch (Exception e) {
         e.printStackTrace();
         }
     }
 
-    public void editTeam() {
-            String selectedTeamName = listView.getSelectionModel().getSelectedItem();
-            if (selectedTeamName != null) {
-                Team theTeam = teamDAO.getTeamByName(selectedTeamName);
-
-                Game game = theTeam.getGame();
-                String theGameName = game.getGameName();
-                List<Player> thePlayerz = theTeam.getPlayers();
-                openTeamInfo(selectedTeamName, theGameName, thePlayerz);
-            }
-    }
-
-    public void openTeamInfo(String selectedTeamName, String theGameName, List<Player> thePlayerz) {
+    /*public void editTeam() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/teamViews/teamInfoView.fxml"));
-            Stage stage = new Stage();
-            stage.setScene(new Scene(loader.load()));
+            Team selectedTeam = teamListView.getSelectionModel().getSelectedItem();
+            if (selectedTeam != null) {
+                openTeamInfo(selectedTeam);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }*/
 
-            TeamInfoController controller = loader.getController();
-            controller.setTeamName(selectedTeamName);
-            controller.setGameName(theGameName);
-            controller.setPlayersInTeam(thePlayerz);
+    public void editTeam() {
+        try {
+            ObservableValue<Team> selectedTeamObservable = teamListView.getSelectionModel().selectedItemProperty();
+            Team selectedTeam = selectedTeamObservable.getValue();
 
-            stage.setTitle("Team Info");
-            stage.show();
-
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+            if (selectedTeam != null) {
+                openTeamInfo(selectedTeam);
+            } else {
+                System.out.println("No team selected");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
 
-
-    /*@FXML
-    ObservableList<String> names = FXCollections.observableArrayList(
-            "Julia", "Ian", "Sue", "Matthew", "Hannah", "Stephan", "Denise");
-
-
-    @FXML
-    private ListView<Team> teamsList;
-
-    @FXML
-    public void listTeams(){
-        List<Team> teams = teamDAO.getAllTeams();
-    }*/
-
-    //String[] names = names.get().toArray(new String[0]);
-    //String[] items = {"java", "python"};
-
-
-
-
-    /*When staff manage teams, they must be able to add and remove existing teams
-    player profiles in the team. A team is always tied to a certain game and a player only gets
-    be part of a team.*/
-
-    //När personalen listar lag ska det synas vilket spel laget tävlar inom.
-
+    public void openTeamInfo(Team selectedTeam) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/teamViews/teamInfoView.fxml"));
+            Stage stage = new Stage();
+            stage.setScene(new Scene(loader.load()));
+            TeamInfoController controller = loader.getController();
+            controller.setSelectedTeam(selectedTeam);
+            stage.setTitle("Team Info");
+            stage.show();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     @FXML
     protected void clickBackButton(ActionEvent event) {
@@ -138,6 +112,4 @@ public class TeamSearchController implements Initializable {
             e.printStackTrace();
         }
     }
-
-
 }
