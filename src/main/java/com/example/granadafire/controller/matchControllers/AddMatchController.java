@@ -3,8 +3,11 @@ package com.example.granadafire.controller.matchControllers;
 import com.example.granadafire.DAO.MatchDAO;
 import com.example.granadafire.DAO.PlayerDAO;
 import com.example.granadafire.DAO.TeamDAO;
+import com.example.granadafire.controller.Controller;
+import com.example.granadafire.controller.SceneSwitcher;
 import com.example.granadafire.entities.Match;
 import javafx.collections.FXCollections;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -94,15 +97,7 @@ public class AddMatchController {
     }
 
     @FXML
-    public void goBack() {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/matchViews/matchView.fxml"));
-            Stage stage = (Stage) matchDatePicker.getScene().getWindow();
-            stage.setScene(new Scene(loader.load()));
-            stage.setTitle("Match View");
-            stage.show();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    public void goBack(ActionEvent event) {
+        SceneSwitcher.switchScenes(event, "/views/matchViews/matchView.fxml", "Pied Pipers", null, MatchController.class);
     }
 }

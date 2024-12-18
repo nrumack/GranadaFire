@@ -1,18 +1,17 @@
 package com.example.granadafire.controller.matchControllers;
 
 import com.example.granadafire.DAO.MatchDAO;
+import com.example.granadafire.controller.Controller;
+import com.example.granadafire.controller.SceneSwitcher;
 import com.example.granadafire.entities.Match;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
+
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -143,32 +142,12 @@ public class MatchController {
     }
     @FXML
     private void createMatch(ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/matchViews/matchAddView.fxml"));
-            Stage stage = new Stage();
-            stage.setScene(new Scene(loader.load()));
-            stage.setTitle("Add Match");
-            stage.show();
-
-            ((Node) event.getSource()).getScene().getWindow().hide();
-        } catch (Exception e) {
-            System.out.println(e);
-        }
+        SceneSwitcher.switchScenes(event, "/views/matchViews/matchAddView.fxml", "Pied Pipers", null, AddMatchController.class);
     }
 
     @FXML
     private void goBack(ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/generalViews/mainMenuView.fxml"));
-            Stage stage = new Stage();
-            stage.setScene(new Scene(loader.load()));
-            stage.setTitle("Main Menu");
-            stage.show();
-
-            ((Node) event.getSource()).getScene().getWindow().hide();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        SceneSwitcher.switchScenes(event, "/views/generalViews/mainMenuView.fxml", "Pied Pipers", null, Controller.class);
     }
 }
 
