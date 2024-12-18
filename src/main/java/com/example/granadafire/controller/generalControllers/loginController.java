@@ -1,21 +1,17 @@
 package com.example.granadafire.controller.generalControllers;
 
 import com.example.granadafire.DAO.StaffDAO;
+import com.example.granadafire.controller.Controller;
+import com.example.granadafire.controller.SceneSwitcher;
 import com.example.granadafire.entities.Staff;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.Pagination;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
+import javafx.event.ActionEvent;
 
-import java.io.IOException;
-import java.util.Arrays;
+
 import java.util.List;
 
 
@@ -73,16 +69,7 @@ public class loginController {
     }
 
     @FXML
-    public void handleLabelClick(javafx.scene.input.MouseEvent mouseEvent) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/generalViews/mainMenuView.fxml"));
-            Parent newRoot = loader.load();
-            Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
-            stage.setScene(new Scene(newRoot));
-            stage.show();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public void handleLabelClick(javafx.scene.input.MouseEvent event) {
+        SceneSwitcher.switchScenes(event, "/views/generalViews/mainMenuView.fxml", "Pied Pipers", null, Controller.class);
     }
 }
