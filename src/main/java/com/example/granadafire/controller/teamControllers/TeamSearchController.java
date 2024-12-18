@@ -63,7 +63,7 @@ public class TeamSearchController implements Initializable {
             if (selectedTeam != null) {
                 openTeamInfo(selectedTeam);
             } else {
-                System.out.println("No team selected");
+                System.out.println("edit Team method is null");
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -71,13 +71,13 @@ public class TeamSearchController implements Initializable {
     }
 
 
-    public void openTeamInfo(Team selectedTeam) {
+    public void openTeamInfo(Team team) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/teamViews/teamInfoView.fxml"));
             Stage stage = new Stage();
             stage.setScene(new Scene(loader.load()));
             TeamInfoController controller = loader.getController();
-            controller.setSelectedTeam(selectedTeam);
+            controller.setSelectedTeam(team);
             stage.setTitle("Team Info");
             stage.show();
         } catch (IOException e) {

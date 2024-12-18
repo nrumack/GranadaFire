@@ -31,17 +31,17 @@ public class TeamInfoController {
     ListView<Player> playersInTeam;
 
     @FXML
-    public Team selectedTeam;
+    private Team selectedTeam;
 
     @FXML
     public void initialize() {
         setSelectedTeam(selectedTeam);
         if (selectedTeam != null) {
             System.out.println(selectedTeam + "it works!!!!!!!!!!!!!!!!!");
-            players = playerDAO.getPlayersByTeam(selectedTeam);
+            List<Player> players = playerDAO.getPlayersByTeam(selectedTeam);
             playersInTeam.getItems().addAll(players);
         } else {
-            System.out.println("no team selected");
+            System.out.println("initialize method is null");
         }
     }
 
@@ -62,6 +62,46 @@ public class TeamInfoController {
     public void setSelectedTeam(Team team){
         this.selectedTeam = team;
         System.out.println(selectedTeam + " - team set");
+    }
+
+    public PlayerDAO getPlayerDAO() {
+        return playerDAO;
+    }
+
+    public void setPlayerDAO(PlayerDAO playerDAO) {
+        this.playerDAO = playerDAO;
+    }
+
+    public List<Player> getPlayers() {
+        return players;
+    }
+
+    public void setPlayers(List<Player> players) {
+        this.players = players;
+    }
+
+    public TextField getTeamName() {
+        return teamName;
+    }
+
+    public void setTeamName(TextField teamName) {
+        this.teamName = teamName;
+    }
+
+    public TextField getGameName() {
+        return gameName;
+    }
+
+    public void setGameName(TextField gameName) {
+        this.gameName = gameName;
+    }
+
+    public ListView<Player> getPlayersInTeam() {
+        return playersInTeam;
+    }
+
+    public void setPlayersInTeam(ListView<Player> playersInTeam) {
+        this.playersInTeam = playersInTeam;
     }
 
     public Team getSelectedTeam() {
