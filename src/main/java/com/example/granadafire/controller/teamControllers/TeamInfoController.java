@@ -72,19 +72,29 @@ public class TeamInfoController {
     }
 
     public void addAPlayer() {
-    Player player = availablePlayers.getSelectionModel().getSelectedItem();
-    if (player != null) {
-        playersInTeam.getItems().add(player);
-        player.setTeam(selectedTeam);
-        playerDAO.updatePlayer(player);
-        availablePlayers.getItems().remove(player);
-        availablePlayers.refresh();
-        playersInTeam.refresh();
-    }
+        Player player = availablePlayers.getSelectionModel().getSelectedItem();
+            if (player != null) {
+                playersInTeam.getItems().add(player);
+                player.setTeam(selectedTeam);
+                playerDAO.updatePlayer(player);
+                availablePlayers.getItems().remove(player);
+                availablePlayers.refresh();
+                playersInTeam.refresh();
+            }
     }
 
-    public void removePlayer(ActionEvent event) {
+    public void removePlayer() {
+        Player player = playersInTeam.getSelectionModel().getSelectedItem();
+        if (player != null) {
+            playersInTeam.getItems().remove(player);
+            availablePlayers.getItems().add(player);
+            player.setTeam(null);
+            playerDAO.updatePlayer(player);
+            playersInTeam.getItems().remove(player);
+            availablePlayers.refresh();
+            playersInTeam.refresh();
 
+        }
     }
 
     @FXML
