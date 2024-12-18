@@ -1,6 +1,8 @@
 package com.example.granadafire.DAO;
 
+import com.example.granadafire.entities.Game;
 import com.example.granadafire.entities.Match;
+import com.example.granadafire.entities.Player;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -84,6 +86,16 @@ public class MatchDAO {
         } finally {
             entityManager.close();
         }
+    }
+
+    public void deleteMatchesByGame(int gameId) {
+        EntityManager entityManager = ENTITY_MANAGER_FACTORY.createEntityManager();
+        entityManager.getTransaction().begin();
+        entityManager.createQuery("DELETE FROM Match m WHERE m.team1.game.id = :gameId OR m.team2.game.id = :gameId")
+                .setParameter("gameId", gameId)
+                .executeUpdate();
+        entityManager.getTransaction().commit();
+        entityManager.close();
     }
 }
 

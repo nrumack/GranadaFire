@@ -157,4 +157,14 @@ public class PlayerDAO {
         }
     }
 
+    public void deletePlayersByGame(int gameId) {
+        EntityManager entityManager = ENTITY_MANAGER_FACTORY.createEntityManager();
+        entityManager.getTransaction().begin();
+        entityManager.createQuery("DELETE FROM Player p WHERE p.team.game.id = :gameId")
+                .setParameter("gameId", gameId)
+                .executeUpdate();
+        entityManager.getTransaction().commit();
+        entityManager.close();
+    }
+
 }

@@ -109,4 +109,14 @@ public class TeamDAO {
         }
     }
 
+    public void deleteTeamsByGame(int gameId) {
+        EntityManager entityManager = ENTITY_MANAGER_FACTORY.createEntityManager();
+        entityManager.getTransaction().begin();
+        entityManager.createQuery("DELETE FROM Team t WHERE t.game.id = :gameId")
+                .setParameter("gameId", gameId)
+                .executeUpdate();
+        entityManager.getTransaction().commit();
+        entityManager.close();
+    }
+
 }

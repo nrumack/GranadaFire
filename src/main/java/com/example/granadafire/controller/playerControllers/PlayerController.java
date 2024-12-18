@@ -3,24 +3,17 @@ package com.example.granadafire.controller.playerControllers;
 import com.example.granadafire.DAO.GameDAO;
 import com.example.granadafire.DAO.PlayerDAO;
 import com.example.granadafire.DAO.TeamDAO;
+import com.example.granadafire.controller.SceneSwitcher;
 import com.example.granadafire.entities.Game;
 import com.example.granadafire.entities.Player;
 import com.example.granadafire.entities.Team;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.TypedQuery;
+import com.example.granadafire.util.DataReciever;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
 
-import java.util.List;
-
-
-public class PlayerController {
+public class PlayerController implements DataReciever {
     PlayerDAO playerDAO = new PlayerDAO();
     TeamDAO teamDAO =  new TeamDAO();
     GameDAO gameDAO = new GameDAO();
@@ -45,8 +38,6 @@ public class PlayerController {
     private TextField team;
     @FXML
     private TextField game;
-    private Player player;
-
     @FXML
     private Button deletePlayer;
     @FXML
@@ -56,19 +47,27 @@ public class PlayerController {
     @FXML
     private Button savePlayer;
 
+    private Player selectedPlayer;
     @FXML
-    private void initialize() {
-        toggleButtonsVisibility();
+    private void initialize() { toggleButtonsVisibility(); }
+
+    @Override
+    public void recieveData(Object data) {
+        if (data instanceof Player) {
+            this.selectedPlayer = (Player) data;
+            setPlayer(this.selectedPlayer);
+            updateView();
+        }
     }
 
-    public void setPlayer(Player player) {
-        this.player = player;
+    public void setPlayer(Player selectedPlayer) {
+        this.selectedPlayer = selectedPlayer;
         updateView();
         toggleButtonsVisibility();
     }
 
     private void toggleButtonsVisibility() {
-        if (player != null && player.getId() > 0) {
+        if (selectedPlayer != null && selectedPlayer.getId() > 0) {
             deletePlayer.setVisible(true);
             deletePlayer.setManaged(true);
             deletePlayer.setDisable(false);
@@ -84,7 +83,7 @@ public class PlayerController {
             updatePlayer.setDisable(true);
             updatePlayer.setStyle("-fx-background-color: C0BCBC");
         }
-        if (player != null) {
+        if (selectedPlayer != null) {
             clearButton.setVisible(false);
             clearButton.setManaged(false);
             clearButton.setDisable(true);
@@ -119,37 +118,31 @@ public class PlayerController {
 
 
     private void updateView() {
-        if (player != null) {
-            firstNameField.setText(player.getFirstName());
-            lastNameField.setText(player.getLastName());
-            nickname.setText(player.getNickname());
-            street.setText(player.getStreet());
-            areaCode.setText(String.valueOf(player.getPostNumber()));
-            city.setText(player.getCity());
-            country.setText(player.getCountry());
-            email.setText(player.getEmail());
+        if (selectedPlayer != null) {
+            firstNameField.setText(selectedPlayer.getFirstName());
+            lastNameField.setText(selectedPlayer.getLastName());
+            nickname.setText(selectedPlayer.getNickname());
+            street.setText(selectedPlayer.getStreet());
+            areaCode.setText(String.valueOf(selectedPlayer.getPostNumber()));
+            city.setText(selectedPlayer.getCity());
+            country.setText(selectedPlayer.getCountry());
+            email.setText(selectedPlayer.getEmail());
 
-            team.setText(player.getTeam() != null ? player.getTeam().getTeamName() : "");
-            game.setText(player.getGame() != null ? player.getGame().getGameName() : "");
+            team.setText(selectedPlayer.getTeam() != null ? selectedPlayer.getTeam().getTeamName() : "");
+            game.setText(selectedPlayer.getGame() != null ? selectedPlayer.getGame().getGameName() : "");
         }
     }
 
     @FXML
     public void deletePlayer(ActionEvent event) {
         try {
-            int playerId = player.getId();
+            int playerId = selectedPlayer.getId();
             playerDAO.deletePlayer(playerId);
 
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/playerViews/playerSearchView.fxml"));
-            Stage stage = new Stage();
-            stage.setScene(new Scene(loader.load()));
-            stage.setTitle("Pied Pipers");
-            stage.show();
-            ((Node) (event.getSource())).getScene().getWindow().hide();
+            SceneSwitcher.switchScenes(event, "/views/playerViews/playerSearchView.fxml", "Pied Pipers", null, PlayerSearchController.class);
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
-
     }
 
     @FXML
@@ -223,12 +216,7 @@ public class PlayerController {
 
             playerDAO.savePlayer(newPlayer);
 
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/playerViews/playerSearchView.fxml"));
-            Stage stage = new Stage();
-            stage.setScene(new Scene(loader.load()));
-            stage.setTitle("Pied Pipers");
-            stage.show();
-            ((Node) (event.getSource())).getScene().getWindow().hide();
+            SceneSwitcher.switchScenes(event, "/views/playerViews/playerSearchView.fxml", "Pied Pipers", null, PlayerSearchController.class);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -270,7 +258,7 @@ public class PlayerController {
                 return;
             }
 
-            Player existingPlayer = playerDAO.getPlayerById(player.getId());
+            Player existingPlayer = playerDAO.getPlayerById(selectedPlayer.getId());
 
             if (existingPlayer != null) {
                 existingPlayer.setFirstName(firstNameInput);
@@ -293,12 +281,7 @@ public class PlayerController {
 
                 playerDAO.updatePlayer(existingPlayer);
 
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/playerViews/playerSearchView.fxml"));
-                Stage stage = new Stage();
-                stage.setScene(new Scene(loader.load()));
-                stage.setTitle("Pied Pipers");
-                stage.show();
-                ((Node) (event.getSource())).getScene().getWindow().hide();
+                SceneSwitcher.switchScenes(event, "/views/playerViews/playerSearchView.fxml", "Pied Pipers", null, PlayerSearchController.class);
             } else {
                 System.out.println("Player not found.");
             }
@@ -338,16 +321,7 @@ public class PlayerController {
 
     @FXML
     private void backButton(ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/playerViews/playerSearchView.fxml"));
-            Stage stage = new Stage();
-            stage.setScene(new Scene(loader.load()));
-            stage.setTitle("Pied Pipers");
-            stage.show();
-            ((Node) (event.getSource())).getScene().getWindow().hide();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        SceneSwitcher.switchScenes(event, "/views/playerViews/playerSearchView.fxml", "Pied Pipers", null, PlayerSearchController.class);
     }
 
 }

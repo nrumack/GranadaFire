@@ -2,20 +2,16 @@ package com.example.granadafire.controller.playerControllers;
 
 import com.example.granadafire.DAO.GameDAO;
 import com.example.granadafire.DAO.PlayerDAO;
+import com.example.granadafire.controller.SceneSwitcher;
 import com.example.granadafire.entities.Game;
 import com.example.granadafire.entities.Player;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
 
-import javafx. scene. input. MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -48,10 +44,10 @@ public class PlayerSearchController {
         loadPlayers(null);
 
         playerListView.setOnMouseClicked(event -> {
-            if (event.getClickCount() == 2) {
+            if (event.getClickCount() == 1) {
                 Player selectedPlayer = playerListView.getSelectionModel().getSelectedItem();
                 if (selectedPlayer != null) {
-                    openPlayerDetailView(selectedPlayer, event);
+                    SceneSwitcher.switchScenes(event, "/views/playerViews/playerView.fxml", "Pied Pipers", selectedPlayer, PlayerController.class);
                 }
             }
         });
@@ -102,50 +98,16 @@ public class PlayerSearchController {
         }
     }
 
-    private void openPlayerDetailView(Player player, MouseEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/playerViews/playerView.fxml"));
-            Stage stage = new Stage();
-            stage.setScene(new Scene(loader.load()));
-
-            PlayerController controller = loader.getController();
-            controller.setPlayer(player);
-
-            stage.setTitle("Player Details");
-            stage.show();
-
-            ((Node) event.getSource()).getScene().getWindow().hide();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
     @FXML
     public void backButton(ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/generalViews/mainMenuView.fxml"));
-            Stage stage = new Stage();
-            stage.setScene(new Scene(loader.load()));
-            stage.setTitle("Main Menu");
-            stage.show();
-            ((Node) event.getSource()).getScene().getWindow().hide();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+
+        SceneSwitcher.switchScenes(event, "/views/generalViews/mainMenuView.fxml", "Pied Pipers", null, PlayerController.class);
     }
 
     @FXML
     public void createNewButton(ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/playerViews/playerView.fxml"));
-            Stage stage = new Stage();
-            stage.setScene(new Scene(loader.load()));
-            stage.setTitle("Create Player");
-            stage.show();
-            ((Node) event.getSource()).getScene().getWindow().hide();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+
+        SceneSwitcher.switchScenes(event, "/views/playerViews/playerView.fxml", "Pied Pipers", null, PlayerController.class);
     }
 }
 
