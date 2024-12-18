@@ -9,21 +9,30 @@ import com.example.granadafire.entities.Team;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.ResourceBundle;
 
-public class TeamInfoController {
+public class TeamInfoController implements Initializable {
     PlayerDAO playerDAO = new PlayerDAO();
     TeamDAO teamDAO = new TeamDAO();
     GameDAO gameDAO = new GameDAO();
 
-    Player player;
+    @FXML
+    List <Player> players;
+
+    @FXML
     Team team;
+
+    @FXML
     Game game;
 
     @FXML
@@ -33,13 +42,15 @@ public class TeamInfoController {
     TextField gameName;
 
     @FXML
-    ListView playersInTeam;
+    ListView<Player> playersInTeam;
 
-    @FXML
-    List<Player> players;
 
-    @FXML
-    public void initialize() {
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        players = playerDAO.getAllPlayers();
+
+        playersInTeam.getItems().addAll(players);
     }
 
     @FXML
@@ -68,7 +79,9 @@ public class TeamInfoController {
         this.team = team;
     }
 
-    public void setPlayersInTeam(Team playersInTeam){
-    this.team = playersInTeam;
+    public void setPlayersInTeam(List<Player> playersInTeam){
+    this.players = playersInTeam;
     }
+
+
 }

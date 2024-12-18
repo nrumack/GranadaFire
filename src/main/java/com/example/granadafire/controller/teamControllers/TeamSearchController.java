@@ -2,6 +2,7 @@ package com.example.granadafire.controller.teamControllers;
 
 import com.example.granadafire.DAO.TeamDAO;
 import com.example.granadafire.entities.Game;
+import com.example.granadafire.entities.Player;
 import com.example.granadafire.entities.Team;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -58,11 +59,12 @@ public class TeamSearchController implements Initializable {
 
                 Game game = theTeam.getGame();
                 String theGameName = game.getGameName();
-                openTeamInfo(selectedTeamName, theGameName);
+                List<Player> thePlayerz = theTeam.getPlayers();
+                openTeamInfo(selectedTeamName, theGameName, thePlayerz);
             }
     }
 
-    public void openTeamInfo(String selectedTeamName, String theGameName) {
+    public void openTeamInfo(String selectedTeamName, String theGameName, List<Player> thePlayerz) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/teamViews/teamInfoView.fxml"));
             Stage stage = new Stage();
@@ -71,6 +73,8 @@ public class TeamSearchController implements Initializable {
             TeamInfoController controller = loader.getController();
             controller.setTeamName(selectedTeamName);
             controller.setGameName(theGameName);
+            controller.setPlayersInTeam(thePlayerz);
+
             stage.setTitle("Team Info");
             stage.show();
 
