@@ -66,6 +66,6 @@ public class Team {
         String teamName = getTeamName();
         String gameName = getGame().getGameName();
 
-        return teamName + "     " + "Game: " + gameName;
+        return teamName + "                 " + "Game: " + gameName;
     }
 }

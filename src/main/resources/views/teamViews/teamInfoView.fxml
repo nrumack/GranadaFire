@@ -6,16 +6,18 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.granadafire.controller.teamControllers.TeamInfoController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.granadafire.controller.teamControllers.TeamInfoController">
    <children>
-      <ListView fx:id="playersInTeam" layoutX="187.0" layoutY="150.0" prefHeight="200.0" prefWidth="200.0" />
-      <Label layoutX="104.0" layoutY="55.0" text="Team Name" />
-      <Label layoutX="439.0" layoutY="55.0" text="Game Name" />
-      <TextField fx:id="teamName" layoutX="44.0" layoutY="84.0" />
-      <TextField fx:id="gameName" layoutX="387.0" layoutY="84.0" />
-      <Button layoutX="44.0" layoutY="350.0" mnemonicParsing="false" onAction="#goBackToTeamSearch" text="Back" />
-      <Button layoutX="59.0" layoutY="200.0" mnemonicParsing="false" text="Add a player" />
-      <Button layoutX="462.0" layoutY="207.0" mnemonicParsing="false" text="Delete player" />
+      <ListView fx:id="playersInTeam" layoutX="20.0" layoutY="103.0" prefHeight="99.0" prefWidth="362.0" />
+      <Label layoutX="157.0" layoutY="26.0" text="Team Name" />
+      <Label layoutX="156.0" layoutY="55.0" text="Game Name" />
+      <TextField fx:id="teamName" layoutX="231.0" layoutY="22.0" />
+      <TextField fx:id="gameName" layoutX="231.0" layoutY="51.0" />
+      <Button layoutX="32.0" layoutY="452.0" mnemonicParsing="false" onAction="#goBackToTeamSearch" text="Back" />
+      <Button layoutX="305.0" layoutY="418.0" mnemonicParsing="false" onAction="#addAPlayer" text="Add a player" />
+      <Button layoutX="283.0" layoutY="215.0" mnemonicParsing="false" onAction="#removePlayer" text="Remove player" />
+      <Label layoutX="20.0" layoutY="83.0" text="Team players" />
+      <ListView fx:id="availablePlayers" layoutX="19.0" layoutY="311.0" prefHeight="99.0" prefWidth="369.0" />
+      <Label layoutX="20.0" layoutY="287.0" text="Available players" />
    </children>
 </AnchorPane>

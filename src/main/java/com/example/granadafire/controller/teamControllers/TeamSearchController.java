@@ -50,16 +50,16 @@ public class TeamSearchController implements Initializable {
             Team selectedTeam = selectedTeamObservable.getValue();
 
             if (selectedTeam != null) {
-                System.out.println("Helloooooo");
                 openTeamInfo(selectedTeam);
             } else {
-                System.out.println("edit Team method is null");
+                System.out.println("selectedTeam is null");
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
+    @FXML
     public void openTeamInfo(Team team) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/teamViews/teamInfoView.fxml"));
@@ -67,6 +67,10 @@ public class TeamSearchController implements Initializable {
             stage.setScene(new Scene(loader.load()));
             TeamInfoController controller = loader.getController();
             controller.setSelectedTeam(team);
+            controller.setGameName(team);
+            controller.setTeamName(team);
+            controller.setPlayersInTeam();
+            controller.setAvailablePlayers();
             stage.setTitle("Team Info");
             stage.show();
         } catch (IOException e) {
@@ -94,7 +98,7 @@ public class TeamSearchController implements Initializable {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/teamViews/teamView.fxml"));
             Stage stage = new Stage();
             stage.setScene(new Scene(loader.load()));
-            stage.setTitle("Piper Games");
+            stage.setTitle("Create Team");
             stage.show();
             ((Node)(event.getSource())).getScene().getWindow().hide();
         } catch (Exception e) {

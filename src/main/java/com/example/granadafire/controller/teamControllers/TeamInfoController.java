@@ -30,18 +30,51 @@ public class TeamInfoController {
     ListView<Player> playersInTeam;
 
     @FXML
+    ListView<Player> availablePlayers;
+
+    @FXML
     private Team selectedTeam;
 
     @FXML
     public void initialize() {
-        setSelectedTeam(selectedTeam);
+    }
+
+    @FXML
+    public void setGameName(Team team) {
+        String gameName = team.getGame().getGameName();
+        this.gameName.setText(gameName);
+    }
+
+    @FXML
+    public void setTeamName(Team team) {
+        String teamName = team.getTeamName();
+        this.teamName.setText(teamName);
+    }
+
+    @FXML
+    public void setPlayersInTeam() {
         if (selectedTeam != null) {
-            System.out.println(selectedTeam + "it works!!!!!!!!!!!!!!!!!");
             List<Player> players = playerDAO.getPlayersByTeam(selectedTeam);
             playersInTeam.getItems().addAll(players);
         } else {
-            System.out.println("initialize method is null");
+            System.out.println("selectedTeam is null @ setPlayersInTeam");
         }
+    }
+
+    @FXML
+    public void setAvailablePlayers() {
+        List<Player> players = playerDAO.getAllPlayers();
+        for (Player player: players)
+            if (player.getTeam() == null)
+                availablePlayers.getItems().add(player);
+    }
+
+    public void addAPlayer(ActionEvent event) {
+
+    }
+
+    public void removePlayer(ActionEvent event) {
+
     }
 
     @FXML
@@ -50,7 +83,7 @@ public class TeamInfoController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/teamViews/teamSearchView.fxml"));
             Stage stage = new Stage();
             stage.setScene(new Scene(loader.load()));
-            stage.setTitle("Main Menu");
+            stage.setTitle("Teams");
             stage.show();
             ((Node) event.getSource()).getScene().getWindow().hide();
         } catch (Exception e) {
@@ -60,15 +93,6 @@ public class TeamInfoController {
 
     public void setSelectedTeam(Team team){
         this.selectedTeam = team;
-        System.out.println(selectedTeam + " - team set");
-    }
-
-    public PlayerDAO getPlayerDAO() {
-        return playerDAO;
-    }
-
-    public void setPlayerDAO(PlayerDAO playerDAO) {
-        this.playerDAO = playerDAO;
     }
 
     public List<Player> getPlayers() {
