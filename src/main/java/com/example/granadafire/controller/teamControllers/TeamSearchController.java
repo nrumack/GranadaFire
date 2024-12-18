@@ -44,13 +44,13 @@ public class TeamSearchController implements Initializable {
         }
     }
 
-    public void editTeam() {
+    public void editTeam(ActionEvent event) {
         try {
             ObservableValue<Team> selectedTeamObservable = teamListView.getSelectionModel().selectedItemProperty();
             Team selectedTeam = selectedTeamObservable.getValue();
 
             if (selectedTeam != null) {
-                openTeamInfo(selectedTeam);
+                openTeamInfo(selectedTeam, event);
             } else {
                 System.out.println("selectedTeam is null");
             }
@@ -60,7 +60,7 @@ public class TeamSearchController implements Initializable {
     }
 
     @FXML
-    public void openTeamInfo(Team team) {
+    public void openTeamInfo(Team team, ActionEvent event) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/teamViews/teamInfoView.fxml"));
             Stage stage = new Stage();
@@ -73,6 +73,8 @@ public class TeamSearchController implements Initializable {
             controller.setAvailablePlayers();
             stage.setTitle("Team Info");
             stage.show();
+            ((Node)(event.getSource())).getScene().getWindow().hide();
+
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
