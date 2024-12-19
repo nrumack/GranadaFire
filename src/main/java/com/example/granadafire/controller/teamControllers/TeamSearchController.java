@@ -1,6 +1,8 @@
 package com.example.granadafire.controller.teamControllers;
 
+import com.example.granadafire.DAO.PlayerDAO;
 import com.example.granadafire.DAO.TeamDAO;
+import com.example.granadafire.entities.Player;
 import com.example.granadafire.entities.Team;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -20,6 +22,7 @@ import java.util.ResourceBundle;
 public class TeamSearchController implements Initializable {
 
     TeamDAO teamDAO = new TeamDAO();
+    PlayerDAO playerDAO = new PlayerDAO();
 
     @FXML
     private ListView<Team> teamListView;
@@ -35,6 +38,11 @@ public class TeamSearchController implements Initializable {
             Team selectedTeamName = teamListView.getSelectionModel().getSelectedItem();
             if (selectedTeamName != null) {
                 Team team = teamDAO.getTeamByName(selectedTeamName.getTeamName());
+                List<Player> players = playerDAO.getPlayersByTeam(team);
+                for (Player player : players) {
+                    player.setTeam(null);
+                    playerDAO.updatePlayer(player);
+                }
                 teamDAO.deleteTeam(team.getTeamId());
                 teamListView.getSelectionModel().clearSelection();
                 teamListView.getItems().remove(selectedTeamName);
