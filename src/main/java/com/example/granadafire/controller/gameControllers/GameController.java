@@ -2,6 +2,7 @@ package com.example.granadafire.controller.gameControllers;
 
 import com.example.granadafire.DAO.GameDAO;
 import com.example.granadafire.controller.SceneSwitcher;
+import com.example.granadafire.controller.generalControllers.loginController;
 import com.example.granadafire.entities.Game;
 import com.example.granadafire.util.DataReciever;
 import javafx.event.ActionEvent;
@@ -180,6 +181,11 @@ public class GameController implements DataReciever {
     private void resetErrorsStyles() {
         gameNameField.setStyle("");
         gameNameField.setPromptText("First Name");
+    }
+
+    @FXML
+    protected void logout(ActionEvent event) {
+        SceneSwitcher.switchScenes(event, "/views/generalViews/loginView.fxml", "Pied Pipers", null, loginController.class);
     }
 
 }

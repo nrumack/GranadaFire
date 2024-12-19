@@ -4,6 +4,7 @@ import com.example.granadafire.DAO.StaffDAO;
 import com.example.granadafire.controller.Controller;
 import com.example.granadafire.controller.SceneSwitcher;
 import com.example.granadafire.controller.gameControllers.GameController;
+import com.example.granadafire.controller.generalControllers.loginController;
 import com.example.granadafire.entities.Staff;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -64,5 +65,10 @@ public class StaffSeachController {
 
     public void createNewButton(ActionEvent event) {
         SceneSwitcher.switchScenes(event, "/views/staffViews/staffView.fxml", "Pied Pipers", null, StaffController.class);
+    }
+
+    @FXML
+    protected void logout(ActionEvent event) {
+        SceneSwitcher.switchScenes(event, "/views/generalViews/loginView.fxml", "Pied Pipers", null, loginController.class);
     }
 }

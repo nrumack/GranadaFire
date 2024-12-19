@@ -2,43 +2,23 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.granadafire.controller.matchControllers.MatchController" prefHeight="650.0" prefWidth="800.0">
+<AnchorPane prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.granadafire.controller.matchControllers.MatchController">
     <children>
-        <VBox alignment="TOP_CENTER" spacing="15.0" layoutX="100.0" layoutY="20.0" prefWidth="600.0">
-            <children>
-                <Label text="Matches" style="-fx-font-size: 24px;" />
-                <HBox spacing="10.0" alignment="CENTER">
-                    <children>
-                        <Label text="Filter Matches:" />
-                        <ComboBox fx:id="filterComboBox" prefWidth="200.0" promptText="Select Filter" />
-                        <Button fx:id="applyFilterButton" text="Apply" onAction="#applyFilter" />
-                    </children>
-                </HBox>
-                <ListView fx:id="matchListView" prefHeight="350.0" prefWidth="600.0" />
-                <VBox spacing="10.0" alignment="CENTER" prefWidth="600.0">
-                    <children>
-                        <Label text="Update Match Score" style="-fx-font-size: 18px;" />
-                        <HBox spacing="15.0" alignment="CENTER">
-                            <children>
-                                <Label text="Team 1 Score:" />
-                                <TextField fx:id="score1Field" prefWidth="60.0" />
-                                <Label text="Team 2 Score:" />
-                                <TextField fx:id="score2Field" prefWidth="60.0" />
-                                <Button fx:id="updateScoreButton" text="Update Scores" onAction="#updateScore" />
-                            </children>
-
-                        </HBox>
-                    </children>
-                </VBox>
-                <HBox spacing="20.0" alignment="CENTER">
-                    <children>
-                        <Button fx:id="createMatchButton" text="Create Match" onAction="#createMatch" />
-                        <Button fx:id="deleteMatchButton" text="Delete Match" onAction="#deleteMatch" />
-                        <Button fx:id="goBackButton" text="Back" onAction="#goBack" prefWidth="80.0"/>
-                    </children>
-                </HBox>
-            </children>
-        </VBox>
+          <Label layoutX="273.0" layoutY="26.0" style="-fx-font-size: 24px;" text="Matches" />
+            <Label layoutX="219.0" layoutY="67.0" style="-fx-font-size: 18px;" text="Update Match Score" />
+            <Button fx:id="createMatchButton" layoutX="475.0" layoutY="95.0" onAction="#createMatch" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: #A9A9A9;" text="Create Match" textFill="WHITE" />
+            <Button fx:id="deleteMatchButton" layoutX="475.0" layoutY="130.0" onAction="#deleteMatch" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: #A9A9A9;" text="Delete Match" textFill="WHITE" />
+            <Button fx:id="goBackButton" layoutX="475.0" layoutY="165.0" onAction="#goBack" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: #A9A9A9;" text="Back" textFill="WHITE" />
+            <Label layoutX="64.0" layoutY="213.0" text="Filter Matches:" />
+            <ComboBox fx:id="filterComboBox" layoutX="160.0" layoutY="209.0" prefHeight="25.0" prefWidth="315.0" promptText="Select Filter" />
+            <Button fx:id="applyFilterButton" layoutX="512.0" layoutY="209.0" onAction="#applyFilter" text="Apply" />
+          <ListView fx:id="matchListView" layoutX="5.0" layoutY="236.0" prefHeight="350.0" prefWidth="590.0" />
+        <Button layoutX="536.0" layoutY="10.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#logout" prefHeight="19.0" prefWidth="54.0" style="-fx-background-color: C0BCBC;" text="Logout" textFill="WHITE">
+            <font>
+                <Font size="10.0" />
+            </font>
+        </Button>
     </children>
 </AnchorPane>
