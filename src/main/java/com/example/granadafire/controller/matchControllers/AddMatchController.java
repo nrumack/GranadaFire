@@ -11,6 +11,7 @@ import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
@@ -93,13 +94,22 @@ public class AddMatchController {
         } catch (Exception e) {
             System.out.println(e);
         } finally {
-            goBack(null);
+            goBack();
         }
     }
 
     @FXML
-    public void goBack(ActionEvent event) {
-        SceneSwitcher.switchScenes(event, "/views/matchViews/matchView.fxml", "Pied Pipers", null, MatchController.class);
+    private void goBack() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/matchViews/matchView.fxml"));
+            Stage stage = (Stage) matchDatePicker.getScene().getWindow();
+            Parent root = loader.load();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Pied Pipers");
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
