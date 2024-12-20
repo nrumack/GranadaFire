@@ -5,6 +5,7 @@ import com.example.granadafire.DAO.PlayerDAO;
 import com.example.granadafire.DAO.TeamDAO;
 import com.example.granadafire.controller.Controller;
 import com.example.granadafire.controller.SceneSwitcher;
+import com.example.granadafire.controller.generalControllers.loginController;
 import com.example.granadafire.entities.Match;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
@@ -99,6 +100,11 @@ public class AddMatchController {
     @FXML
     public void goBack(ActionEvent event) {
         SceneSwitcher.switchScenes(event, "/views/matchViews/matchView.fxml", "Pied Pipers", null, MatchController.class);
+    }
+
+    @FXML
+    protected void logout(ActionEvent event) {
+        SceneSwitcher.switchScenes(event, "/views/generalViews/loginView.fxml", "Pied Pipers", null, loginController.class);
     }
 }
 

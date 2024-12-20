@@ -3,6 +3,7 @@ package com.example.granadafire.controller.matchControllers;
 import com.example.granadafire.DAO.MatchDAO;
 import com.example.granadafire.controller.Controller;
 import com.example.granadafire.controller.SceneSwitcher;
+import com.example.granadafire.controller.generalControllers.loginController;
 import com.example.granadafire.entities.Match;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -140,6 +141,7 @@ public class MatchController {
             System.out.println("Error updating match: " + e.getMessage());
         }
     }
+
     @FXML
     private void createMatch(ActionEvent event) {
         SceneSwitcher.switchScenes(event, "/views/matchViews/matchAddView.fxml", "Pied Pipers", null, AddMatchController.class);
@@ -148,6 +150,11 @@ public class MatchController {
     @FXML
     private void goBack(ActionEvent event) {
         SceneSwitcher.switchScenes(event, "/views/generalViews/mainMenuView.fxml", "Pied Pipers", null, Controller.class);
+    }
+
+    @FXML
+    protected void logout(ActionEvent event) {
+        SceneSwitcher.switchScenes(event, "/views/generalViews/loginView.fxml", "Pied Pipers", null, loginController.class);
     }
 }
 

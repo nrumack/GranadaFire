@@ -16,7 +16,11 @@
                 <Button fx:id="searchButton" layoutX="310.0" layoutY="60.0" mnemonicParsing="false" onAction="#searchGames" prefHeight="30.0" prefWidth="70.0" style="-fx-background-color: C0BCBC;" text="Search" textFill="WHITE" />
                 <Button layoutX="280.0" layoutY="100.0" mnemonicParsing="false" onAction="#createNewButton" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: C0BCBC;" text="Create New" textFill="WHITE" />
                 <Button layoutX="280.0" layoutY="135.0" mnemonicParsing="false" onAction="#backButton" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: C0BCBC;" text="Back" textFill="WHITE" />
-
+                <Button layoutX="331.0" layoutY="14.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#logout" prefHeight="19.0" prefWidth="54.0" style="-fx-background-color: C0BCBC;" text="Logout" textFill="WHITE">
+                    <font>
+                        <Font size="10.0" />
+                    </font>
+                </Button>
                 <TextField fx:id="searchField" layoutX="20.0" layoutY="61.0" prefHeight="30.0" prefWidth="280.0" />
                 <ListView fx:id="gameResultList" layoutX="20.0" layoutY="180.0" prefHeight="300.0" prefWidth="360.0" />
             </children>

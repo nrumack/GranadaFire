@@ -4,6 +4,7 @@ import com.example.granadafire.DAO.GameDAO;
 import com.example.granadafire.DAO.PlayerDAO;
 import com.example.granadafire.DAO.TeamDAO;
 import com.example.granadafire.controller.SceneSwitcher;
+import com.example.granadafire.controller.generalControllers.loginController;
 import com.example.granadafire.entities.Game;
 import com.example.granadafire.entities.Player;
 import com.example.granadafire.entities.Team;
@@ -266,7 +267,7 @@ public class PlayerController implements DataReciever {
             resetErrorsStyles();
 
             if (firstNameInput.isEmpty()) {
-                showError(firstNameField, "First Name is required");
+                showError(firstNameField, "First Name is required*");
             }
             if (lastNameInput.isEmpty()) {
                 showError(lastNameField, "Last Name is required");
@@ -351,5 +352,9 @@ public class PlayerController implements DataReciever {
     private void backButton(ActionEvent event) {
         SceneSwitcher.switchScenes(event, "/views/playerViews/playerSearchView.fxml", "Pied Pipers", null, PlayerSearchController.class);
     }
-}
+
+    @FXML
+    protected void logout(ActionEvent event) {
+        SceneSwitcher.switchScenes(event, "/views/generalViews/loginView.fxml", "Pied Pipers", null, loginController.class);
+    }
 

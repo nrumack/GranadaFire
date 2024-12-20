@@ -3,6 +3,7 @@ package com.example.granadafire.controller.playerControllers;
 import com.example.granadafire.DAO.GameDAO;
 import com.example.granadafire.DAO.PlayerDAO;
 import com.example.granadafire.controller.SceneSwitcher;
+import com.example.granadafire.controller.generalControllers.loginController;
 import com.example.granadafire.entities.Game;
 import com.example.granadafire.entities.Player;
 import javafx.collections.FXCollections;
@@ -106,12 +107,18 @@ public class PlayerSearchController {
 
     @FXML
     public void backButton(ActionEvent event) {
+
         SceneSwitcher.switchScenes(event, "/views/generalViews/mainMenuView.fxml", "Pied Pipers", null, PlayerController.class);
     }
 
     @FXML
     public void createNewButton(ActionEvent event) {
+
         SceneSwitcher.switchScenes(event, "/views/playerViews/playerView.fxml", "Pied Pipers", null, PlayerController.class);
+    }
+    @FXML
+    protected void logout(ActionEvent event) {
+        SceneSwitcher.switchScenes(event, "/views/generalViews/loginView.fxml", "Pied Pipers", null, loginController.class);
     }
 }
 
