@@ -1,6 +1,7 @@
 package com.example.granadafire.controller;
 
 import com.example.granadafire.controller.gameControllers.GameSearchController;
+import com.example.granadafire.controller.generalControllers.loginController;
 import com.example.granadafire.controller.matchControllers.MatchController;
 import com.example.granadafire.controller.playerControllers.PlayerSearchController;
 import com.example.granadafire.controller.staffControllers.StaffSeachController;
@@ -46,5 +47,9 @@ public class Controller {
     @FXML
     protected void clickStaff(ActionEvent event) {
         SceneSwitcher.switchScenes(event, "/views/staffViews/staffSearchView.fxml", "Pied Pipers", null, StaffSeachController.class);
+    }
+    @FXML
+    protected void logout(ActionEvent event) {
+        SceneSwitcher.switchScenes(event, "/views/generalViews/loginView.fxml", "Pied Pipers", null, loginController.class);
     }
 }

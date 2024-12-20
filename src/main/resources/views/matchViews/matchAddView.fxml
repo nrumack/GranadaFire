@@ -3,8 +3,14 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
+<?import javafx.scene.text.Font?>
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.granadafire.controller.matchControllers.AddMatchController" prefHeight="600.0" prefWidth="400.0">
     <children>
+        <Button layoutX="331.0" layoutY="14.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#logout" prefHeight="19.0" prefWidth="54.0" style="-fx-background-color: C0BCBC;" text="Logout" textFill="WHITE">
+            <font>
+                <Font size="10.0" />
+            </font>
+        </Button>
         <VBox layoutX="50.0" layoutY="20.0" spacing="20.0" alignment="CENTER">
             <Label text="Add New Match" style="-fx-font-size: 20px;" />
             <GridPane hgap="10.0" vgap="15.0">

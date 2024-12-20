@@ -2,6 +2,7 @@ package com.example.granadafire.controller.staffControllers;
 
 import com.example.granadafire.DAO.StaffDAO;
 import com.example.granadafire.controller.SceneSwitcher;
+import com.example.granadafire.controller.generalControllers.loginController;
 import com.example.granadafire.entities.Game;
 import com.example.granadafire.entities.Staff;
 import com.example.granadafire.util.DataReciever;
@@ -263,5 +264,9 @@ public class StaffController implements DataReciever {
         nickname.setPromptText("Nickname");
         email.setPromptText("Email Address");
         areaCode.setPromptText("Area Code");
+    }
+    @FXML
+    protected void logout(ActionEvent event) {
+        SceneSwitcher.switchScenes(event, "/views/generalViews/loginView.fxml", "Pied Pipers", null, loginController.class);
     }
 }
