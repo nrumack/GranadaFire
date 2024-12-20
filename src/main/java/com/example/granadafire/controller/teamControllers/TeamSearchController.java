@@ -107,7 +107,7 @@ public class TeamSearchController implements Initializable {
     @FXML
     protected void createNewTeam(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/teamViews/teamView.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/teamViews/createTeamView.fxml"));
             Stage stage = new Stage();
             stage.setScene(new Scene(loader.load()));
             stage.setTitle("Pied Pipers");

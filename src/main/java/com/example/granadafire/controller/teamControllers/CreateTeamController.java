@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class TeamController implements Initializable {
+public class CreateTeamController implements Initializable {
 
     TeamDAO teamDAO = new TeamDAO();
     GameDAO gameDAO = new GameDAO();
