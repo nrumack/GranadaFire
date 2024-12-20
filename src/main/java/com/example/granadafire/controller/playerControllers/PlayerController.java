@@ -8,14 +8,19 @@ import com.example.granadafire.entities.Game;
 import com.example.granadafire.entities.Player;
 import com.example.granadafire.entities.Team;
 import com.example.granadafire.util.DataReciever;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.util.StringConverter;
+
+import java.util.List;
 
 public class PlayerController implements DataReciever {
     PlayerDAO playerDAO = new PlayerDAO();
-    TeamDAO teamDAO =  new TeamDAO();
+    TeamDAO teamDAO = new TeamDAO();
     GameDAO gameDAO = new GameDAO();
 
     @FXML
@@ -35,9 +40,9 @@ public class PlayerController implements DataReciever {
     @FXML
     private TextField email;
     @FXML
-    private TextField team;
+    private ComboBox<Game> gameComboBox;
     @FXML
-    private TextField game;
+    private ComboBox<Team> teamComboBox;
     @FXML
     private Button deletePlayer;
     @FXML
@@ -48,8 +53,12 @@ public class PlayerController implements DataReciever {
     private Button savePlayer;
 
     private Player selectedPlayer;
+
     @FXML
-    private void initialize() { toggleButtonsVisibility(); }
+    private void initialize() {
+        toggleButtonsVisibility();
+        loadDropdownData();
+    }
 
     @Override
     public void recieveData(Object data) {
@@ -81,8 +90,8 @@ public class PlayerController implements DataReciever {
             updatePlayer.setVisible(false);
             updatePlayer.setManaged(false);
             updatePlayer.setDisable(true);
-            updatePlayer.setStyle("-fx-background-color: C0BCBC");
         }
+
         if (selectedPlayer != null) {
             clearButton.setVisible(false);
             clearButton.setManaged(false);
@@ -94,17 +103,49 @@ public class PlayerController implements DataReciever {
             clearButton.setVisible(true);
             clearButton.setManaged(true);
             clearButton.setDisable(false);
-            clearButton.setStyle("-fx-background-color: C0BCBC");
             savePlayer.setVisible(true);
             savePlayer.setManaged(true);
             savePlayer.setDisable(false);
-            savePlayer.setStyle("-fx-background-color: C0BCBC");
         }
     }
+
+    private void loadDropdownData() {
+        List<Game> games = gameDAO.getAllGames();
+        List<Team> teams = teamDAO.getAllTeams();
+
+        gameComboBox.setItems(FXCollections.observableArrayList(games));
+        teamComboBox.setItems(FXCollections.observableArrayList(teams));
+
+        gameComboBox.setConverter(new StringConverter<Game>() {
+            @Override
+            public String toString(Game game) {
+                return game != null ? game.getGameName() : "";
+            }
+
+            @Override
+            public Game fromString(String string) {
+                return games.stream().filter(game -> game.getGameName().equals(string)).findFirst().orElse(null);
+            }
+        });
+
+        teamComboBox.setConverter(new StringConverter<Team>() {
+            @Override
+            public String toString(Team team) {
+                return team != null ? team.getTeamName() : "";
+            }
+
+            @Override
+            public Team fromString(String string) {
+                return teams.stream().filter(team -> team.getTeamName().equals(string)).findFirst().orElse(null);
+            }
+        });
+    }
+
     @FXML
     private void clearButton(ActionEvent event) {
         clearFields();
     }
+
     private void clearFields() {
         firstNameField.clear();
         lastNameField.clear();
@@ -114,8 +155,9 @@ public class PlayerController implements DataReciever {
         city.clear();
         country.clear();
         email.clear();
+        gameComboBox.getSelectionModel().clearSelection();
+        teamComboBox.getSelectionModel().clearSelection();
     }
-
 
     private void updateView() {
         if (selectedPlayer != null) {
@@ -128,8 +170,8 @@ public class PlayerController implements DataReciever {
             country.setText(selectedPlayer.getCountry());
             email.setText(selectedPlayer.getEmail());
 
-            team.setText(selectedPlayer.getTeam() != null ? selectedPlayer.getTeam().getTeamName() : "");
-            game.setText(selectedPlayer.getGame() != null ? selectedPlayer.getGame().getGameName() : "");
+            gameComboBox.setValue(selectedPlayer.getGame());
+            teamComboBox.setValue(selectedPlayer.getTeam());
         }
     }
 
@@ -148,7 +190,6 @@ public class PlayerController implements DataReciever {
     @FXML
     public void savePlayer(ActionEvent event) {
         try {
-
             String firstNameInput = firstNameField.getText();
             String lastNameInput = lastNameField.getText();
             String nicknameInput = nickname.getText();
@@ -157,30 +198,13 @@ public class PlayerController implements DataReciever {
             String cityInput = city.getText();
             String countryInput = country.getText();
             String emailInput = email.getText();
-            String teamInput = team.getText(); // Team name
-            String gameInput = game.getText(); // Game name
 
-            Team assignedTeam = null;
-            Game assignedGame = null;
-
-
-            if (teamInput != null && !teamInput.isEmpty()) {
-                assignedTeam = teamDAO.getTeamByName(teamInput);
-                if (assignedTeam == null) {
-                    System.out.println("Team not found: " + teamInput);
-                }
-            }
-
-            if (gameInput != null && !gameInput.isEmpty()) {
-                assignedGame = gameDAO.getGameByName(gameInput);
-                if (assignedGame == null) {
-                    System.out.println("Game not found: " + gameInput);
-                }
-            }
+            Game selectedGame = gameComboBox.getValue();
+            Team selectedTeam = teamComboBox.getValue();
 
             resetErrorsStyles();
 
-            if (firstNameInput.isEmpty()){
+            if (firstNameInput.isEmpty()) {
                 showError(firstNameField, "First Name is required");
             }
             if (lastNameInput.isEmpty()) {
@@ -189,14 +213,17 @@ public class PlayerController implements DataReciever {
             if (nicknameInput.isEmpty()) {
                 showError(nickname, "Nickname is required");
             }
-            if (isValidAreaCode(areaCodeInput)) {
+            if (!isValidAreaCode(areaCodeInput)) {
                 showError(areaCode, "Only digits and max 6");
             }
-            if (isValidEmail(emailInput)) {
-                showError(email, "invalid email");
+            if (!isValidEmail(emailInput)) {
+                showError(email, "Invalid email");
+            }
+            if (selectedGame == null) {
+                showError(gameComboBox, "Game is required");
             }
 
-            if (firstNameInput.isEmpty() || lastNameInput.isEmpty() || nicknameInput.isEmpty() || !isValidAreaCode(areaCodeInput) || !isValidEmail(emailInput)) {
+            if (firstNameInput.isEmpty() || lastNameInput.isEmpty() || nicknameInput.isEmpty() || !isValidAreaCode(areaCodeInput) || !isValidEmail(emailInput) || selectedGame == null) {
                 return;
             }
 
@@ -209,23 +236,21 @@ public class PlayerController implements DataReciever {
                     cityInput,
                     countryInput,
                     emailInput,
-                    assignedTeam,
-                    assignedGame
+                    selectedTeam,
+                    selectedGame
             );
-
 
             playerDAO.savePlayer(newPlayer);
 
             SceneSwitcher.switchScenes(event, "/views/playerViews/playerSearchView.fxml", "Pied Pipers", null, PlayerSearchController.class);
-
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
+    @FXML
     public void updatePlayer(ActionEvent event) {
         try {
-
             String firstNameInput = firstNameField.getText();
             String lastNameInput = lastNameField.getText();
             String nicknameInput = nickname.getText();
@@ -234,27 +259,32 @@ public class PlayerController implements DataReciever {
             String cityInput = city.getText();
             String countryInput = country.getText();
             String emailInput = email.getText();
-            String teamInput = team.getText();
+
+            Game selectedGame = gameComboBox.getValue();
+            Team selectedTeam = teamComboBox.getValue();
 
             resetErrorsStyles();
 
-            if (firstNameInput.isEmpty()){
-                showError(firstNameField, "First Name is required*");
+            if (firstNameInput.isEmpty()) {
+                showError(firstNameField, "First Name is required");
             }
             if (lastNameInput.isEmpty()) {
-                showError(lastNameField, "Last Name is required*");
+                showError(lastNameField, "Last Name is required");
             }
             if (nicknameInput.isEmpty()) {
-                showError(nickname, "Nickname is required*");
+                showError(nickname, "Nickname is required");
             }
-            if (isValidAreaCode(areaCodeInput)) {
+            if (!isValidAreaCode(areaCodeInput)) {
                 showError(areaCode, "Only digits and max 6");
             }
-            if (isValidEmail(emailInput)) {
-                showError(email, "invalid email");
+            if (!isValidEmail(emailInput)) {
+                showError(email, "Invalid email");
+            }
+            if (selectedGame == null) {
+                showError(gameComboBox, "Game is required");
             }
 
-            if (firstNameInput.isEmpty() || lastNameInput.isEmpty() || nicknameInput.isEmpty() || !isValidAreaCode(areaCodeInput) || !isValidEmail(emailInput)) {
+            if (firstNameInput.isEmpty() || lastNameInput.isEmpty() || nicknameInput.isEmpty() || !isValidAreaCode(areaCodeInput) || !isValidEmail(emailInput) || selectedGame == null) {
                 return;
             }
 
@@ -269,15 +299,8 @@ public class PlayerController implements DataReciever {
                 existingPlayer.setCity(cityInput);
                 existingPlayer.setCountry(countryInput);
                 existingPlayer.setEmail(emailInput);
-
-                if (!teamInput.isEmpty()) {
-                    Team updatedTeam = teamDAO.getTeamByName(teamInput);
-                    if (updatedTeam != null) {
-                        existingPlayer.setTeam(updatedTeam);
-                    } else {
-                        System.out.println("Team not found: " + teamInput);
-                    }
-                }
+                existingPlayer.setTeam(selectedTeam);
+                existingPlayer.setGame(selectedGame);
 
                 playerDAO.updatePlayer(existingPlayer);
 
@@ -302,7 +325,10 @@ public class PlayerController implements DataReciever {
     private void showError(TextField field, String message) {
         field.setStyle("-fx-border-color: red");
         field.setPromptText(message);
-        field.setStyle("-fx-prompt-atext-fill: red;");
+    }
+
+    private void showError(ComboBox<?> comboBox, String message) {
+        comboBox.setStyle("-fx-border-color: red");
     }
 
     private void resetErrorsStyles() {
@@ -311,6 +337,8 @@ public class PlayerController implements DataReciever {
         nickname.setStyle("");
         email.setStyle("");
         areaCode.setStyle("");
+        gameComboBox.setStyle("");
+        teamComboBox.setStyle("");
 
         firstNameField.setPromptText("First Name");
         lastNameField.setPromptText("Last Name");
@@ -323,5 +351,5 @@ public class PlayerController implements DataReciever {
     private void backButton(ActionEvent event) {
         SceneSwitcher.switchScenes(event, "/views/playerViews/playerSearchView.fxml", "Pied Pipers", null, PlayerSearchController.class);
     }
-
 }
+
