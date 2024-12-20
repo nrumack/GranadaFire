@@ -358,3 +358,4 @@ public class PlayerController implements DataReciever {
         SceneSwitcher.switchScenes(event, "/views/generalViews/loginView.fxml", "Pied Pipers", null, loginController.class);
     }
 
+}

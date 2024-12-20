@@ -2,6 +2,7 @@ package com.example.granadafire.DAO;
 
 import com.example.granadafire.entities.Game;
 import com.example.granadafire.entities.Player;
+import com.example.granadafire.entities.Team;
 import jakarta.persistence.*;
 
 import java.util.List;
