@@ -14,16 +14,16 @@
       <Label layoutX="147.0" layoutY="85.0" text="Game Name" />
       <TextField fx:id="teamName" layoutX="222.0" layoutY="52.0" />
       <TextField fx:id="gameName" layoutX="222.0" layoutY="81.0" />
-      <Button layoutX="22.0" layoutY="452.0" mnemonicParsing="false" onAction="#goBackToTeamSearch" style="-fx-background-color: C0BCBC;" text="Back" textFill="WHITE" />
-      <Button layoutX="311.0" layoutY="418.0" mnemonicParsing="false" onAction="#addAPlayer" style="-fx-background-color: C0BCBC;" text="Add player" textFill="WHITE" />
-      <Button layoutX="283.0" layoutY="245.0" mnemonicParsing="false" onAction="#removePlayer" style="-fx-background-color: C0BCBC;" text="Remove player" textFill="WHITE" />
+      <Button layoutX="22.0" layoutY="452.0" mnemonicParsing="false" onAction="#goBackToTeamSearch" prefHeight="26.0" prefWidth="83.0" style="-fx-background-color: C0BCBC;" text="Back" textFill="WHITE" />
+      <Button layoutX="304.0" layoutY="418.0" mnemonicParsing="false" onAction="#addAPlayer" prefHeight="26.0" prefWidth="83.0" style="-fx-background-color: C0BCBC;" text="Add player" textFill="WHITE" />
+      <Button layoutX="282.0" layoutY="239.0" mnemonicParsing="false" onAction="#removePlayer" prefHeight="26.0" prefWidth="99.0" style="-fx-background-color: C0BCBC;" text="Remove player" textFill="WHITE" />
       <Button layoutX="326.0" layoutY="14.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#logout" prefHeight="19.0" prefWidth="54.0" style="-fx-background-color: C0BCBC;" text="Logout" textFill="WHITE">
          <font>
             <Font size="10.0" />
          </font>
       </Button>
       <Label layoutX="20.0" layoutY="113.0" text="Team players" />
-      <ListView fx:id="availablePlayers" layoutX="19.0" layoutY="311.0" prefHeight="99.0" prefWidth="369.0" />
-      <Label layoutX="20.0" layoutY="287.0" text="Available players" />
+      <ListView fx:id="availablePlayers" layoutX="19.0" layoutY="310.0" prefHeight="99.0" prefWidth="369.0" />
+      <Label layoutX="20.0" layoutY="286.0" text="Available players" />
    </children>
 </AnchorPane>
