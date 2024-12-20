@@ -6,17 +6,23 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
+<?import javafx.scene.text.Font?>
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.granadafire.controller.teamControllers.TeamInfoController">
    <children>
-      <ListView fx:id="playersInTeam" layoutX="20.0" layoutY="103.0" prefHeight="99.0" prefWidth="362.0" />
-      <Label layoutX="157.0" layoutY="26.0" text="Team Name" />
-      <Label layoutX="156.0" layoutY="55.0" text="Game Name" />
-      <TextField fx:id="teamName" layoutX="231.0" layoutY="22.0" />
-      <TextField fx:id="gameName" layoutX="231.0" layoutY="51.0" />
+      <ListView fx:id="playersInTeam" layoutX="20.0" layoutY="133.0" prefHeight="99.0" prefWidth="362.0" />
+      <Label layoutX="148.0" layoutY="56.0" text="Team Name" />
+      <Label layoutX="147.0" layoutY="85.0" text="Game Name" />
+      <TextField fx:id="teamName" layoutX="222.0" layoutY="52.0" />
+      <TextField fx:id="gameName" layoutX="222.0" layoutY="81.0" />
       <Button layoutX="32.0" layoutY="452.0" mnemonicParsing="false" onAction="#goBackToTeamSearch" style="-fx-background-color: C0BCBC;" text="Back" textFill="WHITE" />
       <Button layoutX="305.0" layoutY="418.0" mnemonicParsing="false" onAction="#addAPlayer" style="-fx-background-color: C0BCBC;" text="Add player" textFill="WHITE" />
-      <Button layoutX="283.0" layoutY="215.0" mnemonicParsing="false" onAction="#removePlayer" style="-fx-background-color: C0BCBC;" text="Remove player" textFill="WHITE" />
-      <Label layoutX="20.0" layoutY="83.0" text="Team players" />
+      <Button layoutX="283.0" layoutY="245.0" mnemonicParsing="false" onAction="#removePlayer" style="-fx-background-color: C0BCBC;" text="Remove player" textFill="WHITE" />
+      <Button layoutX="331.0" layoutY="14.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#logout" prefHeight="19.0" prefWidth="54.0" style="-fx-background-color: C0BCBC;" text="Logout" textFill="WHITE">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Button>
+      <Label layoutX="20.0" layoutY="113.0" text="Team players" />
       <ListView fx:id="availablePlayers" layoutX="19.0" layoutY="311.0" prefHeight="99.0" prefWidth="369.0" />
       <Label layoutX="20.0" layoutY="287.0" text="Available players" />
    </children>

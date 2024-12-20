@@ -1,6 +1,8 @@
 package com.example.granadafire.controller.teamControllers;
 
 import com.example.granadafire.DAO.PlayerDAO;
+import com.example.granadafire.controller.SceneSwitcher;
+import com.example.granadafire.controller.generalControllers.loginController;
 import com.example.granadafire.entities.Player;
 import com.example.granadafire.entities.Team;
 import javafx.event.ActionEvent;
@@ -11,8 +13,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import org.hibernate.sql.Update;
-
 import java.util.List;
 
 public class TeamInfoController {
@@ -109,6 +109,11 @@ public class TeamInfoController {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    @FXML
+    protected void logout(ActionEvent event) {
+        SceneSwitcher.switchScenes(event, "/views/generalViews/loginView.fxml", "Pied Pipers", null, loginController.class);
     }
 
     public void setSelectedTeam(Team team){

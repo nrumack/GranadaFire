@@ -2,6 +2,8 @@ package com.example.granadafire.controller.teamControllers;
 
 import com.example.granadafire.DAO.GameDAO;
 import com.example.granadafire.DAO.TeamDAO;
+import com.example.granadafire.controller.SceneSwitcher;
+import com.example.granadafire.controller.generalControllers.loginController;
 import com.example.granadafire.entities.Game;
 import com.example.granadafire.entities.Team;
 import javafx.event.ActionEvent;
@@ -69,5 +71,10 @@ public class TeamController implements Initializable {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    @FXML
+    protected void logout(ActionEvent event) {
+        SceneSwitcher.switchScenes(event, "/views/generalViews/loginView.fxml", "Pied Pipers", null, loginController.class);
     }
 }
