@@ -33,7 +33,6 @@ public class TeamController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
         List<Game> games = gameDAO.getAllGames();
         List<String> gameNames = new ArrayList<>();
         for (Game game : games) {
@@ -48,7 +47,7 @@ public class TeamController implements Initializable {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/teamViews/teamSearchView.fxml"));
             Stage stage = new Stage();
             stage.setScene(new Scene(loader.load()));
-            stage.setTitle("Add Team");
+            stage.setTitle("Pied Pipers");
             stage.show();
             ((Node)(event.getSource())).getScene().getWindow().hide();
         } catch (Exception e) {
@@ -65,8 +64,12 @@ public class TeamController implements Initializable {
                     String teamName = teamNameBox.getText();
                     Team team = new Team(teamName, game);
                     teamDAO.saveTeam(team);
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/teamViews/teamSearchView.fxml"));
+                    Stage stage = new Stage();
+                    stage.setScene(new Scene(loader.load()));
+                    stage.setTitle("Pied Pipers");
+                    stage.show();
                     ((Node)(event.getSource())).getScene().getWindow().hide();
-                    clickBackButton(null);
                     }
         } catch (Exception e) {
             e.printStackTrace();

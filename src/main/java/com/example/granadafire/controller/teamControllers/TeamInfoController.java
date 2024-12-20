@@ -93,7 +93,6 @@ public class TeamInfoController {
             playersInTeam.getItems().remove(player);
             availablePlayers.refresh();
             playersInTeam.refresh();
-
         }
     }
 
@@ -103,7 +102,7 @@ public class TeamInfoController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/teamViews/teamSearchView.fxml"));
             Stage stage = new Stage();
             stage.setScene(new Scene(loader.load()));
-            stage.setTitle("Teams");
+            stage.setTitle("Pied Pipers");
             stage.show();
             ((Node) event.getSource()).getScene().getWindow().hide();
         } catch (Exception e) {

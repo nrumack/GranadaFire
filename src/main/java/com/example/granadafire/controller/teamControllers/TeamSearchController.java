@@ -81,7 +81,7 @@ public class TeamSearchController implements Initializable {
             controller.setTeamName(team);
             controller.setPlayersInTeam();
             controller.setAvailablePlayers();
-            stage.setTitle("Team Info");
+            stage.setTitle("Pied Pipers");
             stage.show();
             ((Node)(event.getSource())).getScene().getWindow().hide();
 
@@ -96,7 +96,7 @@ public class TeamSearchController implements Initializable {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/generalViews/mainMenuView.fxml"));
             Stage stage = new Stage();
             stage.setScene(new Scene(loader.load()));
-            stage.setTitle("Piper Games");
+            stage.setTitle("Pied Pipers");
             stage.show();
             ((Node)(event.getSource())).getScene().getWindow().hide();
         } catch (Exception e) {
@@ -110,7 +110,7 @@ public class TeamSearchController implements Initializable {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/teamViews/teamView.fxml"));
             Stage stage = new Stage();
             stage.setScene(new Scene(loader.load()));
-            stage.setTitle("Create Team");
+            stage.setTitle("Pied Pipers");
             stage.show();
             ((Node)(event.getSource())).getScene().getWindow().hide();
         } catch (Exception e) {
