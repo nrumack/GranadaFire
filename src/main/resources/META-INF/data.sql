@@ -1,1 +1,0 @@
--- INSERT INTO games(spel_id, spel_namn) VALUES (1, 'DotA');

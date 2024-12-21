@@ -18,8 +18,13 @@
             <ListView fx:id="teamListView" layoutX="14.0" layoutY="49.0" prefHeight="292.0" prefWidth="381.0" />
             <Button layoutX="14.0" layoutY="461.0" mnemonicParsing="false" onAction="#clickBackButton" prefHeight="25.0" prefWidth="85.0" style="-fx-background-color: C0BCBC;" text="Back" textFill="WHITE" />
             <Button layoutX="14.0" layoutY="348.0" mnemonicParsing="false" onAction="#createNewTeam" prefHeight="25.0" prefWidth="98.0" style="-fx-background-color: C0BCBC;" text="Create a team" textFill="WHITE" />
-            <Button layoutX="314.0" layoutY="348.0" mnemonicParsing="false" onAction="#deleteTeam" style="-fx-background-color: C0BCBC;" text="Delete team" textFill="WHITE" />
-            <Button layoutX="138.0" layoutY="348.0" mnemonicParsing="false" onAction="#editTeam" style="-fx-background-color: C0BCBC;" text="Team info / Update team" textFill="WHITE" />
+            <Button layoutX="310.0" layoutY="379.0" mnemonicParsing="false" onAction="#deleteTeam" style="-fx-background-color: C0BCBC;" text="Delete team" textFill="WHITE" />
+            <Button layoutX="243.0" layoutY="348.0" mnemonicParsing="false" onAction="#editTeam" style="-fx-background-color: C0BCBC;" text="Team info / Update team" textFill="WHITE" />
+            <Button layoutX="340.0" layoutY="14.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#logout" prefHeight="19.0" prefWidth="54.0" style="-fx-background-color: C0BCBC;" text="Logout" textFill="WHITE">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </Button>
          </children>
       </AnchorPane>
    </children>

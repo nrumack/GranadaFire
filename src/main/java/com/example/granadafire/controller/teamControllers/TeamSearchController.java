@@ -1,6 +1,11 @@
 package com.example.granadafire.controller.teamControllers;
 
+import com.example.granadafire.DAO.MatchDAO;
+import com.example.granadafire.DAO.PlayerDAO;
 import com.example.granadafire.DAO.TeamDAO;
+import com.example.granadafire.controller.SceneSwitcher;
+import com.example.granadafire.controller.generalControllers.loginController;
+import com.example.granadafire.entities.Player;
 import com.example.granadafire.entities.Team;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -20,6 +25,8 @@ import java.util.ResourceBundle;
 public class TeamSearchController implements Initializable {
 
     TeamDAO teamDAO = new TeamDAO();
+    PlayerDAO playerDAO = new PlayerDAO();
+    MatchDAO matchDAO = new MatchDAO();
 
     @FXML
     private ListView<Team> teamListView;
@@ -35,7 +42,23 @@ public class TeamSearchController implements Initializable {
             Team selectedTeamName = teamListView.getSelectionModel().getSelectedItem();
             if (selectedTeamName != null) {
                 Team team = teamDAO.getTeamByName(selectedTeamName.getTeamName());
-                teamDAO.deleteTeam(team.getTeamId());
+
+                List<Player> players = playerDAO.getPlayersByTeam(team);
+                for (Player player : players) {
+                    player.setTeam(null);
+                    playerDAO.updatePlayer(player);
+                }
+
+//                List<Match> matches = matchDAO.getMatchesByTeam(team);
+//                for (Match match : matches) {
+//                    if (match.getTeam1() == selectedTeamName || match.getTeam2() == selectedTeamName) {
+//                        match.setTeam1(null);
+//                        match.setTeam2(null);
+//                        matchDAO.updateMatch(match);
+//                    }
+//                }
+                teamDAO.deleteTeam(selectedTeamName.getTeamId());
+
                 teamListView.getSelectionModel().clearSelection();
                 teamListView.getItems().remove(selectedTeamName);
             }
@@ -44,13 +67,13 @@ public class TeamSearchController implements Initializable {
         }
     }
 
-    public void editTeam() {
+    public void editTeam(ActionEvent event) {
         try {
             ObservableValue<Team> selectedTeamObservable = teamListView.getSelectionModel().selectedItemProperty();
             Team selectedTeam = selectedTeamObservable.getValue();
 
             if (selectedTeam != null) {
-                openTeamInfo(selectedTeam);
+                openTeamInfo(selectedTeam, event);
             } else {
                 System.out.println("selectedTeam is null");
             }
@@ -60,7 +83,7 @@ public class TeamSearchController implements Initializable {
     }
 
     @FXML
-    public void openTeamInfo(Team team) {
+    public void openTeamInfo(Team team, ActionEvent event) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/teamViews/teamInfoView.fxml"));
             Stage stage = new Stage();
@@ -71,8 +94,10 @@ public class TeamSearchController implements Initializable {
             controller.setTeamName(team);
             controller.setPlayersInTeam();
             controller.setAvailablePlayers();
-            stage.setTitle("Team Info");
+            stage.setTitle("Pied Pipers");
             stage.show();
+            ((Node)(event.getSource())).getScene().getWindow().hide();
+
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -84,7 +109,7 @@ public class TeamSearchController implements Initializable {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/generalViews/mainMenuView.fxml"));
             Stage stage = new Stage();
             stage.setScene(new Scene(loader.load()));
-            stage.setTitle("Piper Games");
+            stage.setTitle("Pied Pipers");
             stage.show();
             ((Node)(event.getSource())).getScene().getWindow().hide();
         } catch (Exception e) {
@@ -95,14 +120,19 @@ public class TeamSearchController implements Initializable {
     @FXML
     protected void createNewTeam(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/teamViews/teamView.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/teamViews/createTeamView.fxml"));
             Stage stage = new Stage();
             stage.setScene(new Scene(loader.load()));
-            stage.setTitle("Create Team");
+            stage.setTitle("Pied Pipers");
             stage.show();
             ((Node)(event.getSource())).getScene().getWindow().hide();
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    @FXML
+    protected void logout(ActionEvent event) {
+        SceneSwitcher.switchScenes(event, "/views/generalViews/loginView.fxml", "Pied Pipers", null, loginController.class);
     }
 }
