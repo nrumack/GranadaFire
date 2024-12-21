@@ -7,15 +7,12 @@ import com.example.granadafire.controller.generalControllers.loginController;
 import com.example.granadafire.entities.Match;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
-
+import javafx.scene.control.*;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -24,9 +21,8 @@ public class MatchController {
     private final MatchDAO matchDAO = new MatchDAO();
     private List<Match> matches = new ArrayList<>();
 
-
     @FXML
-    private ListView<String> matchListView;
+    private ListView<Match> matchListView;
 
     @FXML
     private ComboBox<String> filterComboBox;
@@ -48,17 +44,46 @@ public class MatchController {
         }
 
         loadMatches(matches);
+
+        filterComboBox.setOnAction(event -> applyFilter());
+    }
+
+    private void loadMatches(List<Match> matches) {
+        ObservableList<Match> matchObservableList = FXCollections.observableArrayList(matches);
+        matchObservableList.sort(Comparator.comparing(Match::getMatchDateRaw));
+
+        matchListView.setItems(matchObservableList);
+        matchListView.setCellFactory(param -> new ListCell<>() {
+            @Override
+            protected void updateItem(Match match, boolean empty) {
+                super.updateItem(match, empty);
+                if (empty || match == null) {
+                    setText(null);
+                } else {
+                    String status = match.getResult() == null ? "(Upcoming)" : "(Completed)";
+                    String score = (match.getScore1() == null || match.getScore2() == null) ? "N/A - N/A"
+                            : match.getScore1() + " - " + match.getScore2();
+                    setText(String.format("[%s] %s %s %s - Winner: %s %s",
+                            match.getMatchDateRaw(),
+                            match.getParticipant1Name(),
+                            score,
+                            match.getParticipant2Name(),
+                            match.getWinnerName(),
+                            status));
+                }
+            }
+        });
     }
 
     @FXML
-    public void applyFilter(ActionEvent event) {
-        String filterCriteria = filterComboBox.getValue();
+    private void applyFilter() {
+        String filter = filterComboBox.getValue();
 
-        if ("Completed".equals(filterCriteria)) {
+        if ("Completed".equals(filter)) {
             loadMatches(matches.stream()
                     .filter(match -> match.getResult() != null)
                     .collect(Collectors.toList()));
-        } else if ("Upcoming".equals(filterCriteria)) {
+        } else if ("Upcoming".equals(filter)) {
             loadMatches(matches.stream()
                     .filter(match -> match.getResult() == null && match.getMatchDateRaw().isAfter(LocalDateTime.now()))
                     .collect(Collectors.toList()));
@@ -68,58 +93,15 @@ public class MatchController {
     }
 
     @FXML
-    private void loadMatches(List<Match> matches) {
-        ObservableList<String> formattedMatches = FXCollections.observableArrayList();
-
-        if (matches == null || matches.isEmpty()) {
-            System.out.println("No matches to display.");
-            return;
-        }
-
-        for (Match match : matches) {
-            String participant1 = match.getParticipant1Name();
-            String participant2 = match.getParticipant2Name();
-            String scores = (match.getResult() == null) ? "N/A - N/A" : String.format("%d - %d", match.getScore1(), match.getScore2());
-            String winner = (match.getResult() == null) ? "N/A" : match.getWinnerName();
-            String matchStatus = (match.getResult() == null || match.getResult().isEmpty()) ? "(Upcoming)" : "(Completed)";
-            String matchString = String.format("[%s] %s (%s) vs %s (%s) - Winner: %s %s",
-                    match.getMatchDateRaw(), participant1, scores, participant2, scores, winner, matchStatus);
-            formattedMatches.add(matchString);
-        }
-
-        matchListView.setItems(formattedMatches);
-    }
-
-
-    @FXML
-    private void deleteMatch() {
-        Match selectedMatch = matches.get(matchListView.getSelectionModel().getSelectedIndex());
-
+    private void updateScore() {
+        Match selectedMatch = matchListView.getSelectionModel().getSelectedItem();
         if (selectedMatch == null) {
             return;
         }
 
-        matchDAO.deleteMatchById(selectedMatch.getMatchId());
-        matches.remove(selectedMatch);
-        loadMatches(matches);
-    }
-
-    @FXML
-    private void updateScore() {
         try {
-            Match selectedMatch = matches.get(matchListView.getSelectionModel().getSelectedIndex());
-            if (selectedMatch == null) {
-                System.out.println("No match selected.");
-                return;
-            }
-
-            if (score1Field.getText().isEmpty() || score2Field.getText().isEmpty()) {
-                System.out.println("Scores cannot be empty.");
-                return;
-            }
-
-            int score1 = Integer.parseInt(score1Field.getText());
-            int score2 = Integer.parseInt(score2Field.getText());
+            Integer score1 = Integer.parseInt(score1Field.getText());
+            Integer score2 = Integer.parseInt(score2Field.getText());
 
             selectedMatch.setScore1(score1);
             selectedMatch.setScore2(score2);
@@ -136,29 +118,35 @@ public class MatchController {
             loadMatches(matches);
 
         } catch (NumberFormatException e) {
-            System.out.println("Invalid score");
-        } catch (Exception e) {
-            System.out.println("Error updating match: " + e.getMessage());
+            System.out.println("Invalid score.");
         }
     }
 
     @FXML
-    private void createMatch(ActionEvent event) {
+    private void deleteMatch() {
+        Match selectedMatch = matchListView.getSelectionModel().getSelectedItem();
+        if (selectedMatch == null) {
+            return;
+        }
+
+        matchDAO.deleteMatchById(selectedMatch.getMatchId());
+        matches.remove(selectedMatch);
+        loadMatches(matches);
+    }
+
+    @FXML
+    private void createMatch(javafx.event.ActionEvent event) {
         SceneSwitcher.switchScenes(event, "/views/matchViews/matchAddView.fxml", "Pied Pipers", null, AddMatchController.class);
     }
 
     @FXML
-    private void goBack(ActionEvent event) {
+    private void goBack(javafx.event.ActionEvent event) {
         SceneSwitcher.switchScenes(event, "/views/generalViews/mainMenuView.fxml", "Pied Pipers", null, Controller.class);
     }
 
     @FXML
-    protected void logout(ActionEvent event) {
+    private void logout(javafx.event.ActionEvent event) {
         SceneSwitcher.switchScenes(event, "/views/generalViews/loginView.fxml", "Pied Pipers", null, loginController.class);
     }
 }
-
-
-
-
 

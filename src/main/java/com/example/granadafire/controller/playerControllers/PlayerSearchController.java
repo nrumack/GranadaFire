@@ -14,9 +14,12 @@ import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TextField;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
+
+import static java.util.Collections.list;
 
 public class PlayerSearchController {
 
@@ -91,10 +94,13 @@ public class PlayerSearchController {
     @FXML
     private void searchPlayers() {
         String searchTerm = searchField.getText().trim();
+
+        String[] searchArray = searchTerm.split(" ");
+
         if (searchTerm.isEmpty()) {
             loadPlayers(null);
         } else {
-            List<Player> filteredPlayers = playerDAO.getPlayersByName(searchTerm);
+            List<Player> filteredPlayers = playerDAO.getPlayersByName(searchArray[0]);
             playerListView.setItems(FXCollections.observableArrayList(filteredPlayers));
         }
     }
