@@ -17,6 +17,11 @@ public class Main extends Application {
 
         Scene scene = new Scene(root);
         URL stylesheet = getClass().getResource("/views/style.css");
+        if (stylesheet != null) {
+            scene.getStylesheets().add(stylesheet.toExternalForm());
+        } else {
+            System.err.println("Sheet not found");
+        }
         primaryStage.setTitle("Pied Pipers");
         primaryStage.setScene(scene);
         primaryStage.show();

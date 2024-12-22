@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.granadafire.controller.teamControllers.CreateTeamController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.granadafire.controller.teamControllers.TeamController">
    <children>
       <Button layoutX="101.0" layoutY="389.0" mnemonicParsing="false" onAction="#clickBackButton" prefHeight="26.0" prefWidth="86.0" style="-fx-background-color: C0BCBC;" text="Back" textFill="WHITE" />
       <Button layoutX="213.0" layoutY="389.0" mnemonicParsing="false" onAction="#clickAddTeamButton" prefHeight="26.0" prefWidth="86.0" style="-fx-background-color: C0BCBC;" text="Save" textFill="WHITE" />
