@@ -1,11 +1,8 @@
 package com.example.granadafire.controller.teamControllers;
 
-import com.example.granadafire.DAO.MatchDAO;
-import com.example.granadafire.DAO.PlayerDAO;
 import com.example.granadafire.DAO.TeamDAO;
 import com.example.granadafire.controller.SceneSwitcher;
 import com.example.granadafire.controller.generalControllers.loginController;
-import com.example.granadafire.entities.Player;
 import com.example.granadafire.entities.Team;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -21,12 +18,10 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
-
+//Created by Marc
 public class TeamSearchController implements Initializable {
 
     TeamDAO teamDAO = new TeamDAO();
-    PlayerDAO playerDAO = new PlayerDAO();
-    MatchDAO matchDAO = new MatchDAO();
 
     @FXML
     private ListView<Team> teamListView;
@@ -42,23 +37,7 @@ public class TeamSearchController implements Initializable {
             Team selectedTeamName = teamListView.getSelectionModel().getSelectedItem();
             if (selectedTeamName != null) {
                 Team team = teamDAO.getTeamByName(selectedTeamName.getTeamName());
-
-                List<Player> players = playerDAO.getPlayersByTeam(team);
-                for (Player player : players) {
-                    player.setTeam(null);
-                    playerDAO.updatePlayer(player);
-                }
-
-//                List<Match> matches = matchDAO.getMatchesByTeam(team);
-//                for (Match match : matches) {
-//                    if (match.getTeam1() == selectedTeamName || match.getTeam2() == selectedTeamName) {
-//                        match.setTeam1(null);
-//                        match.setTeam2(null);
-//                        matchDAO.updateMatch(match);
-//                    }
-//                }
-                teamDAO.deleteTeam(selectedTeamName.getTeamId());
-
+                teamDAO.deleteTeam(team.getTeamId());
                 teamListView.getSelectionModel().clearSelection();
                 teamListView.getItems().remove(selectedTeamName);
             }
@@ -67,39 +46,28 @@ public class TeamSearchController implements Initializable {
         }
     }
 
+    @FXML
     public void editTeam(ActionEvent event) {
         try {
-            ObservableValue<Team> selectedTeamObservable = teamListView.getSelectionModel().selectedItemProperty();
-            Team selectedTeam = selectedTeamObservable.getValue();
+            Team selectedTeam = teamListView.getSelectionModel().getSelectedItem();
 
             if (selectedTeam != null) {
-                openTeamInfo(selectedTeam, event);
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/teamViews/teamInfoView.fxml"));
+                Scene newScene = new Scene(loader.load());
+                TeamInfoController controller = loader.getController();
+                controller.setSelectedTeam(selectedTeam);
+                controller.setGameName(selectedTeam);
+                controller.setTeamName(selectedTeam);
+                controller.setPlayersInTeam();
+                controller.setAvailablePlayers();
+                Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                currentStage.setScene(newScene);
+                currentStage.setTitle("Pied Pipers");
             } else {
-                System.out.println("selectedTeam is null");
+                System.out.println("No team selected.");
             }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    @FXML
-    public void openTeamInfo(Team team, ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/teamViews/teamInfoView.fxml"));
-            Stage stage = new Stage();
-            stage.setScene(new Scene(loader.load()));
-            TeamInfoController controller = loader.getController();
-            controller.setSelectedTeam(team);
-            controller.setGameName(team);
-            controller.setTeamName(team);
-            controller.setPlayersInTeam();
-            controller.setAvailablePlayers();
-            stage.setTitle("Pied Pipers");
-            stage.show();
-            ((Node)(event.getSource())).getScene().getWindow().hide();
-
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
     }
 
@@ -107,11 +75,10 @@ public class TeamSearchController implements Initializable {
     protected void clickBackButton(ActionEvent event) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/generalViews/mainMenuView.fxml"));
-            Stage stage = new Stage();
-            stage.setScene(new Scene(loader.load()));
-            stage.setTitle("Pied Pipers");
-            stage.show();
-            ((Node)(event.getSource())).getScene().getWindow().hide();
+            Scene newScene = new Scene(loader.load());
+            Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            currentStage.setScene(newScene);
+            currentStage.setTitle("Pied Pipers");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -120,17 +87,15 @@ public class TeamSearchController implements Initializable {
     @FXML
     protected void createNewTeam(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/teamViews/createTeamView.fxml"));
-            Stage stage = new Stage();
-            stage.setScene(new Scene(loader.load()));
-            stage.setTitle("Pied Pipers");
-            stage.show();
-            ((Node)(event.getSource())).getScene().getWindow().hide();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/teamViews/teamView.fxml"));
+            Scene newScene = new Scene(loader.load());
+            Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            currentStage.setScene(newScene);
+            currentStage.setTitle("Pied Pipers");
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-
     @FXML
     protected void logout(ActionEvent event) {
         SceneSwitcher.switchScenes(event, "/views/generalViews/loginView.fxml", "Pied Pipers", null, loginController.class);

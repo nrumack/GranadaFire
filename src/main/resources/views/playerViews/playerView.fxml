@@ -4,34 +4,96 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="500.0" prefWidth="400.0" style="-fx-background-color: D9D9D9;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.granadafire.controller.playerControllers.PlayerController">
-         <children>
-            <Label layoutX="149.0" layoutY="14.0" prefHeight="51.0" prefWidth="103.0" text="Player" textAlignment="CENTER">
-               <font>
-                  <Font size="30.0" />
-               </font>
-            </Label>
-            <Button id="Save" fx:id="savePlayer" layoutX="265.0" layoutY="450.0" mnemonicParsing="false" onAction="#savePlayer" prefHeight="30.0" prefWidth="75.0" style="-fx-background-color: C0BCBC;" text="Save" textFill="WHITE"><font><Font size="14.0" /></font></Button>
-            <Button id="Update" fx:id="updatePlayer" layoutX="265.0" layoutY="450.0" mnemonicParsing="false" onAction="#updatePlayer" prefHeight="30.0" prefWidth="75.0" style="-fx-background-color: C0BCBC;" text="Update" textFill="WHITE"><font><Font size="14.0" /></font></Button>
-            <Button id="deleteButton" fx:id="deletePlayer" layoutX="163.0" layoutY="450.0" mnemonicParsing="false" onAction="#deletePlayer" prefHeight="30.0" prefWidth="75.0" style="-fx-background-color: C0BCBC;" text="Delete" textFill="WHITE"><font><Font size="14.0" /></font></Button>
-            <Button fx:id="clearButton" layoutX="163.0" layoutY="450.0" mnemonicParsing="false" onAction="#clearButton" prefHeight="30.0" prefWidth="75.0" style="-fx-background-color: C0BCBC;" text="Clear" textFill="WHITE" />
-            <Button layoutX="62.0" layoutY="450.0" mnemonicParsing="false" onAction="#backButton" prefHeight="30.0" prefWidth="75.0" style="-fx-background-color: C0BCBC;" text="Back" textFill="WHITE"><font><Font size="14.0" /></font>
-            </Button>
-            <Button layoutX="331.0" layoutY="14.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#logout" prefHeight="19.0" prefWidth="54.0" style="-fx-background-color: C0BCBC;" text="Logout" textFill="WHITE">
-               <font>
-                  <Font size="10.0" />
-               </font>
-            </Button>
+<AnchorPane prefHeight="500.0" prefWidth="500.0"
+            style="-fx-background-image: url('file:src/main/resources/views/img/GranadaAlt2.png'); -fx-background-size: cover;"
+            xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.granadafire.controller.playerControllers.PlayerController">
+    <children>
+        <AnchorPane layoutX="50.0" prefHeight="500.0" prefWidth="400.0"
+                    style="-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.8), 10, 0.0, 0, 2), dropshadow(gaussian, rgba(255, 255, 255, 0.5), 5, 0.0, 0, 0); -fx-background-color: rgba(0, 0, 0, 0.7); -fx-background-radius: 10; -fx-padding: 10;">
+            <children>
+                <Label layoutX="149.0" layoutY="14.0" prefHeight="51.0"
+                       style="-fx-text-fill: white; -fx-font-weight: bold;" text="Player" textAlignment="CENTER">
+                    <font>
+                        <Font size="36.0"/>
+                    </font>
+                </Label>
+                <Button id="Save" fx:id="savePlayer" layoutX="265.0" layoutY="450.0" mnemonicParsing="false"
+                        onAction="#savePlayer" prefHeight="30.0" prefWidth="75.0"
+                        style="-fx-font-weight: bold; -fx-text-fill: #ffffff; -fx-background-color: #000000; -fx-effect: dropshadow(three-pass-box, rgba(255, 255, 255, 0.8), 5, 0.0, 0, 2);"
+                        text="Save" textFill="WHITE">
+                    <font>
+                        <Font size="14.0"/>
+                    </font>
+                </Button>
+                <Button id="Update" fx:id="updatePlayer" layoutX="265.0" layoutY="450.0" mnemonicParsing="false"
+                        onAction="#updatePlayer" prefHeight="30.0" prefWidth="75.0"
+                        style="-fx-font-weight: bold; -fx-text-fill: #ffffff; -fx-background-color: #000000; -fx-effect: dropshadow(three-pass-box, rgba(255, 255, 255, 0.8), 5, 0.0, 0, 2);"
+                        text="Update" textFill="WHITE">
+                    <font>
+                        <Font size="14.0"/>
+                    </font>
+                </Button>
+                <Button id="deleteButton" fx:id="deletePlayer" layoutX="163.0" layoutY="450.0" mnemonicParsing="false"
+                        onAction="#deletePlayer" prefHeight="30.0" prefWidth="75.0"
+                        style="-fx-font-weight: bold; -fx-text-fill: #ffffff; -fx-background-color: #000000; -fx-effect: dropshadow(three-pass-box, rgba(255, 255, 255, 0.8), 5, 0.0, 0, 2);"
+                        text="Delete" textFill="WHITE">
+                    <font>
+                        <Font size="14.0"/>
+                    </font>
+                </Button>
+                <Button fx:id="clearButton" layoutX="163.0" layoutY="450.0" mnemonicParsing="false"
+                        onAction="#clearButton" prefHeight="30.0" prefWidth="75.0"
+                        style="-fx-font-weight: bold; -fx-text-fill: #ffffff; -fx-background-color: #000000; -fx-effect: dropshadow(three-pass-box, rgba(255, 255, 255, 0.8), 5, 0.0, 0, 2);"
+                        text="Clear" textFill="WHITE"/>
+                <Button layoutX="62.0" layoutY="450.0" mnemonicParsing="false" onAction="#backButton" prefHeight="30.0"
+                        prefWidth="75.0"
+                        style="-fx-font-weight: bold; -fx-text-fill: #ffffff; -fx-background-color: #000000; -fx-effect: dropshadow(three-pass-box, rgba(255, 255, 255, 0.8), 5, 0.0, 0, 2);"
+                        text="Back" textFill="WHITE">
+                    <font>
+                        <Font size="14.0"/>
+                    </font>
+                </Button>
+                <Button layoutX="330.0" layoutY="14.0" minHeight="-Infinity" minWidth="-Infinity"
+                        mnemonicParsing="false" onAction="#logout" prefHeight="19.0" prefWidth="54.0"
+                        style="-fx-font-weight: bold; -fx-text-fill: #ffffff; -fx-background-color: #000000; -fx-effect: dropshadow(three-pass-box, rgba(255, 255, 255, 0.8), 5, 0.0, 0, 2);"
+                        text="Logout" textFill="WHITE">
+                    <font>
+                        <Font size="10.0"/>
+                    </font>
+                </Button>
 
-            <TextField fx:id="firstNameField" layoutX="25.0" layoutY="75.0" prefHeight="17.0" prefWidth="350.0" promptText="Firstname" style="-fx-border-color: Black; -fx-padding: 5; -fx-background-color: white;" />
-            <TextField fx:id="lastNameField" layoutX="25.0" layoutY="110.0" prefHeight="17.0" prefWidth="350.0" promptText="Lastname" style="-fx-background-color: white; -fx-border-color: black;" />
-            <TextField fx:id="nickname" layoutX="25.0" layoutY="145.0" prefHeight="17.0" prefWidth="350.0" promptText="Nickname" style="-fx-border-color: Black; -fx-padding: 5; -fx-background-color: white;" />
-            <TextField fx:id="street" layoutX="25.0" layoutY="180.0" prefHeight="17.0" prefWidth="350.0" promptText="Street" style="-fx-border-color: Black; -fx-padding: 5; -fx-background-color: white;" />
-            <TextField fx:id="areaCode" layoutX="25.0" layoutY="215.0" prefHeight="17.0" prefWidth="350.0" promptText="Area Code" style="-fx-border-color: Black; -fx-padding: 5; -fx-background-color: white;" />
-            <TextField fx:id="city" layoutX="25.0" layoutY="250.0" prefHeight="17.0" prefWidth="170.0" promptText="City" style="-fx-border-color: black; -fx-padding: 5; -fx-background-color: white;" />
-            <TextField fx:id="country" layoutX="205.0" layoutY="250.0" prefHeight="17.0" prefWidth="170.0" promptText="Country" style="-fx-border-color: black; -fx-padding: 5; -fx-background-color: white;" />
-            <TextField fx:id="email" layoutX="25.0" layoutY="285.0" prefHeight="17.0" prefWidth="350.0" promptText="Email" style="-fx-border-color: black; -fx-padding: 5; -fx-background-color: white;" />
-            <ComboBox fx:id="teamComboBox" layoutX="25.0" layoutY="320.0" prefHeight="17.0" prefWidth="350.0" promptText="Team" style="-fx-border-color: black; -fx-padding: 5; -fx-background-color: white;" />
-            <ComboBox fx:id="gameComboBox" layoutX="25.0" layoutY="365.0" prefHeight="17.0" prefWidth="350.0" promptText="Game" style="-fx-border-color: black; -fx-padding: 5; -fx-background-color: white;" />
-   </children>
+                <TextField fx:id="firstNameField" layoutX="25.0" layoutY="75.0" prefHeight="17.0" prefWidth="350.0"
+                           promptText="Firstname"
+                           style="-fx-background-radius: 10; -fx-padding: 5 10 5 10; -fx-background-color: #ffffff; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 5, 0.0, 0, 1);"/>
+                <TextField fx:id="lastNameField" layoutX="25.0" layoutY="110.0" prefHeight="17.0" prefWidth="350.0"
+                           promptText="Lastname"
+                           style="-fx-background-radius: 10; -fx-padding: 5 10 5 10; -fx-background-color: #ffffff; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 5, 0.0, 0, 1);"/>
+                <TextField fx:id="nickname" layoutX="25.0" layoutY="145.0" prefHeight="17.0" prefWidth="350.0"
+                           promptText="Nickname"
+                           style="-fx-background-radius: 10; -fx-padding: 5 10 5 10; -fx-background-color: #ffffff; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 5, 0.0, 0, 1);"/>
+                <TextField fx:id="street" layoutX="25.0" layoutY="180.0" prefHeight="17.0" prefWidth="350.0"
+                           promptText="Street"
+                           style="-fx-background-radius: 10; -fx-padding: 5 10 5 10; -fx-background-color: #ffffff; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 5, 0.0, 0, 1);"/>
+                <TextField fx:id="areaCode" layoutX="25.0" layoutY="215.0" prefHeight="17.0" prefWidth="350.0"
+                           promptText="Area Code"
+                           style="-fx-background-radius: 10; -fx-padding: 5 10 5 10; -fx-background-color: #ffffff; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 5, 0.0, 0, 1);"/>
+                <TextField fx:id="city" layoutX="25.0" layoutY="250.0" prefHeight="17.0" prefWidth="170.0"
+                           promptText="City"
+                           style="-fx-background-radius: 10; -fx-padding: 5 10 5 10; -fx-background-color: #ffffff; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 5, 0.0, 0, 1);"/>
+                <TextField fx:id="country" layoutX="205.0" layoutY="250.0" prefHeight="17.0" prefWidth="170.0"
+                           promptText="Country"
+                           style="-fx-background-radius: 10; -fx-padding: 5 10 5 10; -fx-background-color: #ffffff; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 5, 0.0, 0, 1);"/>
+                <TextField fx:id="email" layoutX="25.0" layoutY="285.0" prefHeight="17.0" prefWidth="350.0"
+                           promptText="Email"
+                           style="-fx-background-radius: 10; -fx-padding: 5 10 5 10; -fx-background-color: #ffffff; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 5, 0.0, 0, 1);"/>
+                <ComboBox fx:id="teamComboBox" layoutX="25.0" layoutY="320.0" prefHeight="15.0" prefWidth="350.0"
+                          promptText="Team"
+                          style="-fx-background-radius: 10; -fx-padding: 5 10 5 10; -fx-background-color: #ffffff; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 5, 0.0, 0, 1);"/>
+                <ComboBox fx:id="gameComboBox" layoutX="25.0" layoutY="365.0" prefHeight="15.0" prefWidth="350.0"
+                          promptText="Game"
+                          style="-fx-background-radius: 10; -fx-padding: 5 10 5 10; -fx-background-color: #ffffff; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 5, 0.0, 0, 1);"/>
+            </children>
+        </AnchorPane>
+    </children>
 </AnchorPane>

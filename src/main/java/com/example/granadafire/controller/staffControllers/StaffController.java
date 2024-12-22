@@ -14,7 +14,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-
+//Created by Nicho
 public class StaffController implements DataReciever {
     StaffDAO staffDAO = new StaffDAO();
 
@@ -52,7 +52,6 @@ public class StaffController implements DataReciever {
 
     public void setStaff(Staff selectedStaff) {
         this.selectedStaff = selectedStaff;
-        System.out.println("recieved staff: " + selectedStaff.getNickname());
         updateView();
         toggleButtonsVisibility();
     }
@@ -72,7 +71,6 @@ public class StaffController implements DataReciever {
             updateStaff.setVisible(false);
             updateStaff.setManaged(false);
             updateStaff.setDisable(true);
-            updateStaff.setStyle("-fx-background-color: C0BCBC");
         }
         if (selectedStaff != null) {
             clearButton.setVisible(false);
@@ -85,11 +83,9 @@ public class StaffController implements DataReciever {
             clearButton.setVisible(true);
             clearButton.setManaged(true);
             clearButton.setDisable(false);
-            clearButton.setStyle("-fx-background-color: C0BCBC");
             saveStaff.setVisible(true);
             saveStaff.setManaged(true);
             saveStaff.setDisable(false);
-            saveStaff.setStyle("-fx-background-color: C0BCBC");
         }
     }
 
@@ -139,7 +135,7 @@ public class StaffController implements DataReciever {
 
 
     @FXML
-    public void saveStaff() {
+    public void saveStaff(ActionEvent event) {
         try {
             String firstNameInput = firstNameField.getText();
             String lastNameInput = lastNameField.getText();
@@ -152,7 +148,7 @@ public class StaffController implements DataReciever {
 
             resetErrorsStyles();
 
-            if (firstNameInput.isEmpty()){
+            if (firstNameInput.isEmpty()) {
                 showError(firstNameField, "First Name is required");
             }
             if (lastNameInput.isEmpty()) {
@@ -161,24 +157,29 @@ public class StaffController implements DataReciever {
             if (nicknameInput.isEmpty()) {
                 showError(nickname, "Nickname is required");
             }
-            if (isValidAreaCode(areaCodeInput)) {
+            if (!areaCodeInput.isEmpty() && !isValidAreaCode(areaCodeInput)) {
                 showError(areaCode, "Only digits and max 6");
             }
-            if (isValidEmail(emailInput)) {
-                showError(email, "invalid email");
+            if (!emailInput.isEmpty() && !isValidEmail(emailInput)) {
+                showError(email, "Invalid email");
+
             }
 
-            if (firstNameInput.isEmpty() || lastNameInput.isEmpty() || nicknameInput.isEmpty() || !isValidAreaCode(areaCodeInput) || !isValidEmail(emailInput)) {
+            if (firstNameInput.isEmpty() || lastNameInput.isEmpty() || nicknameInput.isEmpty()) {
                 return;
             }
 
-            Staff newStaff = new Staff(0, firstNameInput, lastNameInput, nicknameInput, streetInput, Integer.parseInt(areaCodeInput), cityInput, countryInput, emailInput);
+            System.out.println("Validation passed. Saving staff...");
+            Staff newStaff = new Staff(0, firstNameInput, lastNameInput, nicknameInput, streetInput, areaCodeInput.isEmpty() ? 0 : Integer.parseInt(areaCodeInput), cityInput, countryInput, emailInput);
             staffDAO.saveStaff(newStaff);
 
+            SceneSwitcher.switchScenes(event, "/views/staffViews/staffSearchView.fxml", "Pied Pipers", null, StaffSeachController.class);
+
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            e.printStackTrace();
         }
     }
+
 
     @FXML
     public void updateStaff(ActionEvent event) {
@@ -247,9 +248,8 @@ public class StaffController implements DataReciever {
     }
 
     private void showError(TextField field, String message) {
-        field.setStyle("-fx-border-color: red");
+        field.setStyle("-fx-border-color: red; -fx-border-width: 2px;");
         field.setPromptText(message);
-        field.setStyle("-fx-prompt-atext-fill: red;");
     }
 
     private void resetErrorsStyles() {

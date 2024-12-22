@@ -20,7 +20,7 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 import static java.util.Collections.list;
-
+//Created by Nicho/Martin
 public class PlayerSearchController {
 
     private final GameDAO gameDAO = new GameDAO();

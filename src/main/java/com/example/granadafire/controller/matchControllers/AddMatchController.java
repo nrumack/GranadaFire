@@ -3,7 +3,6 @@ package com.example.granadafire.controller.matchControllers;
 import com.example.granadafire.DAO.MatchDAO;
 import com.example.granadafire.DAO.PlayerDAO;
 import com.example.granadafire.DAO.TeamDAO;
-import com.example.granadafire.controller.Controller;
 import com.example.granadafire.controller.SceneSwitcher;
 import com.example.granadafire.controller.generalControllers.loginController;
 import com.example.granadafire.entities.Match;
@@ -20,7 +19,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
-
+//Created by Martin
 public class AddMatchController {
 
     @FXML

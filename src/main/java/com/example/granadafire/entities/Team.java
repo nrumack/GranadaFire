@@ -18,7 +18,7 @@ public class Team {
     @JoinColumn(name = "game_id", referencedColumnName = "game_id", nullable = false)
     private Game game;
 
-    @OneToMany(mappedBy = "team", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "team", cascade = CascadeType.PERSIST, orphanRemoval = true)
     private List<Player> players;
 
     public Team() {}

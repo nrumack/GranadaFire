@@ -2,35 +2,66 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<?import javafx.scene.text.Font?>
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.granadafire.controller.matchControllers.AddMatchController" prefHeight="600.0" prefWidth="400.0">
+<AnchorPane prefHeight="500.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/17.0.2-ea"
+            style="-fx-background-image: url('file:src/main/resources/views/img/GranadaAlt2.png'); -fx-background-size: cover;"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.granadafire.controller.matchControllers.AddMatchController">
     <children>
-        <Button layoutX="331.0" layoutY="14.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#logout" prefHeight="19.0" prefWidth="54.0" style="-fx-background-color: C0BCBC;" text="Logout" textFill="WHITE">
-            <font>
-                <Font size="10.0" />
-            </font>
-        </Button>
-        <VBox layoutX="50.0" layoutY="20.0" spacing="20.0" alignment="CENTER">
-            <Label text="Add New Match" style="-fx-font-size: 20px;" />
-            <GridPane hgap="10.0" vgap="15.0">
-                <Label text="Match Date:" GridPane.rowIndex="0" GridPane.columnIndex="0" />
-                <DatePicker fx:id="matchDatePicker" GridPane.rowIndex="0" GridPane.columnIndex="1" prefWidth="170.0" />
+        <AnchorPane layoutX="50.0" prefHeight="500.0" prefWidth="400.0"
+                    style="-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.8), 10, 0.0, 0, 2), dropshadow(gaussian, rgba(255, 255, 255, 0.5), 5, 0.0, 0, 0); -fx-background-color: rgba(0, 0, 0, 0.7); -fx-background-radius: 10; -fx-padding: 10;">
+            <children>
+                <Button layoutX="330.0" layoutY="14.0" minHeight="-Infinity" minWidth="-Infinity"
+                        mnemonicParsing="false" onAction="#logout" prefHeight="19.0" prefWidth="54.0"
+                        style="-fx-font-weight: bold; -fx-text-fill: #ffffff; -fx-background-color: #000000; -fx-effect: dropshadow(three-pass-box, rgba(255, 255, 255, 0.8), 5, 0.0, 0, 2);"
+                        text="Logout" textFill="WHITE">
+                    <font>
+                        <Font size="10.0"/>
+                    </font>
+                </Button>
+                <Label layoutX="65.0" layoutY="57.0" prefHeight="51.0"
+                       style="-fx-text-fill: white; -fx-font-weight: bold;" text="Add New Match" textAlignment="CENTER">
+                    <font>
+                        <Font size="36.0"/>
+                    </font>
+                </Label>
+                <Label layoutX="65.0" layoutY="134.0" text="Match Date:"
+                       style="-fx-text-fill: white; -fx-font-weight: bold;"/>
+                <DatePicker fx:id="matchDatePicker" layoutX="170.0" layoutY="130.0" prefWidth="170.0"
+                            style="-fx-background-radius: 10; -fx-padding: 2 2 2 2; -fx-background-color: #ffffff; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 5, 0.0, 0, 1);"/>
 
-                <Label text="Time:" GridPane.rowIndex="1" GridPane.columnIndex="0" />
-                <TextField fx:id="matchTimeField" GridPane.rowIndex="1" GridPane.columnIndex="1" promptText="HH:mm" prefWidth="170.0" />
+                <Label layoutX="65.0" layoutY="179.0" text="Time:"
+                       style="-fx-text-fill: white; -fx-font-weight: bold;"/>
+                <TextField fx:id="matchTimeField" layoutX="170.0" layoutY="175.0" prefWidth="170.0" promptText="HH:mm"
+                           style="-fx-background-radius: 10; -fx-padding: 5 10 5 10; -fx-background-color: #ffffff; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 5, 0.0, 0, 1);"/>
 
-                <Label text="Player/Team 1:" GridPane.rowIndex="2" GridPane.columnIndex="0" />
-                <ComboBox fx:id="player1ComboBox" GridPane.rowIndex="2" GridPane.columnIndex="1" prefWidth="170.0" />
+                <Label layoutX="65.0" layoutY="224.0" text="Player/Team 1:"
+                       style="-fx-text-fill: white; -fx-font-weight: bold;"/>
+                <ComboBox fx:id="player1ComboBox" layoutX="170.0" layoutY="220.0" prefWidth="170.0"
+                          style="-fx-background-radius: 10; -fx-padding: 2 2 2 2; -fx-background-color: #ffffff; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 5, 0.0, 0, 1);"/>
 
-                <Label text="Player/Team 2:" GridPane.rowIndex="3" GridPane.columnIndex="0" />
-                <ComboBox fx:id="player2ComboBox" GridPane.rowIndex="3" GridPane.columnIndex="1" prefWidth="170.0" />
-            </GridPane>
-        </VBox>
-
-        <HBox spacing="20.0" alignment="CENTER" layoutX="100.0" layoutY="500.0">
-            <Button fx:id="saveButton" text="Save" onAction="#saveMatch" prefWidth="100.0"/>
-            <Button fx:id="backButton" text="Back" onAction="#goBack" prefWidth="100.0"/>
-        </HBox>
+                <Label layoutX="65.0" layoutY="269.0" text="Player/Team 2:"
+                       style="-fx-text-fill: white; -fx-font-weight: bold;"/>
+                <ComboBox fx:id="player2ComboBox" layoutX="170.0" layoutY="265.0" prefWidth="170.0"
+                          style="-fx-background-radius: 10; -fx-padding: 2 2 2 2; -fx-background-color: #ffffff; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 5, 0.0, 0, 1);"/>
+                <Button fx:id="saveButton" layoutX="225.0" layoutY="450.0" onAction="#saveMatch" prefHeight="30.0"
+                        prefWidth="75.0"
+                        style="-fx-font-weight: bold; -fx-text-fill: #ffffff; -fx-background-color: #000000; -fx-effect: dropshadow(three-pass-box, rgba(255, 255, 255, 0.8), 5, 0.0, 0, 2);"
+                        text="Save" textFill="WHITE">
+                    <font>
+                        <Font size="14.0"/>
+                    </font>
+                </Button>
+                <Button fx:id="backButton" layoutX="110.0" layoutY="450.0" onAction="#goBack" prefHeight="30.0"
+                        prefWidth="75.0"
+                        style="-fx-font-weight: bold; -fx-text-fill: #ffffff; -fx-background-color: #000000; -fx-effect: dropshadow(three-pass-box, rgba(255, 255, 255, 0.8), 5, 0.0, 0, 2);"
+                        text="Back" textFill="WHITE">
+                    <font>
+                        <Font size="14.0"/>
+                    </font>
+                </Button>
+            </children>
+        </AnchorPane>
     </children>
 </AnchorPane>

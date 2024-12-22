@@ -10,11 +10,14 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import java.util.List;
+import org.hibernate.sql.Update;
 
+import java.util.List;
+//Created by Marc
 public class TeamInfoController {
 
     PlayerDAO playerDAO = new PlayerDAO();
@@ -23,10 +26,10 @@ public class TeamInfoController {
     List <Player> players;
 
     @FXML
-    TextField teamName;
+    Label teamName;
 
     @FXML
-    TextField gameName;
+    Label gameName;
 
     @FXML
     ListView<Player> playersInTeam;
@@ -93,6 +96,7 @@ public class TeamInfoController {
             playersInTeam.getItems().remove(player);
             availablePlayers.refresh();
             playersInTeam.refresh();
+
         }
     }
 
@@ -100,11 +104,10 @@ public class TeamInfoController {
     public void goBackToTeamSearch(ActionEvent event) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/teamViews/teamSearchView.fxml"));
-            Stage stage = new Stage();
-            stage.setScene(new Scene(loader.load()));
-            stage.setTitle("Pied Pipers");
-            stage.show();
-            ((Node) event.getSource()).getScene().getWindow().hide();
+            Scene newScene = new Scene(loader.load());
+            Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            currentStage.setScene(newScene);
+            currentStage.setTitle("Pied Pipers");
         } catch (Exception e) {
             e.printStackTrace();
         }

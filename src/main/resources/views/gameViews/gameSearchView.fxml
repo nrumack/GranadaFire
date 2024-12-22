@@ -4,25 +4,37 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="500.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.granadafire.controller.gameControllers.GameSearchController">
+<AnchorPane prefHeight="500.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/17.0.2-ea"
+            style="-fx-background-image: url('file:src/main/resources/views/img/GranadaAlt2.png'); -fx-background-size: cover;"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.granadafire.controller.gameControllers.GameSearchController">
     <children>
-        <AnchorPane prefHeight="500.0" prefWidth="400.0">
+        <AnchorPane layoutX="50.0" prefHeight="500.0" prefWidth="400.0"
+                    style="-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.8), 10, 0.0, 0, 2), dropshadow(gaussian, rgba(255, 255, 255, 0.5), 5, 0.0, 0, 0); -fx-background-color: rgba(0, 0, 0, 0.7); -fx-background-radius: 10; -fx-padding: 10;">
             <children>
-                <Label layoutX="154.0" layoutY="14.0" text="Search">
+                <Label layoutX="140.0" layoutY="7.0" style="-fx-text-fill: white; -fx-font-weight: bold;" text="Games"
+                       textAlignment="CENTER">
                     <font>
-                        <Font size="30.0" />
+                        <Font size="36.0"/>
                     </font>
                 </Label>
-                <Button fx:id="searchButton" layoutX="310.0" layoutY="60.0" mnemonicParsing="false" onAction="#searchGames" prefHeight="30.0" prefWidth="70.0" style="-fx-background-color: C0BCBC;" text="Search" textFill="WHITE" />
-                <Button layoutX="280.0" layoutY="100.0" mnemonicParsing="false" onAction="#createNewButton" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: C0BCBC;" text="Create New" textFill="WHITE" />
-                <Button layoutX="280.0" layoutY="135.0" mnemonicParsing="false" onAction="#backButton" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: C0BCBC;" text="Back" textFill="WHITE" />
-                <Button layoutX="331.0" layoutY="14.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#logout" prefHeight="19.0" prefWidth="54.0" style="-fx-background-color: C0BCBC;" text="Logout" textFill="WHITE">
+                <Button fx:id="searchButton" layoutX="310.0" layoutY="60.0" mnemonicParsing="false"
+                        onAction="#searchGames" prefHeight="30.0" prefWidth="70.0" style="-fx-font-weight: bold; -fx-text-fill: #ffffff; -fx-background-color: #000000; -fx-effect: dropshadow(three-pass-box, rgba(255, 255, 255, 0.8), 5, 0.0, 0, 2);"
+                        text="Search" textFill="WHITE"/>
+                <Button layoutX="280.0" layoutY="100.0" mnemonicParsing="false" onAction="#createNewButton"
+                        prefHeight="30.0" prefWidth="100.0" style="-fx-font-weight: bold; -fx-text-fill: #ffffff; -fx-background-color: #000000; -fx-effect: dropshadow(three-pass-box, rgba(255, 255, 255, 0.8), 5, 0.0, 0, 2);" text="Create New"
+                        textFill="WHITE"/>
+                <Button layoutX="280.0" layoutY="135.0" mnemonicParsing="false" onAction="#backButton" prefHeight="30.0"
+                        prefWidth="100.0" style="-fx-font-weight: bold; -fx-text-fill: #ffffff; -fx-background-color: #000000; -fx-effect: dropshadow(three-pass-box, rgba(255, 255, 255, 0.8), 5, 0.0, 0, 2);" text="Back" textFill="WHITE"/>
+                <Button layoutX="331.0" layoutY="14.0" minHeight="-Infinity" minWidth="-Infinity"
+                        mnemonicParsing="false" onAction="#logout" prefHeight="19.0" prefWidth="54.0"
+                        style="-fx-font-weight: bold; -fx-text-fill: #ffffff; -fx-background-color: #000000; -fx-effect: dropshadow(three-pass-box, rgba(255, 255, 255, 0.8), 5, 0.0, 0, 2);" text="Logout" textFill="WHITE">
                     <font>
-                        <Font size="10.0" />
+                        <Font size="10.0"/>
                     </font>
                 </Button>
-                <TextField fx:id="searchField" layoutX="20.0" layoutY="61.0" prefHeight="30.0" prefWidth="280.0" />
-                <ListView fx:id="gameResultList" layoutX="20.0" layoutY="180.0" prefHeight="300.0" prefWidth="360.0" />
+                <TextField fx:id="searchField" layoutX="20.0" layoutY="60.0" prefHeight="30.0" prefWidth="280.0" style="-fx-background-radius: 5; -fx-padding: 5;"/>
+                <ListView fx:id="gameResultList" layoutX="20.0" layoutY="180.0" prefHeight="300.0" prefWidth="360.0" style="-fx-background-radius: 5; -fx-padding: 5;"/>
             </children>
         </AnchorPane>
     </children>

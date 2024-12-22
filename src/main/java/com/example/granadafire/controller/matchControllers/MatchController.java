@@ -1,12 +1,13 @@
 package com.example.granadafire.controller.matchControllers;
 
 import com.example.granadafire.DAO.MatchDAO;
-import com.example.granadafire.controller.Controller;
+import com.example.granadafire.controller.MenuController;
 import com.example.granadafire.controller.SceneSwitcher;
 import com.example.granadafire.controller.generalControllers.loginController;
 import com.example.granadafire.entities.Match;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
@@ -15,7 +16,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
-
+//Created by Martin
 public class MatchController {
 
     private final MatchDAO matchDAO = new MatchDAO();
@@ -141,11 +142,11 @@ public class MatchController {
 
     @FXML
     private void goBack(javafx.event.ActionEvent event) {
-        SceneSwitcher.switchScenes(event, "/views/generalViews/mainMenuView.fxml", "Pied Pipers", null, Controller.class);
+        SceneSwitcher.switchScenes(event, "/views/generalViews/mainMenuView.fxml", "Pied Pipers", null, MenuController.class);
     }
 
     @FXML
-    private void logout(javafx.event.ActionEvent event) {
+    protected void logout(ActionEvent event) {
         SceneSwitcher.switchScenes(event, "/views/generalViews/loginView.fxml", "Pied Pipers", null, loginController.class);
     }
 }
