@@ -1,5 +1,6 @@
 package com.example.granadafire.DAO;
 
+import com.example.granadafire.entities.Player;
 import com.example.granadafire.entities.Team;
 import jakarta.persistence.*;
 
@@ -91,6 +92,10 @@ public class TeamDAO {
             transaction.begin();
             Team team = entityManager.find(Team.class, id);
             if (team != null) {
+                for (Player player : team.getPlayers()) {
+                    player.setTeam(null);
+                    entityManager.merge(player);
+                }
                 entityManager.remove(team);
                 transaction.commit();
                 return true;

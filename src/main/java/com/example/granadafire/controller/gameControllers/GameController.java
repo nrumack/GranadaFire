@@ -64,7 +64,6 @@ public class GameController implements DataReciever {
             updateGame.setVisible(false);
             updateGame.setManaged(false);
             updateGame.setDisable(true);
-            updateGame.setStyle("-fx-background-color: C0BCBC");
         }
         if (selectedGame != null) {
             clearButton.setVisible(false);
@@ -77,11 +76,9 @@ public class GameController implements DataReciever {
             clearButton.setVisible(true);
             clearButton.setManaged(true);
             clearButton.setDisable(false);
-            clearButton.setStyle("-fx-background-color: C0BCBC");
             saveGame.setVisible(true);
             saveGame.setManaged(true);
             saveGame.setDisable(false);
-            saveGame.setStyle("-fx-background-color: C0BCBC");
         }
     }
 

@@ -2,22 +2,31 @@
 
 <!-- Created By Martin -->
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
 
-<SplitPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="500.0" prefWidth="400.0" style="-fx-background-color: D9D9D9;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.granadafire.controller.generalControllers.loginController">
+<SplitPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="500.0" prefWidth="500.0" style="-fx-background-color: D9D9D9;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.granadafire.controller.generalControllers.loginController">
   <items>
-    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="500.0" prefWidth="400.0">
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="400.0" prefWidth="500.0" style="-fx-background-image: url('file:src/main/resources/views/img/Media.jpg'); -fx-background-size: cover;">
          <children>
-            <Label alignment="CENTER" layoutX="169.0" layoutY="70.0" text="Staff" textAlignment="CENTER">
-               <font>
-                  <Font size="30.0" />
-               </font>
-            </Label>
           <AnchorPane layoutX="59.0" layoutY="65.0" minHeight="0.0" minWidth="0.0" prefHeight="131.0" prefWidth="600.0" />
-            <Pagination id="linkContainer" fx:id="linkContainer" layoutX="86.0" layoutY="127.0" maxPageIndicatorCount="0" prefHeight="298.0" prefWidth="232.0" />
-            <VBox fx:id="loginButtonContainer" alignment="TOP_CENTER" layoutX="83.0" layoutY="140.0" prefHeight="296.0" prefWidth="232.0" spacing="10.0" />
+            <Pagination id="linkContainer" fx:id="linkContainer" layoutX="100.0" layoutY="270.0" maxPageIndicatorCount="0" prefHeight="213.0" prefWidth="300.0" />
+            <GridPane fx:id="loginButtonContainer" layoutX="110.0" layoutY="270.0" prefHeight="201.0" prefWidth="300.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </GridPane>
+
            </children></AnchorPane>
     </items>
   </SplitPane>

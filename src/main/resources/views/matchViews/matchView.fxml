@@ -2,51 +2,37 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.granadafire.controller.matchControllers.MatchController" prefHeight="650.0" prefWidth="800.0">
+<AnchorPane prefHeight="500.0" prefWidth="800.0" style="-fx-background-image: url('file:src/main/resources/views/img/GranadaAlt2.png'); -fx-background-size: cover;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.granadafire.controller.matchControllers.MatchController">
     <children>
-        <!-- Centered Content -->
-        <VBox alignment="CENTER" spacing="20.0" prefHeight="650.0" prefWidth="800.0">
+        <AnchorPane layoutX="50.0" prefHeight="500.0" prefWidth="700.0" style="-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.8), 10, 0.0, 0, 2), dropshadow(gaussian, rgba(255, 255, 255, 0.5), 5, 0.0, 0, 0); -fx-background-color: rgba(0, 0, 0, 0.7); -fx-background-radius: 10; -fx-padding: 10;">
             <children>
-                <!-- Title -->
-                <Label text="Matches" style="-fx-font-size: 24px;" />
-
-                <!-- Filter Section -->
-                <HBox alignment="CENTER" spacing="10.0">
-                    <children>
-                        <Label text="Filter Matches:" />
-                        <ComboBox fx:id="filterComboBox" promptText="Select Filter" prefWidth="200.0" />
-                    </children>
-                </HBox>
+                <Label layoutX="275.0" layoutY="14.0" prefHeight="51.0" style="-fx-text-fill: white; -fx-font-weight: bold;" text="Matches" textAlignment="CENTER">
+                    <font>
+                        <Font size="36.0" />
+                    </font>
+                </Label>
+                <Button layoutX="632.0" layoutY="14.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#logout" prefHeight="19.0" prefWidth="54.0" style="-fx-font-weight: bold; -fx-text-fill: #ffffff; -fx-background-color: #000000; -fx-effect: dropshadow(three-pass-box, rgba(255, 255, 255, 0.8), 5, 0.0, 0, 2);" text="Logout" textFill="WHITE">
+                    <font>
+                        <Font size="10.0" />
+                    </font>
+                </Button>
 
                 <!-- Match List -->
-                <ListView fx:id="matchListView" prefHeight="350.0" prefWidth="700.0" />
-
-                <!-- Update Scores Section -->
-                <VBox alignment="CENTER" spacing="10.0">
-                    <children>
-                        <Label text="Update Match Score" style="-fx-font-size: 18px;" />
-                        <HBox alignment="CENTER" spacing="10.0">
-                            <children>
-                                <Label text="Team 1 Score:" />
-                                <TextField fx:id="score1Field" prefWidth="50.0" />
-                                <Label text="Team 2 Score:" />
-                                <TextField fx:id="score2Field" prefWidth="50.0" />
-                                <Button fx:id="updateScoreButton" text="Update Scores" onAction="#updateScore" />
-                            </children>
-                        </HBox>
-                    </children>
-                </VBox>
-
-                <!-- Buttons Section -->
-                <HBox alignment="CENTER" spacing="20.0">
-                    <children>
-                        <Button fx:id="createMatchButton" text="Create Match" onAction="#createMatch" prefWidth="120.0" />
-                        <Button fx:id="deleteMatchButton" text="Delete Match" onAction="#deleteMatch" prefWidth="120.0" />
-                        <Button fx:id="goBackButton" text="Back" onAction="#goBack" prefWidth="120.0" />
-                    </children>
-                </HBox>
+                <ListView fx:id="matchListView" layoutX="25.0" layoutY="160.0" prefHeight="315.0" prefWidth="650.0" style="-fx-background-radius: 10; -fx-padding: 5; -fx-background-color: #ffffff;" />
+                <Button fx:id="createMatchButton" layoutX="550.0" layoutY="40.0" onAction="#createMatch" prefHeight="30.0" prefWidth="100.0" style="-fx-font-weight: bold; -fx-text-fill: #ffffff; -fx-background-color: #000000; -fx-effect: dropshadow(three-pass-box, rgba(255, 255, 255, 0.8), 5, 0.0, 0, 2);" text="Create Match" textFill="WHITE" />
+                <Button fx:id="deleteMatchButton" layoutX="550.0" layoutY="80.0" onAction="#deleteMatch" prefHeight="30.0" prefWidth="100.0" style="-fx-font-weight: bold; -fx-text-fill: #ffffff; -fx-background-color: #000000; -fx-effect: dropshadow(three-pass-box, rgba(255, 255, 255, 0.8), 5, 0.0, 0, 2);" text="Delete Match" textFill="WHITE" />
+                <Button fx:id="goBackButton" layoutX="550.0" layoutY="120.0" onAction="#goBack" prefHeight="30.0" prefWidth="100.0" style="-fx-font-weight: bold; -fx-text-fill: #ffffff; -fx-background-color: #000000; -fx-effect: dropshadow(three-pass-box, rgba(255, 255, 255, 0.8), 5, 0.0, 0, 2);" text="Back" textFill="WHITE" />
+                <Label layoutX="246.0" layoutY="81.0" style="-fx-text-fill: white; -fx-font-size: 18px;" text="Update Match Score" />
+                <Button fx:id="updateScoreButton" layoutX="440.0" layoutY="80.0" onAction="#updateScore" prefHeight="30.0" prefWidth="100.0" style="-fx-font-weight: bold; -fx-text-fill: #ffffff; -fx-background-color: #000000; -fx-effect: dropshadow(three-pass-box, rgba(255, 255, 255, 0.8), 5, 0.0, 0, 2);" text="Update Scores" textFill="WHITE" />
+                <TextField fx:id="score1Field" layoutX="325.0" layoutY="122.0" prefWidth="50.0" style="-fx-background-radius: 10; -fx-background-color: #ffffff; -fx-padding: 5;" />
+                <Label layoutX="245.0" layoutY="127.0" style="-fx-text-fill: white;" text="Team 1 Score:" />
+                <TextField fx:id="score2Field" layoutX="490.0" layoutY="122.0" prefWidth="50.0" style="-fx-background-radius: 10; -fx-background-color: #ffffff; -fx-padding: 5;" />
+                <Label layoutX="410.0" layoutY="127.0" style="-fx-text-fill: white;" text="Team 2 Score:" />
+                <ComboBox fx:id="filterComboBox" layoutX="33.0" layoutY="114.0" prefWidth="200.0" promptText="Select Filter" style="-fx-background-radius: 10; -fx-background-color: #ffffff; -fx-padding: 5 10 5 10;" />
+                <Label layoutX="37.0" layoutY="90.0" style="-fx-text-fill: white;" text="Filter Matches:" />
             </children>
-        </VBox>
+        </AnchorPane>
     </children>
 </AnchorPane>

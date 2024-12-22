@@ -19,8 +19,8 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
-
-public class CreateTeamController implements Initializable {
+//Created by Marc
+public class TeamController implements Initializable {
 
     TeamDAO teamDAO = new TeamDAO();
     GameDAO gameDAO = new GameDAO();
@@ -33,6 +33,7 @@ public class CreateTeamController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
         List<Game> games = gameDAO.getAllGames();
         List<String> gameNames = new ArrayList<>();
         for (Game game : games) {
@@ -45,39 +46,44 @@ public class CreateTeamController implements Initializable {
     protected void clickBackButton(ActionEvent event) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/teamViews/teamSearchView.fxml"));
-            Stage stage = new Stage();
-            stage.setScene(new Scene(loader.load()));
-            stage.setTitle("Pied Pipers");
-            stage.show();
-            ((Node)(event.getSource())).getScene().getWindow().hide();
+            Scene newScene = new Scene(loader.load());
+            Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            currentStage.setScene(newScene);
+            currentStage.setTitle("Pied Pipers");
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     @FXML
-    protected void clickAddTeamButton(ActionEvent event) {
+    protected void clickAddTeamButton() {
         try {
-            String selectedGameName = gameListView.getSelectionModel().getSelectedItem();
-                if (selectedGameName != null) {
-                    Game game = gameDAO.getGameByName(selectedGameName);
-                    String teamName = teamNameBox.getText();
-                    Team team = new Team(teamName, game);
-                    teamDAO.saveTeam(team);
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/teamViews/teamSearchView.fxml"));
-                    Stage stage = new Stage();
-                    stage.setScene(new Scene(loader.load()));
-                    stage.setTitle("Pied Pipers");
-                    stage.show();
-                    ((Node)(event.getSource())).getScene().getWindow().hide();
+            /*gameListView.setOnMouseClicked(event -> {
+                if (event.getClickCount() == 1) {*/
+                    String selectedGameName = gameListView.getSelectionModel().getSelectedItem();
+                    if (selectedGameName != null) {
+                        Game game = gameDAO.getGameByName(selectedGameName);
+                        String teamName = teamNameBox.getText();
+                        Team team = new Team(teamName, game);
+                        teamDAO.saveTeam(team);
+                        clickBackButton(null);
                     }
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-
     @FXML
     protected void logout(ActionEvent event) {
         SceneSwitcher.switchScenes(event, "/views/generalViews/loginView.fxml", "Pied Pipers", null, loginController.class);
+    }
+
+    @FXML
+    protected void clickEditTeamButton(ActionEvent event) {
+
+    }
+
+    @FXML
+    protected void clickDeleteTeamButton(ActionEvent event) {
+
     }
 }

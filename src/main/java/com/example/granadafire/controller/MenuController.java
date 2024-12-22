@@ -5,14 +5,11 @@ import com.example.granadafire.controller.generalControllers.loginController;
 import com.example.granadafire.controller.matchControllers.MatchController;
 import com.example.granadafire.controller.playerControllers.PlayerSearchController;
 import com.example.granadafire.controller.staffControllers.StaffSeachController;
+import com.example.granadafire.controller.teamControllers.TeamSearchController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
 
-public class Controller {
+public class MenuController {
 
     @FXML
     protected void clickPlayers(ActionEvent event) {
@@ -21,17 +18,7 @@ public class Controller {
 
     @FXML
     protected void clickTeams(ActionEvent event) {
-
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/teamViews/teamSearchView.fxml"));
-            Stage stage = new Stage();
-            stage.setScene(new Scene(loader.load()));
-            stage.setTitle("Pied Pipers");
-            stage.show();
-            ((Node)(event.getSource())).getScene().getWindow().hide();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        SceneSwitcher.switchScenes(event, "/views/teamViews/teamSearchView.fxml", "Pied Pipers", null, TeamSearchController.class);
     }
 
     @FXML

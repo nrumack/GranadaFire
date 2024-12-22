@@ -4,42 +4,46 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="500.0" prefWidth="400.0" style="-fx-background-color: D9D9D9;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.granadafire.controller.Controller">
+<AnchorPane prefHeight="500.0" prefWidth="500.0" style="-fx-background-image: url('file:src/main/resources/views/img/GranadaAlt2.png'); -fx-background-size: cover;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.granadafire.controller.MenuController">
    <children>
-      <Label alignment="CENTER" layoutX="115.0" layoutY="70.0" style="-fx-background-color: D9D9D9;" text="Piper games" textAlignment="CENTER">
+      <AnchorPane layoutX="50.0" prefHeight="500.0" prefWidth="400.0" style="-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.8), 10, 0.0, 0, 2), dropshadow(gaussian, rgba(255, 255, 255, 0.5), 5, 0.0, 0, 0); -fx-background-color: rgba(0, 0, 0, 0.7); -fx-background-radius: 10; -fx-padding: 10;">
+         <children>
+      <Label alignment="CENTER" layoutX="93.0" layoutY="50.0" style="-fx-font-size: 36px; -fx-font-weight: bold; -fx-text-fill: #ffffff; -fx-padding: 10;" text="Main Menu" textAlignment="CENTER">
          <font>
-            <Font size="30.0" />
+            <Font size="36.0" />
          </font>
       </Label>
-      <Button layoutX="125.0" layoutY="150.0" mnemonicParsing="false" onAction="#clickPlayers" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: C0BCBC;" text="Players" textFill="WHITE">
+      <Button layoutX="125.0" layoutY="150.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#clickPlayers" prefHeight="30.0" prefWidth="150.0" style="-fx-font-weight: bold; -fx-text-fill: #ffffff; -fx-background-color: #000000; -fx-effect: dropshadow(three-pass-box, rgba(255, 255, 255, 0.8), 5, 0.0, 0, 2);" text="Players">
          <font>
             <Font size="14.0" />
          </font>
       </Button>
-      <Button layoutX="125.0" layoutY="200.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#clickTeams" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: C0BCBC;" text="Teams" textFill="WHITE">
+      <Button layoutX="125.0" layoutY="200.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#clickTeams" prefHeight="30.0" prefWidth="150.0" style="-fx-font-weight: bold; -fx-text-fill: #ffffff; -fx-background-color: #000000; -fx-effect: dropshadow(three-pass-box, rgba(255, 255, 255, 0.8), 5, 0.0, 0, 2);" text="Teams">
          <font>
             <Font size="14.0" />
          </font>
       </Button>
-      <Button layoutX="125.0" layoutY="250.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#clickGames" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: C0BCBC;" text="Games" textFill="WHITE">
+      <Button layoutX="125.0" layoutY="250.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#clickGames" prefHeight="30.0" prefWidth="150.0" style="-fx-font-weight: bold; -fx-text-fill: #ffffff; -fx-background-color: #000000; -fx-effect: dropshadow(three-pass-box, rgba(255, 255, 255, 0.8), 5, 0.0, 0, 2);" text="Games">
          <font>
             <Font size="14.0" />
          </font>
       </Button>
-      <Button layoutX="125.0" layoutY="300.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#clickMatches" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: C0BCBC;" text="Matches" textFill="WHITE">
+      <Button layoutX="125.0" layoutY="300.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#clickMatches" prefHeight="30.0" prefWidth="150.0" style="-fx-font-weight: bold; -fx-text-fill: #ffffff; -fx-background-color: #000000; -fx-effect: dropshadow(three-pass-box, rgba(255, 255, 255, 0.8), 5, 0.0, 0, 2);" text="Matches">
          <font>
             <Font size="14.0" />
          </font>
       </Button>
-      <Button layoutX="125.0" layoutY="350.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#clickStaff" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: C0BCBC;" text="Staff" textFill="WHITE">
+      <Button layoutX="125.0" layoutY="350.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#clickStaff" prefHeight="30.0" prefWidth="150.0" style="-fx-font-weight: bold; -fx-text-fill: #ffffff; -fx-background-color: #000000; -fx-effect: dropshadow(three-pass-box, rgba(255, 255, 255, 0.8), 5, 0.0, 0, 2);" text="Staff">
          <font>
             <Font size="14.0" />
          </font>
       </Button>
-      <Button layoutX="125.0" layoutY="400.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#logout" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: C0BCBC;" text="Logout" textFill="WHITE">
+      <Button layoutX="125.0" layoutY="400.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#logout" prefHeight="30.0" prefWidth="150.0" style="-fx-font-weight: bold; -fx-text-fill: #ffffff; -fx-background-color: #000000; -fx-effect: dropshadow(three-pass-box, rgba(255, 255, 255, 0.8), 5, 0.0, 0, 2);" text="Logout">
          <font>
             <Font size="14.0" />
          </font>
       </Button>
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>

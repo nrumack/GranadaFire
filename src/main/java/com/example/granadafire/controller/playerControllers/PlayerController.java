@@ -18,7 +18,7 @@ import javafx.scene.control.TextField;
 import javafx.util.StringConverter;
 
 import java.util.List;
-
+//Created by Nicho/Martin
 public class PlayerController implements DataReciever {
     PlayerDAO playerDAO = new PlayerDAO();
     TeamDAO teamDAO = new TeamDAO();

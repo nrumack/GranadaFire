@@ -1,0 +1,47 @@
+/* Style the left arrow button */
+.button.left-arrow-button {
+    -fx-background-color: #000000;
+    -fx-text-fill: #ffffff;
+    -fx-background-radius: 3px;
+}
+
+/* Style the right arrow button */
+.button.right-arrow-button {
+    -fx-background-color: #000000;
+    -fx-text-fill: #ffffff;
+    -fx-background-radius: 3px;
+}
+
+/* Optional: Hover effects */
+.button.left-arrow-button:hover, .button.right-arrow-button:hover {
+    -fx-background-color: #666666;
+}
+
+/* Optional: Focus effects */
+.button.left-arrow-button:focused, .button.right-arrow-button:focused {
+    -fx-border-color: #ffcc00;
+}
+/* Style the pagination number buttons */
+.toggle-button.number-button {
+    -fx-font-size: 10px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #ffffff;
+    -fx-background-color: #000000;
+    -fx-effect: dropshadow(three-pass-box, rgba(255, 255, 255, 0.8), 5, 0.0, 0, 2);
+    -fx-background-radius: 5px;
+    -fx-border-radius: 5px;
+}
+
+/* Style the selected (active) number button */
+.toggle-button.number-button:selected {
+    -fx-background-color: #444444;
+    -fx-text-fill: #ffffff;
+    -fx-border-color: #ffcc00;
+}
+
+/* Style the label that shows the current page (e.g., "1/2") */
+.label.page-information {
+    -fx-opacity: 0; /* Makes the label invisible */
+    -fx-pref-width: 0; /* Collapses the space it takes */
+    -fx-pref-height: 0;
+}

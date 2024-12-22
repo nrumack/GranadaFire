@@ -4,34 +4,40 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="500.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.granadafire.controller.gameControllers.GameController">
+<AnchorPane prefHeight="500.0" prefWidth="500.0" style="-fx-background-image: url('file:src/main/resources/views/img/GranadaAlt2.png'); -fx-background-size: cover;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.granadafire.controller.gameControllers.GameController">
 
     <children>
-        <Label fx:id="gameLabel" layoutX="156.0" layoutY="14.0" prefHeight="51.0" prefWidth="90.0" text="Game" textAlignment="CENTER">
-            <font>
-                <Font size="30.0" />
-            </font>
-        </Label>
-        <Button id="Update" fx:id="saveGame" layoutX="265.0" layoutY="450.0" mnemonicParsing="false" onAction="#saveGame" prefHeight="30.0" prefWidth="75.0" style="-fx-background-color: C0BCBC;" text="Save" textFill="WHITE">
-            <font>
-                <Font size="14.0" />
-            </font></Button>
-        <Button fx:id="updateGame" layoutX="265.0" layoutY="450.0" mnemonicParsing="false" onAction="#updateGame" prefHeight="30.0" prefWidth="75.0" style="-fx-background-color: C0BCBC;" text="Update" textFill="WHITE" />
-        <Button fx:id="clearButton" layoutX="163.0" layoutY="450.0" mnemonicParsing="false" onAction="#clearButton" prefHeight="30.0" prefWidth="75.0" style="-fx-background-color: C0CBC;" text="Clear" textFill="WHITE" />
-        <Button id="deleteButton" fx:id="deleteButton" layoutX="163.0" layoutY="450.0" mnemonicParsing="false" onAction="#deleteButton" prefHeight="30.0" prefWidth="75.0" style="-fx-background-color: C0BCBC;" text="Delete" textFill="WHITE">
-            <font>
-                <Font size="14.0" />
-            </font></Button>
-        <Button layoutX="62.0" layoutY="450.0" mnemonicParsing="false" onAction="#backButton" prefHeight="30.0" prefWidth="75.0" style="-fx-background-color: C0BCBC;" text="Back" textFill="WHITE">
-            <font>
-                <Font size="14.0" />
-            </font>
-        </Button>
-        <Button layoutX="331.0" layoutY="14.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#logout" prefHeight="19.0" prefWidth="54.0" style="-fx-background-color: C0BCBC;" text="Logout" textFill="WHITE">
-            <font>
-                <Font size="10.0" />
-            </font>
-        </Button>
-        <TextField fx:id="gameNameField" layoutX="25.0" layoutY="75.0" prefHeight="17.0" prefWidth="350.0" promptText="Game name" style="-fx-border-color: Black; -fx-padding: 5; -fx-background-color: white;" />
+        <AnchorPane layoutX="50.0" prefHeight="500.0" prefWidth="400.0" style="-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.8), 10, 0.0, 0, 2), dropshadow(gaussian, rgba(255, 255, 255, 0.5), 5, 0.0, 0, 0); -fx-background-color: rgba(0, 0, 0, 0.7); -fx-background-radius: 10; -fx-padding: 10;">
+            <children>
+                <Label layoutX="111.0" layoutY="14.0" style="-fx-text-fill: white; -fx-font-weight: bold;" text="New Game" textAlignment="CENTER">
+                    <font>
+                        <Font size="36.0" />
+                    </font>
+                </Label>
+                <Button id="Update" fx:id="saveGame" layoutX="265.0" layoutY="450.0" mnemonicParsing="false" onAction="#saveGame" prefHeight="30.0" prefWidth="75.0" style="-fx-font-weight: bold; -fx-text-fill: #ffffff; -fx-background-color: #000000; -fx-effect: dropshadow(three-pass-box, rgba(255, 255, 255, 0.8), 5, 0.0, 0, 2);" text="Save">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                </Button>
+                <Button fx:id="updateGame" layoutX="265.0" layoutY="450.0" mnemonicParsing="false" onAction="#updateGame" prefHeight="30.0" prefWidth="75.0" style="-fx-font-weight: bold; -fx-text-fill: #ffffff; -fx-background-color: #000000; -fx-effect: dropshadow(three-pass-box, rgba(255, 255, 255, 0.8), 5, 0.0, 0, 2);" text="Update" textFill="WHITE" />
+                <Button fx:id="clearButton" layoutX="163.0" layoutY="450.0" mnemonicParsing="false" onAction="#clearButton" prefHeight="30.0" prefWidth="75.0" style="-fx-font-weight: bold; -fx-text-fill: #ffffff; -fx-background-color: #000000; -fx-effect: dropshadow(three-pass-box, rgba(255, 255, 255, 0.8), 5, 0.0, 0, 2);" text="Clear" />
+                <Button id="deleteButton" fx:id="deleteButton" layoutX="163.0" layoutY="450.0" mnemonicParsing="false" onAction="#deleteButton" prefHeight="30.0" prefWidth="75.0" style="-fx-font-weight: bold; -fx-text-fill: #ffffff; -fx-background-color: #000000; -fx-effect: dropshadow(three-pass-box, rgba(255, 255, 255, 0.8), 5, 0.0, 0, 2);" text="Delete">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                </Button>
+                <Button layoutX="62.0" layoutY="450.0" mnemonicParsing="false" onAction="#backButton" prefHeight="30.0" prefWidth="75.0" style="-fx-font-weight: bold; -fx-text-fill: #ffffff; -fx-background-color: #000000; -fx-effect: dropshadow(three-pass-box, rgba(255, 255, 255, 0.8), 5, 0.0, 0, 2);" text="Back" textFill="WHITE">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                </Button>
+                <Button layoutX="331.0" layoutY="14.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#logout" prefHeight="19.0" prefWidth="54.0" style="-fx-font-weight: bold; -fx-text-fill: #ffffff; -fx-background-color: #000000; -fx-effect: dropshadow(three-pass-box, rgba(255, 255, 255, 0.8), 5, 0.0, 0, 2);" text="Logout" textFill="WHITE">
+                    <font>
+                        <Font size="10.0" />
+                    </font>
+                </Button>
+                <TextField fx:id="gameNameField" layoutX="25.0" layoutY="75.0" prefHeight="17.0" prefWidth="350.0" promptText="Game name" style="-fx-background-radius: 10; -fx-padding: 5 10 5 10; -fx-background-color: #ffffff; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 5, 0.0, 0, 1);" />
+            </children>
+        </AnchorPane>
     </children>
 </AnchorPane>

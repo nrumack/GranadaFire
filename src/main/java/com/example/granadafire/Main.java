@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
 
 public class Main extends Application {
     @Override
@@ -15,8 +16,13 @@ public class Main extends Application {
         Parent root = loader.load();
 
         Scene scene = new Scene(root);
+        URL stylesheet = getClass().getResource("/views/style.css");
+        if (stylesheet != null) {
+            scene.getStylesheets().add(stylesheet.toExternalForm());
+        } else {
+            System.err.println("Stylesheet not found!");
+        }
         primaryStage.setTitle("Pied Pipers");
-
         primaryStage.setScene(scene);
         primaryStage.show();
     }
