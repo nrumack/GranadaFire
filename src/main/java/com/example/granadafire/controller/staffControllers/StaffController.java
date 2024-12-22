@@ -169,7 +169,6 @@ public class StaffController implements DataReciever {
                 return;
             }
 
-            System.out.println("Validation passed. Saving staff...");
             Staff newStaff = new Staff(0, firstNameInput, lastNameInput, nicknameInput, streetInput, areaCodeInput.isEmpty() ? 0 : Integer.parseInt(areaCodeInput), cityInput, countryInput, emailInput);
             staffDAO.saveStaff(newStaff);
 
