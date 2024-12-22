@@ -56,7 +56,7 @@ public class TeamController implements Initializable {
     }
 
     @FXML
-    protected void clickAddTeamButton() {
+    protected void clickAddTeamButton(ActionEvent event) {
         try {
             /*gameListView.setOnMouseClicked(event -> {
                 if (event.getClickCount() == 1) {*/
@@ -66,7 +66,15 @@ public class TeamController implements Initializable {
                         String teamName = teamNameBox.getText();
                         Team team = new Team(teamName, game);
                         teamDAO.saveTeam(team);
-                        clickBackButton(null);
+                        try {
+                            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/teamViews/teamSearchView.fxml"));
+                            Scene newScene = new Scene(loader.load());
+                            Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                            currentStage.setScene(newScene);
+                            currentStage.setTitle("Pied Pipers");
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
                     }
         } catch (Exception e) {
             e.printStackTrace();
