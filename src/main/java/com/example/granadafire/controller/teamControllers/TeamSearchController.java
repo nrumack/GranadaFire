@@ -17,6 +17,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
+
 //Created by Marc
 public class TeamSearchController implements Initializable {
 
@@ -49,7 +50,6 @@ public class TeamSearchController implements Initializable {
     public void editTeam(ActionEvent event) {
         try {
             Team selectedTeam = teamListView.getSelectionModel().getSelectedItem();
-
             if (selectedTeam != null) {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/teamViews/teamInfoView.fxml"));
                 Scene newScene = new Scene(loader.load());
@@ -85,7 +85,7 @@ public class TeamSearchController implements Initializable {
     @FXML
     protected void createNewTeam(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/teamViews/teamView.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/teamViews/createTeamView.fxml"));
             Scene newScene = new Scene(loader.load());
             Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             currentStage.setScene(newScene);
@@ -94,6 +94,7 @@ public class TeamSearchController implements Initializable {
             e.printStackTrace();
         }
     }
+
     @FXML
     protected void logout(ActionEvent event) {
         SceneSwitcher.switchScenes(event, "/views/generalViews/loginView.fxml", "Pied Pipers", null, loginController.class);

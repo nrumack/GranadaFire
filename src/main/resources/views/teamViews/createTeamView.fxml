@@ -7,7 +7,7 @@
 <AnchorPane prefHeight="500.0" prefWidth="500.0"
             style="-fx-background-image: url('file:src/main/resources/views/img/GranadaAlt2.png'); -fx-background-size: cover;"
             xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.example.granadafire.controller.teamControllers.TeamController">
+            fx:controller="com.example.granadafire.controller.teamControllers.CreateTeamController">
     <children>
         <AnchorPane layoutX="50.0" prefHeight="500.0" prefWidth="400.0"
                     style="-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.8), 10, 0.0, 0, 2), dropshadow(gaussian, rgba(255, 255, 255, 0.5), 5, 0.0, 0, 0); -fx-background-color: rgba(0, 0, 0, 0.7); -fx-background-radius: 10; -fx-padding: 10;">

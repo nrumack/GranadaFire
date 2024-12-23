@@ -19,8 +19,9 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+
 //Created by Marc
-public class TeamController implements Initializable {
+public class CreateTeamController implements Initializable {
 
     TeamDAO teamDAO = new TeamDAO();
     GameDAO gameDAO = new GameDAO();

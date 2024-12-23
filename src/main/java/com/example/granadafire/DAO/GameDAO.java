@@ -4,6 +4,7 @@ import com.example.granadafire.entities.Game;
 import jakarta.persistence.*;
 import java.util.List;
 
+// Created by Marc
 public class GameDAO {
 
     private static final EntityManagerFactory ENTITY_MANAGER_FACTORY = Persistence.createEntityManagerFactory("myconfig");
@@ -51,29 +52,8 @@ public class GameDAO {
         return null;
     }
 
-    public List<Game> getAllGames() {
-        EntityManager entityManager = ENTITY_MANAGER_FACTORY.createEntityManager();
-        try {
-            TypedQuery<Game> query = entityManager.createQuery("SELECT g FROM Game g", Game.class);
-            return query.getResultList();
-        } finally {
-            entityManager.close();
-        }
-    }
-
-    public List<Game> getGamesByName(String name) {
-        EntityManager entityManager = ENTITY_MANAGER_FACTORY.createEntityManager();
-        try {
-            TypedQuery<Game> query = entityManager.createQuery("SELECT g FROM Game g WHERE LOWER(g.gameName) Like :name OR LOWER(g.gameName) LIKE :name", Game.class);
-            query.setParameter("name", "%" + name.toLowerCase() + "%");
-            return query.getResultList();
-        } finally {
-            entityManager.close();
-        }
-    }
-
     // Update
-    public boolean updateGame(Game game) {
+    public void updateGame(Game game) {
         EntityManager entityManager = ENTITY_MANAGER_FACTORY.createEntityManager();
         EntityTransaction transaction = null;
         try {
@@ -81,19 +61,17 @@ public class GameDAO {
             transaction.begin();
             entityManager.merge(game);
             transaction.commit();
-            return true;
         } catch (Exception e) {
             System.out.println(e.getMessage());
             if (entityManager != null && transaction != null && transaction.isActive()) {
                 transaction.rollback();
             }
-            return false;
         } finally {
             entityManager.close();
         }
     }
 
-
+    // Delete
     public void deleteGame(int gameId) {
         EntityManager entityManager = ENTITY_MANAGER_FACTORY.createEntityManager();
         matchDAO.deleteMatchesByGame(gameId);
@@ -108,5 +86,26 @@ public class GameDAO {
             entityManager.remove(game);
         }
         entityManager.getTransaction().commit();
+    }
+
+    public List<Game> getGamesByName(String name) {
+        EntityManager entityManager = ENTITY_MANAGER_FACTORY.createEntityManager();
+        try {
+            TypedQuery<Game> query = entityManager.createQuery("SELECT g FROM Game g WHERE LOWER(g.gameName) Like :name OR LOWER(g.gameName) LIKE :name", Game.class);
+            query.setParameter("name", "%" + name.toLowerCase() + "%");
+            return query.getResultList();
+        } finally {
+            entityManager.close();
+        }
+    }
+
+    public List<Game> getAllGames() {
+        EntityManager entityManager = ENTITY_MANAGER_FACTORY.createEntityManager();
+        try {
+            TypedQuery<Game> query = entityManager.createQuery("SELECT g FROM Game g", Game.class);
+            return query.getResultList();
+        } finally {
+            entityManager.close();
+        }
     }
 }

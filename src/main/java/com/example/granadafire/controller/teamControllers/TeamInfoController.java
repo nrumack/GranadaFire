@@ -16,8 +16,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-
 import java.util.List;
+
 //Created by Marc
 public class TeamInfoController {
 
@@ -84,8 +84,6 @@ public class TeamInfoController {
         if (selectedTeam != null) {
             List<Player> players = playerDAO.getPlayersByTeam(selectedTeam);
             playersInTeam.getItems().addAll(players);
-        } else {
-            System.out.println("selectedTeam is null @ setPlayersInTeam");
         }
     }
 
@@ -125,7 +123,6 @@ public class TeamInfoController {
             playersInTeam.getItems().remove(player);
             availablePlayers.refresh();
             playersInTeam.refresh();
-
         }
     }
 
@@ -147,7 +144,7 @@ public class TeamInfoController {
         SceneSwitcher.switchScenes(event, "/views/generalViews/loginView.fxml", "Pied Pipers", null, loginController.class);
     }
 
-    public void setSelectedTeam(Team team){
+    public void setSelectedTeam(Team team) {
         this.selectedTeam = team;
     }
 
