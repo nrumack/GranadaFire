@@ -58,40 +58,30 @@ public class TeamController implements Initializable {
     @FXML
     protected void clickAddTeamButton(ActionEvent event) {
         try {
-            /*gameListView.setOnMouseClicked(event -> {
-                if (event.getClickCount() == 1) {*/
-                    String selectedGameName = gameListView.getSelectionModel().getSelectedItem();
-                    if (selectedGameName != null) {
-                        Game game = gameDAO.getGameByName(selectedGameName);
-                        String teamName = teamNameBox.getText();
-                        Team team = new Team(teamName, game);
-                        teamDAO.saveTeam(team);
-                        try {
-                            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/teamViews/teamSearchView.fxml"));
-                            Scene newScene = new Scene(loader.load());
-                            Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                            currentStage.setScene(newScene);
-                            currentStage.setTitle("Pied Pipers");
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                    }
+            String selectedGameName = gameListView.getSelectionModel().getSelectedItem();
+            if (selectedGameName != null) {
+                Game game = gameDAO.getGameByName(selectedGameName);
+                String teamName = teamNameBox.getText();
+                Team team = new Team(teamName, game);
+                teamDAO.saveTeam(team);
+                System.out.println(team.getTeamName());
+                try {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/teamViews/teamSearchView.fxml"));
+                    Scene newScene = new Scene(loader.load());
+                    Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                    currentStage.setScene(newScene);
+                    currentStage.setTitle("Pied Pipers");
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
     @FXML
     protected void logout(ActionEvent event) {
         SceneSwitcher.switchScenes(event, "/views/generalViews/loginView.fxml", "Pied Pipers", null, loginController.class);
-    }
-
-    @FXML
-    protected void clickEditTeamButton(ActionEvent event) {
-
-    }
-
-    @FXML
-    protected void clickDeleteTeamButton(ActionEvent event) {
-
     }
 }

@@ -4,7 +4,6 @@ import com.example.granadafire.DAO.TeamDAO;
 import com.example.granadafire.controller.SceneSwitcher;
 import com.example.granadafire.controller.generalControllers.loginController;
 import com.example.granadafire.entities.Team;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -60,11 +59,10 @@ public class TeamSearchController implements Initializable {
                 controller.setTeamName(selectedTeam);
                 controller.setPlayersInTeam();
                 controller.setAvailablePlayers();
+                controller.setGamesList();
                 Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 currentStage.setScene(newScene);
                 currentStage.setTitle("Pied Pipers");
-            } else {
-                System.out.println("No team selected.");
             }
         } catch (IOException e) {
             e.printStackTrace();
