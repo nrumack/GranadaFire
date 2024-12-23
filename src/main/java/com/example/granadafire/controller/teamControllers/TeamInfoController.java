@@ -76,6 +76,31 @@ public class TeamInfoController {
     }
 
     @FXML
+    public void updateGame(ActionEvent event) {
+        Game selectedGame = gamesList.getSelectionModel().getSelectedItem();
+        selectedTeam.setGame(selectedGame);
+        gameDAO.updateGame(selectedGame);
+        setGameName(selectedTeam);
+        teamDAO.updateTeam(selectedTeam);
+    }
+
+    @FXML
+    public void updateButton() {
+        String newName = teamName.getText();
+        teamName.setText(newName);
+        selectedTeam.setTeamName(newName);
+        teamDAO.updateTeam(selectedTeam);
+
+        Game selectedGame = gamesList.getSelectionModel().getSelectedItem();
+        if (selectedGame != null) {
+            selectedTeam.setGame(selectedGame);
+            gameDAO.updateGame(selectedGame);
+            setGameName(selectedTeam);
+            teamDAO.updateTeam(selectedTeam);
+        }
+    }
+
+    @FXML
     public void setPlayersInTeam() {
         if (selectedTeam != null) {
             List<Player> players = playerDAO.getPlayersByTeam(selectedTeam);
@@ -89,14 +114,6 @@ public class TeamInfoController {
     public void setGamesList() {
         List<Game> games = gameDAO.getAllGames();
         gamesList.getItems().addAll(games);
-    }
-
-    @FXML
-    public void updateGame(ActionEvent event) {
-        Game selectedGame = gamesList.getSelectionModel().getSelectedItem();
-        selectedTeam.setGame(selectedGame);
-        gameDAO.updateGame(selectedGame);
-        setGameName(selectedTeam);
     }
 
     @FXML
