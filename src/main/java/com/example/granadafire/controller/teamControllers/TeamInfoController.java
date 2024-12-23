@@ -1,15 +1,20 @@
 package com.example.granadafire.controller.teamControllers;
 
+import com.example.granadafire.DAO.GameDAO;
 import com.example.granadafire.DAO.PlayerDAO;
+import com.example.granadafire.DAO.TeamDAO;
 import com.example.granadafire.controller.SceneSwitcher;
 import com.example.granadafire.controller.generalControllers.loginController;
+import com.example.granadafire.entities.Game;
 import com.example.granadafire.entities.Player;
 import com.example.granadafire.entities.Team;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
@@ -21,15 +26,17 @@ import java.util.List;
 public class TeamInfoController {
 
     PlayerDAO playerDAO = new PlayerDAO();
+    TeamDAO teamDAO = new TeamDAO();
+    GameDAO gameDAO = new GameDAO();
 
     @FXML
     List <Player> players;
 
     @FXML
-    Label teamName;
+    TextField teamName;
 
     @FXML
-    Label gameName;
+    TextField gameName;
 
     @FXML
     ListView<Player> playersInTeam;
@@ -39,6 +46,9 @@ public class TeamInfoController {
 
     @FXML
     private Team selectedTeam;
+
+    @FXML
+    ListView<Game> gamesList;
 
     @FXML
     public void initialize() {
@@ -54,6 +64,15 @@ public class TeamInfoController {
     public void setTeamName(Team team) {
         String teamName = team.getTeamName();
         this.teamName.setText(teamName);
+        teamDAO.updateTeam(team);
+    }
+
+    @FXML
+    public void editTeamName() {
+        String newName = teamName.getText();
+        teamName.setText(newName);
+        selectedTeam.setTeamName(newName);
+        teamDAO.updateTeam(selectedTeam);
     }
 
     @FXML
@@ -64,6 +83,20 @@ public class TeamInfoController {
         } else {
             System.out.println("selectedTeam is null @ setPlayersInTeam");
         }
+    }
+
+    @FXML
+    public void setGamesList() {
+        List<Game> games = gameDAO.getAllGames();
+        gamesList.getItems().addAll(games);
+    }
+
+    @FXML
+    public void updateGame(ActionEvent event) {
+        Game selectedGame = gamesList.getSelectionModel().getSelectedItem();
+        selectedTeam.setGame(selectedGame);
+        gameDAO.updateGame(selectedGame);
+        setGameName(selectedTeam);
     }
 
     @FXML
@@ -128,5 +161,13 @@ public class TeamInfoController {
 
     public void setPlayers(List<Player> players) {
         this.players = players;
+    }
+
+    public TextField getGameName() {
+        return gameName;
+    }
+
+    public void setGameName(TextField gameName) {
+        this.gameName = gameName;
     }
 }

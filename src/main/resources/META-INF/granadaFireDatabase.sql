@@ -95,8 +95,8 @@ CREATE TABLE matches (
     FOREIGN KEY (player_id2) REFERENCES players(player_id),
     team_id1 INT,
     team_id2 INT, 
-    FOREIGN KEY (team_id1) REFERENCES teams(team_id),
-    FOREIGN KEY (team_id2) REFERENCES teams(team_id)
+    FOREIGN KEY (team_id1) REFERENCES teams(team_id) ON DELETE SET NULL,
+    FOREIGN KEY (team_id2) REFERENCES teams(team_id) ON DELETE SET NULL
 );
 
 INSERT INTO matches (match_date, score1, score2, match_result, player_id1, player_id2, team_id1, team_id2) 

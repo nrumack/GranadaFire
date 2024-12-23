@@ -60,11 +60,10 @@ public class TeamSearchController implements Initializable {
                 controller.setTeamName(selectedTeam);
                 controller.setPlayersInTeam();
                 controller.setAvailablePlayers();
+                controller.setGamesList();
                 Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 currentStage.setScene(newScene);
                 currentStage.setTitle("Pied Pipers");
-            } else {
-                System.out.println("No team selected.");
             }
         } catch (IOException e) {
             e.printStackTrace();
