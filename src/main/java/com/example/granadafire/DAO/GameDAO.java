@@ -1,11 +1,7 @@
 package com.example.granadafire.DAO;
 
 import com.example.granadafire.entities.Game;
-import com.example.granadafire.entities.Match;
-import com.example.granadafire.entities.Player;
 import jakarta.persistence.*;
-
-import java.util.ArrayList;
 import java.util.List;
 
 public class GameDAO {

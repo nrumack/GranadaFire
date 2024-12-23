@@ -8,18 +8,14 @@ import com.example.granadafire.controller.generalControllers.loginController;
 import com.example.granadafire.entities.Game;
 import com.example.granadafire.entities.Player;
 import com.example.granadafire.entities.Team;
-import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import org.hibernate.sql.Update;
 
 import java.util.List;
 //Created by Marc
@@ -65,23 +61,6 @@ public class TeamInfoController {
         String teamName = team.getTeamName();
         this.teamName.setText(teamName);
         teamDAO.updateTeam(team);
-    }
-
-    @FXML
-    public void editTeamName() {
-        String newName = teamName.getText();
-        teamName.setText(newName);
-        selectedTeam.setTeamName(newName);
-        teamDAO.updateTeam(selectedTeam);
-    }
-
-    @FXML
-    public void updateGame(ActionEvent event) {
-        Game selectedGame = gamesList.getSelectionModel().getSelectedItem();
-        selectedTeam.setGame(selectedGame);
-        gameDAO.updateGame(selectedGame);
-        setGameName(selectedTeam);
-        teamDAO.updateTeam(selectedTeam);
     }
 
     @FXML
@@ -178,13 +157,5 @@ public class TeamInfoController {
 
     public void setPlayers(List<Player> players) {
         this.players = players;
-    }
-
-    public TextField getGameName() {
-        return gameName;
-    }
-
-    public void setGameName(TextField gameName) {
-        this.gameName = gameName;
     }
 }

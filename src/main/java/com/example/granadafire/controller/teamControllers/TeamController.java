@@ -56,30 +56,6 @@ public class TeamController implements Initializable {
     }
 
     @FXML
-    protected void clickAddTeamButtonOld(ActionEvent event) {
-        try {
-                    String selectedGameName = gameListView.getSelectionModel().getSelectedItem();
-                    if (selectedGameName != null) {
-                        Game game = gameDAO.getGameByName(selectedGameName);
-                        String teamName = teamNameBox.getText();
-                        Team team = new Team(teamName, game);
-                        teamDAO.saveTeam(team);
-                        try {
-                            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/teamViews/teamSearchView.fxml"));
-                            Scene newScene = new Scene(loader.load());
-                            Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                            currentStage.setScene(newScene);
-                            currentStage.setTitle("Pied Pipers");
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                    }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    @FXML
     protected void clickAddTeamButton(ActionEvent event) {
         try {
             String selectedGameName = gameListView.getSelectionModel().getSelectedItem();
@@ -107,15 +83,5 @@ public class TeamController implements Initializable {
     @FXML
     protected void logout(ActionEvent event) {
         SceneSwitcher.switchScenes(event, "/views/generalViews/loginView.fxml", "Pied Pipers", null, loginController.class);
-    }
-
-    @FXML
-    protected void clickEditTeamButton(ActionEvent event) {
-
-    }
-
-    @FXML
-    protected void clickDeleteTeamButton(ActionEvent event) {
-
     }
 }

@@ -4,7 +4,6 @@ import com.example.granadafire.DAO.TeamDAO;
 import com.example.granadafire.controller.SceneSwitcher;
 import com.example.granadafire.controller.generalControllers.loginController;
 import com.example.granadafire.entities.Team;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
