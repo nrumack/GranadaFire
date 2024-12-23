@@ -32,10 +32,6 @@ public class Team {
         return teamId;
     }
 
-    public void setTeamId(int teamId) {
-        this.teamId = teamId;
-    }
-
     public String getTeamName() {
         return teamName;
     }

@@ -7,7 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
+// created by Nicholas
 public class SceneSwitcher {
     public static void switchScenes(Event event, String fxmlFile, String title, Object data, Class<?> callingClass) {
         try {

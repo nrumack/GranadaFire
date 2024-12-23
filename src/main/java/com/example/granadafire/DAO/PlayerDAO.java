@@ -16,7 +16,7 @@ public class PlayerDAO {
     private EntityManager entityManager;
 
     //Create
-    public boolean savePlayer(Player player) {
+    public void savePlayer(Player player) {
         EntityManager entityManager = ENTITY_MANAGER_FACTORY.createEntityManager();
         EntityTransaction transaction = null;
         try {
@@ -24,13 +24,11 @@ public class PlayerDAO {
             transaction.begin();
             entityManager.persist(player);
             transaction.commit();
-            return true;
         } catch (Exception e) {
             System.out.println(e.getMessage());
             if (entityManager != null && transaction != null && transaction.isActive()) {
                 transaction.rollback();
             }
-            return false;
         } finally {
             entityManager.close();
         }
@@ -75,6 +73,24 @@ public class PlayerDAO {
             );
             query.setParameter("teams", team);
             return query.getResultList();
+        } finally {
+            entityManager.close();
+        }
+    }
+    public Player getPlayerByName(String name) {
+        EntityManager entityManager = ENTITY_MANAGER_FACTORY.createEntityManager();
+        try {
+            TypedQuery<Player> query = entityManager.createQuery(
+                    "SELECT p FROM Player p WHERE LOWER(p.firstName) = :firstName AND LOWER(p.lastName) = :lastName", Player.class
+            );
+            query.setParameter("name", name.toLowerCase());
+            return query.getSingleResult();
+        } catch (NoResultException e) {
+            System.out.println(e.getMessage());
+            return null;
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+            return null;
         } finally {
             entityManager.close();
         }
@@ -130,7 +146,7 @@ public class PlayerDAO {
     }
 
     //Delete
-    public boolean deletePlayer(int id) {
+    public void deletePlayer(int id) {
         EntityManager entityManager = ENTITY_MANAGER_FACTORY.createEntityManager();
         EntityTransaction transaction = null;
 
@@ -141,17 +157,14 @@ public class PlayerDAO {
             if (player != null) {
                 entityManager.remove(player);
                 transaction.commit();
-                return true;
             } else {
                 transaction.rollback();
-                return false;
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
             if (transaction != null && transaction.isActive()) {
                 transaction.rollback();
             }
-            return false;
         } finally {
             entityManager.close();
         }

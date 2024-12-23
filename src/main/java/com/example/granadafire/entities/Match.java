@@ -1,5 +1,7 @@
 package com.example.granadafire.entities;
 
+import com.example.granadafire.DAO.PlayerDAO;
+import com.example.granadafire.DAO.TeamDAO;
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
@@ -43,10 +45,6 @@ public class Match {
 
     public int getMatchId() {
         return matchId;
-    }
-
-    public void setMatchId(int matchId) {
-        this.matchId = matchId;
     }
 
     public LocalDateTime getMatchDateRaw() {
@@ -143,8 +141,14 @@ public class Match {
         return "Draw";
     }
 
-
+    @Override
+    public String toString() {
+        return String.format("[%s] %s vs %s | Result: %s",
+                matchDate, getParticipant1Name(), getParticipant2Name(), getResult());
+    }
 }
+
+
 
 
 

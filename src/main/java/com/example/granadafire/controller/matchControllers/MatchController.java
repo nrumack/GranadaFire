@@ -82,11 +82,11 @@ public class MatchController {
 
         if ("Completed".equals(filter)) {
             loadMatches(matches.stream()
-                    .filter(match -> match.getResult() != null)
+                    .filter(match -> match.getScore1() != null && match.getScore2() != null)
                     .collect(Collectors.toList()));
         } else if ("Upcoming".equals(filter)) {
             loadMatches(matches.stream()
-                    .filter(match -> match.getResult() == null && match.getMatchDateRaw().isAfter(LocalDateTime.now()))
+                    .filter(match -> match.getScore1() == null || match.getScore2() == null)
                     .collect(Collectors.toList()));
         } else {
             loadMatches(matches);
@@ -133,6 +133,16 @@ public class MatchController {
         matchDAO.deleteMatchById(selectedMatch.getMatchId());
         matches.remove(selectedMatch);
         loadMatches(matches);
+    }
+
+    @FXML
+    private void editMatch(ActionEvent event) {
+        Match selectedMatch = matchListView.getSelectionModel().getSelectedItem();
+        if (selectedMatch == null) {
+            System.out.println("No match selected for editing.");
+            return;
+        }
+        SceneSwitcher.switchScenes(event, "/views/matchViews/matchEditView.fxml", "Edit Match", selectedMatch, MatchEditController.class);
     }
 
     @FXML

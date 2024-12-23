@@ -4,7 +4,7 @@ import com.example.granadafire.entities.Match;
 import jakarta.persistence.*;
 
 import java.util.List;
-
+// Created by Martin
 public class MatchDAO {
 
     private static final EntityManagerFactory ENTITY_MANAGER_FACTORY = Persistence.createEntityManagerFactory("myconfig");
@@ -28,19 +28,6 @@ public class MatchDAO {
             em.close();
         }
     }
-
-//    public List<Match> getMatchesByTeam(Team team) {
-//        EntityManager entityManager = ENTITY_MANAGER_FACTORY.createEntityManager();
-//        try {
-//            TypedQuery<Match> query = entityManager.createQuery(
-//                    "SELECT p FROM Match p WHERE p.team1 IN :matches", Match.class
-//            );
-//            query.setParameter("matches", team);
-//            return query.getResultList();
-//        } finally {
-//            entityManager.close();
-//        }
-//    }
 
     public List<Match> getAllMatches() {
         EntityManager em = ENTITY_MANAGER_FACTORY.createEntityManager();

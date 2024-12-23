@@ -10,7 +10,7 @@ public class TeamDAO {
 
     private static final EntityManagerFactory ENTITY_MANAGER_FACTORY = Persistence.createEntityManagerFactory("myconfig");
 
-    public boolean saveTeam(Team team) {
+    public void saveTeam(Team team) {
 
         EntityManager entityManager = ENTITY_MANAGER_FACTORY.createEntityManager();
         EntityTransaction transaction = null;
@@ -20,13 +20,11 @@ public class TeamDAO {
             transaction.begin();
             entityManager.persist(team);
             transaction.commit();
-            return true;
         } catch (Exception e) {
             System.out.println(e.getMessage());
             if (entityManager != null && transaction != null && transaction.isActive()) {
                 transaction.rollback();
             }
-            return false;
         } finally {
             entityManager.close();
         }
@@ -62,7 +60,7 @@ public class TeamDAO {
         return teams;
     }
 
-    public boolean updateTeam(Team team) {
+    public void updateTeam(Team team) {
         EntityManager entityManager = ENTITY_MANAGER_FACTORY.createEntityManager();
         EntityTransaction transaction = null;
 
@@ -71,19 +69,17 @@ public class TeamDAO {
             transaction.begin();
             entityManager.merge(team);
             transaction.commit();
-            return true;
         } catch (Exception e) {
             System.out.println(e.getMessage());
             if (transaction != null && transaction.isActive()) {
                 transaction.rollback();
             }
-            return false;
         } finally {
             entityManager.close();
         }
     }
 
-    public boolean deleteTeam(int id) {
+    public void deleteTeam(int id) {
         EntityManager entityManager = ENTITY_MANAGER_FACTORY.createEntityManager();
         EntityTransaction transaction = null;
 
@@ -98,17 +94,14 @@ public class TeamDAO {
                 }
                 entityManager.remove(team);
                 transaction.commit();
-                return true;
             } else {
                 transaction.rollback();
-                return false;
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
             if (transaction != null && transaction.isActive()) {
                 transaction.rollback();
             }
-            return false;
         } finally {
             entityManager.close();
         }

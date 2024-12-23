@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="500.0" prefWidth="800.0" style="-fx-background-image: url('file:src/main/resources/views/img/GranadaAlt2.png'); -fx-background-size: cover;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.granadafire.controller.matchControllers.MatchEditController">
+    <children>
+        <AnchorPane layoutX="50.0" prefHeight="500.0" prefWidth="700.0" style="-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.8), 10, 0.0, 0, 2), dropshadow(gaussian, rgba(255, 255, 255, 0.5), 5, 0.0, 0, 0); -fx-background-color: rgba(0, 0, 0, 0.7); -fx-background-radius: 10; -fx-padding: 10;">
+            <children>
+                <Label layoutX="275.0" layoutY="14.0" prefHeight="51.0" style="-fx-text-fill: white; -fx-font-weight: bold;" text="Edit Match" textAlignment="CENTER">
+                    <font>
+                        <Font size="36.0" />
+                    </font>
+                </Label>
+                <Label layoutX="50.0" layoutY="90.0" style="-fx-text-fill: white;" text="Match Date:" />
+                <DatePicker fx:id="datePicker" layoutX="150.0" layoutY="85.0" prefWidth="200.0" style="-fx-background-radius: 10; -fx-background-color: #ffffff; -fx-padding: 5;" />
+                <Label layoutX="50.0" layoutY="140.0" style="-fx-text-fill: white;" text="Match Time:" />
+                <TextField fx:id="timeField" layoutX="150.0" layoutY="135.0" prefWidth="200.0" style="-fx-background-radius: 10; -fx-background-color: #ffffff; -fx-padding: 5;" />
+                <Label layoutX="50.0" layoutY="190.0" style="-fx-text-fill: white;" text="Team/Player 1:" />
+                <ComboBox fx:id="participant1ComboBox" layoutX="150.0" layoutY="185.0" prefWidth="200.0" style="-fx-background-radius: 10; -fx-background-color: #ffffff; -fx-padding: 5;" />
+                <Label layoutX="50.0" layoutY="240.0" style="-fx-text-fill: white;" text="Team/Player 2:" />
+                <ComboBox fx:id="participant2ComboBox" layoutX="150.0" layoutY="235.0" prefWidth="200.0" style="-fx-background-radius: 10; -fx-background-color: #ffffff; -fx-padding: 5;" />
+                <Button fx:id="saveMatch" layoutX="550.0" layoutY="400.0" onAction="#saveMatch" prefHeight="30.0" prefWidth="100.0" style="-fx-font-weight: bold; -fx-text-fill: #ffffff; -fx-background-color: #000000; -fx-effect: dropshadow(three-pass-box, rgba(255, 255, 255, 0.8), 5, 0.0, 0, 2);" text="Save" textFill="WHITE" />
+                <Button fx:id="goBack" layoutX="440.0" layoutY="400.0" onAction="#goBack" prefHeight="30.0" prefWidth="100.0" style="-fx-font-weight: bold; -fx-text-fill: #ffffff; -fx-background-color: #000000; -fx-effect: dropshadow(three-pass-box, rgba(255, 255, 255, 0.8), 5, 0.0, 0, 2);" text="Back" textFill="WHITE" />
+            </children>
+        </AnchorPane>
+    </children>
+</AnchorPane>
